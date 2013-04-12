@@ -1,0 +1,22 @@
+User management - profile, registration, security, validation
+
+GitHub
+
+PHP / MySQL
+
+
+Users create their own surveys
+Survey templates, multiple choice, radio buttons, enter text, agree or disagree 
+
+Multiple choice, question, agree, disagree
+
+External documentation specify how the application works, focus on functionality and not necessarily css styles
+
+Allow anonymous users to take the survey or mail survey links to users
+
+Survey results are stored, able to view results.
+
+Add start and end date to the survey
+
+Maximum number of questions ? (5, 10 etc)
+
