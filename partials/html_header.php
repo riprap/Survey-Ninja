@@ -1,8 +1,8 @@
 <?php
 /*
     File Name: html_header.php
-    Authors Name: Scott Montgomery
-    Web Site Name: Scott Montgomery's Personal Portfolio
+    Authors Name: Scott Montgomery and Nolan Knill
+    Web Site Name: Survey Site
     File Description: This file contains the html header that is used on all desktop pages of the site.
 */  
 echo '

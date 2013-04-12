@@ -3,7 +3,7 @@
     File Name: index.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: The index / home page of the sitee which displays an introduction and links to other 
+    File Description: The index / home page of the site which displays an introduction and links to other 
     sections of the site. 
 -->
 
@@ -16,6 +16,7 @@ $email = '';
 $name = '';
 $password = '';
 $errors = array();
+//Success does not appear to be used anymore. Possibly need to remove it from this page
 $success = false;
 
 // if the user submitted the form (with method="post")
@@ -25,11 +26,9 @@ if (!empty($_POST)) {
     $errors[] = "Please enter your name.";
   }
 
-  // if the email field is empty
   if (empty($_POST['email'])) {
     $errors[] = "Please enter your email address.";
   }
-
   else if ( !preg_match('/@.+\..+/', $_POST['email']) ) {
     $errors[] = "Please enter a valid email address.";
   }
@@ -38,10 +37,10 @@ if (!empty($_POST)) {
     $errors[] = "Please enter your password.";
   }
 
-  // if there are no errors
+  //If there are no validation errors attempt to save the user to the database.
   if (empty($errors)) {
 
-      // this searches for the email in the database
+      //Search for the email in the database 
       $exists= check_user_exists ($_POST['email']);
 
        if ($exists) {
@@ -56,7 +55,7 @@ if (!empty($_POST)) {
     }
 
   else {
-    // must be an error. use this in the form below
+    //There is an error on the papge. Maintain sticky variables.
     $email = $_POST['email'];
     $name = $_POST['name'];
     $password = $_POST['password'];
@@ -68,46 +67,46 @@ if (!empty($_POST)) {
 
   <body id="<?php echo strtolower($page_name);?>">
 
-  <?php include 'partials/header.php'; ?>
+    <?php include 'partials/header.php'; ?>
 
-  <h1><?php echo $page_name;?></h1>
+    <h1><?php echo $page_name;?></h1>
+
+    <?php
+      //Loop over each error in the erros array and print any errors that exist. 
+      foreach ($errors as $error) {
+        echo "<p>$error</p>";
+      }
+    ?>
+
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+
+      <p>
+        <label>
+          Name:<br/>
+          <input type="text" name="name" value="<?php echo $name ?>"/>
+        </label>
+      </p>
+
+      <p>
+        <label>
+          Email:<br/>
+          <input type="text" name="email" value="<?php echo $email ?>"/>
+        </label>
+      </p>
+
+      <p>
+        <label>
+          Password:<br/>
+          <input type="password" name="password" value="<?php echo $password ?>"/>
+        </label>
+      </p>
+
+      <input type="submit" value="Submit"/>
+
+    </form>
 
 
-  <?php
-    // loop over the errors, if there are any
-    foreach ($errors as $error) {
-      echo "<p>$error</p>";
-    }
-
-  ?>
-
-  <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-
-    <p><label>
-      Name:<br/>
-
-      <input type="text" name="name" value="<?php echo $name ?>"/>
-    </label></p>
-
-    <p><label>
-      Email:<br/>
-
-      <input type="text" name="email" value="<?php echo $email ?>"/>
-    </label></p>
-
-    <p><label>
-      Password:<br/>
-
-      <input type="password" name="password" value="<?php echo $password ?>"/>
-    </label></p>
-
-
-    <input type="submit" value="Submit"/>
-
-  </form>
-
-
-  <?php include 'partials/footer.php'; ?>
+    <?php include 'partials/footer.php'; ?>
   
   </body>
 </html>

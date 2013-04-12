@@ -6,7 +6,12 @@
     File Description: This file contains all of the functions relating to users of the site.
 */
 
-// This function adds a user to the database
+/* 
+Add a user to the database 
+@param name The users name
+@param email The users email address
+@param password The users password
+*/
 
 function add_user($name, $email, $password) {
   $name = mysql_real_escape_string($name);
@@ -26,7 +31,12 @@ function add_user($name, $email, $password) {
   header('Location: index.php');
 }
 
-// This function checks if a user already exists with the submitted email
+/* 
+Check if the email address is already associated with a user in the database 
+@param email The users email address
+@return Whether or not the user was found in the database
+*/
+
 function check_user_exists($email){
   $check_email = mysql_real_escape_string($email);
   $check= mysql_query("SELECT * FROM users WHERE email = '$check_email'") or die(mysql_error());
@@ -34,18 +44,23 @@ function check_user_exists($email){
   //this checks to see the number of results when the email is searched
   $occurances = mysql_num_rows($check);
 
-  if (empty($occurances)){
+  if (empty($occurances)) {
     $user_exists = false;
   } 
   else {
     $user_exists = true;
   }
-
   return $user_exists;
 }
 
-// This function checks that the entered password is correct
-function check_password_correct($email,$password){
+/* 
+Check if the password given corresponds with an email address
+@param password The supplied password
+@param email The supplied email address
+@return Whether or not the password matches the one in the database
+*/
+
+function check_password_correct($email, $password){
   $check_email = mysql_real_escape_string($email);
   $check_password = mysql_real_escape_string($password);
   $correct = false;
@@ -53,7 +68,7 @@ function check_password_correct($email,$password){
 
   while($info = mysql_fetch_array($check))
   {
-    if ($check_password == $info['password']){
+    if ($check_password == $info['password']) {
       $correct = true;
     }
   }
@@ -61,7 +76,10 @@ function check_password_correct($email,$password){
   return $correct;
 }
 
-//this function checks if the user is logged in. if not they are redirected to the login page and prompted to login
+/*
+Check if the user is logged in. 
+If not they are redirected to the login page and prompted to login.
+*/
 function get_login(){
   if (empty($_SESSION['email'])) {
     $_SESSION['no_login'] = true;  
