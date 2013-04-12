@@ -20,3 +20,14 @@ Add start and end date to the survey
 
 Maximum number of questions ? (5, 10 etc)
 
+
+Tables:
+
+Users
+Surveys
+Questions 
+Question-type table: multiple choice, answer, agree disagree.
+
+QuestionAnswers --> Questions.id 
+
+UserAnswers 
