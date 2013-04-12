@@ -10,8 +10,12 @@
 <?php 
 $page_name = "Home";
 include "functions/functions.php";
-//include 'partials/html_header.php'; 
+include 'partials/html_header.php'; 
 ?>
+  <body id="<?php echo strtolower($page_name);?>">
 
-<?php include 'partials/header.php'; ?>
-<?php include 'partials/footer.php'; ?>
+  <?php include 'partials/header.php'; ?>
+  <?php include 'partials/footer.php'; ?>
+  
+  </body>
+</html>
