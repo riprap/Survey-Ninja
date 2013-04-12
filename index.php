@@ -11,7 +11,7 @@
 $page_name = "Home";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
-$logged_in_profile = get_profile();
+//$logged_in_profile = get_profile();
 ?>
   <body id="<?php echo strtolower($page_name);?>">
 
