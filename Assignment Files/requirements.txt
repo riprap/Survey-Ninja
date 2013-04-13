@@ -22,7 +22,7 @@ Tables:
   Surveys:
     id auto increment int not null
     name varachar
-    user_id id
+    creator_id -->user_id of creator 
     start_date datetime
     end_date datetime
     date_created datetime
@@ -46,13 +46,14 @@ Tables:
     id auto increment int not null
     survey_id (possibly not needed due to question_id field) int
     question_id int
-    answer_number int
+    answer_number int --> possibly not needed. order by id? 
     answer_text varchar
     date_created datetime
     date_modified datetime
 
   UserAnswers 
     id int 
+    user_id int 
     survey_id (possibly not needed due to question_id field) int 
     question_id int 
     answer_text varchar
