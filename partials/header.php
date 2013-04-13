@@ -6,13 +6,13 @@
     File Description: This file contains the header with site title and logo that is used on all desktop pages of the site.
 */  
 ?>
-        <div class="header-container">
+        <div id="header">
             <header class="wrapper clearfix">
-                
+                <?php echo $site_title; ?>
                 <?php
                 //Check log in status and include the appropriate navbar 
                 include 'logged_in_nav.php'; 
                 ?>
-                <?php echo $site_title; ?>
+                
             </header>
         </div>

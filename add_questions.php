@@ -71,17 +71,19 @@ if (!empty($_POST)) {
 ?>
   <body id="<?php echo strtolower($page_name);?>">
 
-  <?php
-    //Loop over each error in the erros array and print any errors that exist. 
-    foreach ($errors as $error) {
-      echo "<p>$error</p>";
-    }
-  ?>
-
   <?php include 'partials/header.php'; ?>
   <h1>Adding Questions for Survey: <? echo $survey['name']; ?> </h1>
   <p>This is a <? echo $survey_type; ?> survey. Each question must be filled in and include four possible answers.</p>
 
+  <div id="errors">
+    <?php
+      //Loop over each error in the erros array and print any errors that exist. 
+      foreach ($errors as $error) {
+        echo "<p>$error</p>";
+      }
+    ?>
+  </div>
+  
   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
     <?php if ($survey_type == 'multiple_choice') {?>

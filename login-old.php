@@ -80,14 +80,14 @@ if (!empty($_POST)) {
 
 
 
-<?php
-
-	// loop over the errors, if there are any
-	foreach ($errors as $error) {
-		echo "<p>$error</p>";
-	}
-
-?>
+<div id="errors">
+  <?php
+    //Loop over each error in the erros array and print any errors that exist. 
+    foreach ($errors as $error) {
+      echo "<p>$error</p>";
+    }
+  ?>
+</div>
 <?php
 
 if (isset($_SESSION['logout'])) {

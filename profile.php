@@ -8,7 +8,7 @@
 -->
 
 <?php 
-$page_name = "Profile";
+$page_name = "My Profile";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 //get_login();
@@ -18,6 +18,11 @@ include 'partials/html_header.php';
   <body id="<?php echo strtolower($page_name);?>">
 
   <?php include 'partials/header.php'; ?>
+
+  <h1>
+    <? echo $page_name;?>
+  </h1>
+
   <div id="profile">
     Name: <?php echo "user name"; ?>
     <br>

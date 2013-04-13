@@ -7,7 +7,7 @@
 */  
 ?>
 
-     <div class="footer-container">
+     <div id="footer">
         <footer class="wrapper">
             <h3><?php echo $footer_text; ?></h3>
         </footer>

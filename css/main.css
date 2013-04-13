@@ -5,10 +5,28 @@
     File Description: This file contains the main css styling for all pages of the site
 */  
 
+
+/* CSS related to the navbar */
+
 #links {
   list-style-type: none;
-  float:right;
+  
 }
 #links li {
   display: inline-block;
+}
+
+/* CSS related to the header */
+#footer {
+  text-align: center;
+}
+
+/* CSS related to the header */
+#header {
+  text-align: center;
+}
+
+/* CSS related to error messages */
+#errors {
+  color: red;
 }
