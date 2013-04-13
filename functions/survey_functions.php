@@ -83,5 +83,14 @@ function get_survey($survey_id) {
 // Select * from surveys where id = id 
 // Select * from questions where survey_id = id
 // Select * from answers where survey_id = id 
+  $survey_id = mysql_real_escape_string($survey_id);
+  $query = mysql_query("
+    SELECT * FROM surveys
+    WHERE id = '$survey_id'
+  ");
+
+  $row = mysql_fetch_array($query);
+
+  return $row;  
 }
 
