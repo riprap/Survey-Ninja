@@ -12,8 +12,6 @@
   or die('Unable to select database Survey')
 ;
 
-
-<?php
 /*
     File Name: database.php
     Authors Name: Scott Montgomery and Nolan Knill
