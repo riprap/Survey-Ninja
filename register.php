@@ -55,7 +55,7 @@ if (!empty($_POST)) {
     }
 
   else {
-    //There is an error on the papge. Maintain sticky variables.
+    //There is an error on the page. Maintain sticky variables.
     $email = $_POST['email'];
     $name = $_POST['name'];
     $password = $_POST['password'];

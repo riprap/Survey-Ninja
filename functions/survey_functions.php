@@ -48,7 +48,19 @@ Add a survey to the database
 */
 
 function add_survey($name, $type, $creator) {
-//Insert into surveys, name = @name, @creator = user.id, type = type
+  $name = mysql_real_escape_string($name);
+  $type = mysql_real_escape_string($type);
+  $creator = mysql_real_escape_string($creator);
+
+  mysql_query("
+    INSERT INTO surveys
+    ( name, creator_id, survey_type)
+    VALUES
+    ( '$name', '$creator', '$type')
+  ") ;
+  //Get the value of the row we just inserted.
+  $id = mysql_insert_id();
+  header('Location: add_questions.php?survey='.$id);
 }
 
 /*
