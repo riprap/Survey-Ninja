@@ -130,3 +130,22 @@ function get_questions($survey_id) {
   return $questions;
 }
 
+/*
+Get all of the surveys that are created by the specifed user
+@param user_id The user we are getting the surveys for 
+@return All of the surveys created by the user
+*/
+function get_user_surveys($user_id) {
+  $q = mysql_query("
+    SELECT * FROM surveys
+    WHERE creator_id = '$user_id'
+  ");
+
+  $surveys = array();
+
+  while ($row = mysql_fetch_array($q)) {
+    $surveys[] = $row;
+  }
+
+  return $surveys;
+}
