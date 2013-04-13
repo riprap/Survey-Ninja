@@ -12,8 +12,16 @@ Save the potential answer to a specific question
 @param answer The answer to the question
 */
 
-function add_answer($question_id, $answer) {
-//Insert into answers, question_id = @question_id, answer = @answer
+function add_answer($question_id, $text) {
+  $question_id = mysql_real_escape_string($question_id);
+  $text = mysql_real_escape_string($text);
+
+  mysql_query("
+    INSERT INTO question_answers
+    ( question_id, text, date_created, date_updated)
+    VALUES
+    ( '$question_id', '$text', NOW(), NOW())
+  ") ;
 }
 
 /*
@@ -35,7 +43,19 @@ Save a question related to a survey
 */
 
 function add_question($survey_id, $question, $type) {
-//Insert into questions, survey_id = @survey_id, question = @question, type = @question_type
+  $survey_id = mysql_real_escape_string($survey_id);
+  $question = mysql_real_escape_string($question);
+  $type = mysql_real_escape_string($type);
+
+  mysql_query("
+    INSERT INTO questions
+    ( survey_id, text, type, date_created, date_updated)
+    VALUES
+    ( '$survey_id', '$question', '$type', NOW(), NOW())
+  ") ;
+    //Get the value of the row we just inserted.
+  $id = mysql_insert_id();
+  return $id;
 }
 
 /* 
@@ -54,9 +74,9 @@ function add_survey($name, $type, $creator) {
 
   mysql_query("
     INSERT INTO surveys
-    ( name, creator_id, survey_type)
+    ( name, creator_id, survey_type, date_created, date_updated)
     VALUES
-    ( '$name', '$creator', '$type')
+    ( '$name', '$creator', '$type', NOW(), NOW())
   ") ;
   //Get the value of the row we just inserted.
   $id = mysql_insert_id();
