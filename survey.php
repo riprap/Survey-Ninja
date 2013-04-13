@@ -35,9 +35,11 @@ $questions = get_questions($survey_number);
   <?php foreach ($questions as $question): ?>
 
     <li>
+        <h2><?php echo htmlentities($question['text']) ?></h2>
+    </li>
+    <li>
         <?php echo htmlentities($question['text']) ?>
     </li>
-
   <?php endforeach; ?>
 
   <?php include 'partials/footer.php'; ?>

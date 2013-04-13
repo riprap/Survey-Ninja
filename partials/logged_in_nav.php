@@ -7,7 +7,7 @@
 */  
 ?>
 
-<ul>
+<ul id="links">
     <li>Logged in as: User Name</li>
     <li><a href="profile.php" id="profile">My Profile</a></li>
     <li><a href="my_surveys.php" id="mysurveys">My Surveys</a></li>

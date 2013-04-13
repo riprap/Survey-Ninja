@@ -4,3 +4,10 @@
     Web Site Name: Survey Site
     File Description: This file contains the main css styling for all pages of the site
 */  
+
+#links {
+  list-style-type: none;
+}
+#links li {
+  display: inline-block;
+}

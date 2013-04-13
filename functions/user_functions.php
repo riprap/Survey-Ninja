@@ -81,8 +81,7 @@ Check if the user is logged in.
 If not they are redirected to the login page and prompted to login.
 */
 function get_login(){
-  if (empty($_SESSION['email'])) {
-    $_SESSION['no_login'] = true;  
+  if (empty($_SESSION['email'])) { 
     header('Location: login.php');
     die;
   }
