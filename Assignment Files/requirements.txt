@@ -23,6 +23,7 @@ Tables:
     id auto increment int not null
     name varachar
     creator_id -->user_id of creator 
+    survey_type varchar
     start_date datetime
     end_date datetime
     date_created datetime

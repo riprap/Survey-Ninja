@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS  `surveys`
 (
 `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `name` VARCHAR( 255 ) NOT NULL ,
+`survey_type` varchar(255) NOT NULL,
 `creator_id` INT NOT NULL,
 `start_date` DATETIME,
 `end_date` DATETIME,
