@@ -5,11 +5,10 @@
     Web Site Name: Survey Site
     File Description: This file contains the main footer that is used on all desktop pages of the site.
 */  
-      
- echo '
-         <div class="footer-container">
-            <footer class="wrapper">
-                <h3>'. $footer_text .'</h3>
-            </footer>
-        </div>
-';
+?>
+
+     <div class="footer-container">
+        <footer class="wrapper">
+            <h3><?php echo $footer_text; ?></h3>
+        </footer>
+    </div>

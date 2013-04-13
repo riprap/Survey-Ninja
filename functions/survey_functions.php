@@ -23,7 +23,7 @@ Save a users answer to a particular question
 @param user_id The id of the user
 */
 
-function add_user_answer(@question_id, @answer, @user_id) {
+function add_user_answer($question_id, $answer, $user_id) {
 //Insert into user_answers question_id = @question_id, answer = @answer, @user = user_id 
 }
 
@@ -57,7 +57,7 @@ Check if a survey is open or closed
 @return Whether the survey is open (true) or closed (false)
 */
 
-function check_servey_status(@survey_id) {
+function check_servey_status($survey_id) {
   //Select start_date, end_date from surveys where id = survey_id 
 }
 
@@ -67,7 +67,7 @@ Get all of the details for a survey so that it can be displayed to a user
 @return Survey Object, Question Object, Answers Object
 */
 
-function get_survey(@survey_id) {
+function get_survey($survey_id) {
 // Select * from surveys where id = id 
 // Select * from questions where survey_id = id
 // Select * from answers where survey_id = id 
