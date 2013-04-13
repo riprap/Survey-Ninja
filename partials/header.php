@@ -8,10 +8,11 @@
 ?>
         <div class="header-container">
             <header class="wrapper clearfix">
-                <?php echo $site_title; ?>
+                
                 <?php
                 //Check log in status and include the appropriate navbar 
                 include 'logged_in_nav.php'; 
                 ?>
+                <?php echo $site_title; ?>
             </header>
         </div>
