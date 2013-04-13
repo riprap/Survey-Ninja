@@ -72,7 +72,6 @@ if (!empty($_POST)) {
         <label>
           Start Date:<br/>
           <select name="start_month">
-            <option> - Month - </option>
             <option value="January">January</option>
             <option value="Febuary">Febuary</option>
             <option value="March">March</option>
@@ -88,7 +87,6 @@ if (!empty($_POST)) {
           </select>
 
           <select name="start_day">
-            <option> - Day - </option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -224,7 +222,6 @@ if (!empty($_POST)) {
         <label>
           End Date:<br/>
           <select name="end_month">
-            <option> - Month - </option>
             <option value="January">January</option>
             <option value="Febuary">Febuary</option>
             <option value="March">March</option>
@@ -240,7 +237,6 @@ if (!empty($_POST)) {
           </select>
 
           <select name="end_day">
-            <option> - Day - </option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

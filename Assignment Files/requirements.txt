@@ -1,12 +1,11 @@
 Requirements to Consider:
 
   User management - profile, registration, security, validation
-  Users create their own surveys
+  DONE - Users create their own surveys
   Survey templates, multiple choice, radio buttons, enter text, agree or disagree 
   External documentation specify how the application works, focus on functionality
   Allow anonymous users to take the survey or mail survey links to users
   Add start and end date to the survey
-  Maximum number of questions ? (5, 10 etc)
 
 
 Tables:
@@ -87,3 +86,7 @@ If we are done early possible additional pages to add:
 
 What if we ask the user how many questions the survey has when creating the initial instance of the survey?
 
+
+TODO
+
+Turn get survey into a function

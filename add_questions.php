@@ -25,7 +25,7 @@ else if (!empty($_GET['survey'])) {
 // else if no survey. DIE
 $survey = get_survey($survey_number);
 $survey_type = $survey['survey_type'];
-$question_count = 1;
+$question_count = 3;
 for ($i=1; $i <= $question_count; $i++){
   ${"question_". $i} = '';
 }

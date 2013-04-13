@@ -32,7 +32,16 @@ Save a users answer to a particular question
 */
 
 function add_user_answer($question_id, $answer, $user_id) {
-//Insert into user_answers question_id = @question_id, answer = @answer, @user = user_id 
+  $question_id = mysql_real_escape_string($question_id);
+  $user_id = mysql_real_escape_string($user_id);
+  $answer = mysql_real_escape_string($answer);
+
+  mysql_query("
+    INSERT INTO user_answers
+    ( question_id, user_id, question_answer_id, date_created, date_updated)
+    VALUES
+    ( '$question_id', '$user_id', '$answer', NOW(), NOW())
+  ") ;
 }
 
 /*
@@ -128,6 +137,21 @@ function get_questions($survey_id) {
   }
 
   return $questions;
+}
+
+function get_answers($question_id) {
+  $q = mysql_query("
+    SELECT * FROM question_answers
+    WHERE question_id = '$question_id'
+  ");
+
+  $answers = array();
+
+  while ($row = mysql_fetch_array($q)) {
+    $answers[] = $row;
+  }
+
+  return $answers;
 }
 
 /*

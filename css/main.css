@@ -30,3 +30,8 @@
 #errors {
   color: red;
 }
+
+/* Css related to showing questions */
+#question {
+  list-style-type: none;
+}

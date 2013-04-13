@@ -31,6 +31,8 @@ $surveys = get_user_surveys($profile_id)
       <th>Email</th>
       <th>Users</th>
       <th>URL</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   <?php foreach ($surveys as $survey): ?>
     <tr>
