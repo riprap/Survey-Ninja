@@ -85,5 +85,5 @@ If we are done early possible additional pages to add:
   - Create email list, 
 
 
-
+What if we ask the user how many questions the survey has when creating the initial instance of the survey?
 
