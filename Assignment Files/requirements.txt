@@ -1,17 +1,17 @@
 Requirements to Consider:
 
-	User management - profile, registration, security, validation
-	Users create their own surveys
-	Survey templates, multiple choice, radio buttons, enter text, agree or disagree 
-	External documentation specify how the application works, focus on functionality
-	Allow anonymous users to take the survey or mail survey links to users
-	Add start and end date to the survey
-	Maximum number of questions ? (5, 10 etc)
+  User management - profile, registration, security, validation
+  Users create their own surveys
+  Survey templates, multiple choice, radio buttons, enter text, agree or disagree 
+  External documentation specify how the application works, focus on functionality
+  Allow anonymous users to take the survey or mail survey links to users
+  Add start and end date to the survey
+  Maximum number of questions ? (5, 10 etc)
 
 
 Tables:
 
-	Users:
+  Users:
     id auto increment int not null
     name varchar
     email varchar
@@ -19,7 +19,7 @@ Tables:
     date_created datetime
     date_updated datetime
 
-	Surveys:
+  Surveys:
     id auto increment int not null
     name varachar
     user_id id
@@ -28,21 +28,21 @@ Tables:
     date_created datetime
     date_updated datetime
 
-	Questions:
+  Questions:
     id auto increment int not null
     survey_id int 
     question_text varchar
     date_created datetime
     date_updated datetime
 
-	Question-type:
+  Question-type:
     id auto increment int not null
     name varchar
     number_of_answers int 
     date_created datetime 
     date_updated datetime
 
-	QuestionAnswers
+  QuestionAnswers
     id auto increment int not null
     survey_id (possibly not needed due to question_id field) int
     question_id int
@@ -51,7 +51,7 @@ Tables:
     date_created datetime
     date_modified datetime
 
-	UserAnswers 
+  UserAnswers 
     id int 
     survey_id (possibly not needed due to question_id field) int 
     question_id int 
@@ -65,14 +65,14 @@ Pages We Will Need to Create
 - Create survey create_survey.php
 - Add questions / answers to survey add_question_to_survey.php
 - View survey (load the entire survey) survey.php?survey_id=12
-	Users: 
+  Users: 
     View your profile profile.php
     Change your profile details edit_profile.php
-		View the surveys you have created my_surveys.php	
-		  Surveys:
+    View the surveys you have created my_surveys.php  
+      Surveys:
         View share link for your survey 
         Update the start / end date of a survey edit_survey.php
-		    View the results of a survey survey_details.php
+        View the results of a survey survey_details.php
 
 If we are done early possible additional pages to add:
   - Share this survey with friends via email form. Facebook share functionality, Twitter? etc 
