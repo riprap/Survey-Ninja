@@ -25,8 +25,10 @@ else if (!empty($_GET['survey'])) {
 // else if no survey. DIE
 $survey = get_survey($survey_number);
 $survey_type = $survey['survey_type'];
-$question_count = 5;
-
+$question_count = 1;
+for ($i=1; $i <= $question_count; $i++){
+  ${"question_". $i} = '';
+}
 
 // if the user submitted the form (with method="post")
 if (!empty($_POST)) {
@@ -52,7 +54,8 @@ if (!empty($_POST)) {
         //Call the add answer function
         add_answer($question_number, $answer);
       }       
-    }    
+    }
+    header('Location: survey.php?survey='.$survey_number);    
   }
   else {
     //There is an error on the page. Maintain sticky variables.

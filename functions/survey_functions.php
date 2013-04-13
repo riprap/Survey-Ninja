@@ -114,3 +114,19 @@ function get_survey($survey_id) {
   return $row;  
 }
 
+
+function get_questions($survey_id) {
+  $q = mysql_query("
+    SELECT * FROM questions
+    WHERE survey_id = '$survey_id'
+  ");
+
+  $questions = array();
+
+  while ($row = mysql_fetch_array($q)) {
+    $questions[] = $row;
+  }
+
+  return $questions;
+}
+
