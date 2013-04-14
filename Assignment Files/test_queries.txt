@@ -1,0 +1,18 @@
+
+
+//Select a question and get the number of users that have answered it
+
+SELECT *,
+(SELECT COUNT(*) FROM user_answers WHERE user_answers.question_id = questions.id) AS total_answered,
+(SELECT COUNT(*) FROM user_answers WHERE user_answers.question_id = questions.id) AS total
+
+FROM questions 
+WHERE id=49
+
+
+//Select each of the answers for a specific question and how many people have chosen that answer
+
+SELECT *,
+(SELECT COUNT(*) FROM user_answers WHERE user_answers.question_answer_id = question_answers.id) AS total
+FROM question_answers
+WHERE question_id=49

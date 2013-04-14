@@ -90,3 +90,5 @@ What if we ask the user how many questions the survey has when creating the init
 TODO
 
 Turn get survey into a function
+Remove user_id from user_answers table / functions (since anonymous users will take survey.)
+Make Date format function to extract and insert dates to the database
