@@ -31,16 +31,16 @@ Save a users answer to a particular question
 @param user_id The id of the user
 */
 
-function add_user_answer($question_id, $answer, $user_id) {
+function add_submission_answer($survey_id, $question_id, $answer, $submission_id) {
   $question_id = mysql_real_escape_string($question_id);
-  $user_id = mysql_real_escape_string($user_id);
+  $submission_id = mysql_real_escape_string($submission_id);
+  $survey_id = mysql_real_escape_string($survey_id);
   $answer = mysql_real_escape_string($answer);
-
   mysql_query("
-    INSERT INTO user_answers
-    ( question_id, user_id, question_answer_id, date_created, date_updated)
+    INSERT INTO submissions_answers
+    ( survey_id, question_id, submission_id, question_answer_id, date_created, date_updated)
     VALUES
-    ( '$question_id', '$user_id', '$answer', NOW(), NOW())
+    ( '$survey_id', '$question_id', '$submission_id', '$answer', NOW(), NOW())
   ") ;
 }
 
@@ -76,16 +76,15 @@ Add a survey to the database
 @param end_date The date to end the survey
 */
 
-function add_survey($name, $type, $creator) {
+function add_survey($name, $type, $creator, $start_date = NULL, $end_date = NULL) {
   $name = mysql_real_escape_string($name);
   $type = mysql_real_escape_string($type);
   $creator = mysql_real_escape_string($creator);
-
   mysql_query("
     INSERT INTO surveys
-    ( name, creator_id, survey_type, date_created, date_updated)
+    ( name, creator_id, type_id, date_created, date_updated, start_date, end_date)
     VALUES
-    ( '$name', '$creator', '$type', NOW(), NOW())
+    ( '$name', '$creator', '$type', NOW(), NOW(), '$start_date', '$end_date')
   ") ;
   //Get the value of the row we just inserted.
   $id = mysql_insert_id();
@@ -114,12 +113,13 @@ function get_survey($survey_id) {
 // Select * from answers where survey_id = id 
   $survey_id = mysql_real_escape_string($survey_id);
   $query = mysql_query("
-    SELECT * FROM surveys
-    WHERE id = '$survey_id'
+    SELECT surveys.*, survey_types.name AS survey_type
+    FROM surveys
+    LEFT JOIN survey_types ON survey_types.id = surveys.type_id
+    WHERE surveys.id = '$survey_id'
   ");
 
   $row = mysql_fetch_array($query);
-
   return $row;  
 }
 
@@ -161,9 +161,12 @@ Get all of the surveys that are created by the specifed user
 */
 function get_user_surveys($user_id) {
   $q = mysql_query("
-    SELECT * FROM surveys
+    SELECT surveys.*, survey_types.name AS survey_type
+    FROM surveys
+    LEFT JOIN survey_types ON survey_types.id = surveys.type_id
     WHERE creator_id = '$user_id'
   ");
+
 
   $surveys = array();
 
@@ -172,4 +175,27 @@ function get_user_surveys($user_id) {
   }
 
   return $surveys;
+}
+
+
+function get_submission_count($survey_id) {
+  $q = mysql_query("
+    SELECT COUNT(*) FROM submissions
+    WHERE survey_id = '$survey_id'
+  ");  
+  $row = mysql_fetch_row($q);
+  return $row[0];
+}
+
+//Add a submisison for a survey to the database 
+function add_submission($survey_id, $ip = NULL) {
+  mysql_query("
+    INSERT INTO submissions
+    (survey_id, ip_address, date_created, date_updated)
+    VALUES
+    ( '$survey_id', '$ip', NOW(), NOW())
+  ") ;  
+  //Get the value of the row we just inserted.
+  $id = mysql_insert_id();
+  return $id;  
 }

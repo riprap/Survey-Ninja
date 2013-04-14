@@ -18,3 +18,7 @@ include "user_functions.php";
 include "locales/en.php";
 
 
+function format_db_date($day, $month, $year) {
+  $date = $year . '-' . $month . '-' . $day;
+  return checkdate($month, $day, $year) ? "$year-$month-$day" : false;
+}

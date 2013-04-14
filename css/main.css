@@ -35,3 +35,7 @@
 #question {
   list-style-type: none;
 }
+
+td {
+  text-align: center;
+}

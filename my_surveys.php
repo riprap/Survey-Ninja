@@ -29,21 +29,57 @@ $surveys = get_user_surveys($profile_id)
       <th>Start Date</th>
       <th>End Date</th>
       <th>Email</th>
-      <th>Users</th>
+      <th>Submissions</th>
       <th>URL</th>
       <th>Edit</th>
-      <th>Delete</th>
+      <th>Details</th>
     </tr>
-  <?php foreach ($surveys as $survey): ?>
+  <?php foreach ($surveys as $survey): 
+    $questions = get_questions($survey['id']);
+  ?>
     <tr>
       <td>      
-        <a href="survey.php?survey=<?php echo $survey['id'] ?>">
+        <a href="survey.php?survey=<?php echo $survey['id']; ?>">
           <?php echo htmlentities($survey['name']) ?>
         </a>
       </td>
       <td>
         <?php echo $survey['survey_type'];?>
       </td>
+      <td>
+        <?php echo count($questions);?>
+      </td>
+       <td>
+        <?php 
+          if ($survey['start_date'] != ""){
+            echo date('F d, Y', strtotime($survey['start_date']));
+          }
+        ?>
+      </td>
+      <td>
+        <?php 
+          if ($survey['end_date'] != ""){
+            echo date('F d, Y', strtotime($survey['end_date']));
+          }
+        ?>
+      </td> 
+      <td>
+        Link to email page
+      </td>
+      <td>
+        <?php 
+          echo get_submission_count($survey['id']);
+        ?>
+      </td> 
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>      
+        <a href="details.php?survey=<?php echo $survey['id']; ?>">
+          <?php echo htmlentities($survey['name']) ?>
+        </a>
+      </td>                             
     </tr>
   <?php endforeach; ?>
 

@@ -29,16 +29,17 @@ $questions = get_questions($survey_number);
 if (!empty($_POST)) {
   $survey_number = $_POST['survey_id'];
   //Loop through each of the questions and save the corresponding answer
-  //add_user_answer($question_id, $answer, $user_id)
+  $submission_id = add_submission($survey_number, $_SERVER['REMOTE_ADDR']);
   foreach ($questions as $question): 
     if (!empty($_POST['question_'. $question['id']])) {
       $errors[] = "Please enter your name.";
       $answer = $_POST['question_'. $question['id']];
       $question_id = $question['id'];
-      add_user_answer($question_id, $answer, $user_id);
+      add_submission_answer($survey_number, $question_id, $answer, $submission_id);
     }  
       
   endforeach;
+
 
 }
 

@@ -26,14 +26,37 @@ if (!empty($_POST)) {
     $errors[] = "Please enter the survey name.";
   }
   
+  $start_day = $_POST['start_day'];
+  $start_month = $_POST['start_month'];
+  $start_time = $_POST['start_time'];
+  $start_year = 2013;
+
+  $end_day = $_POST['end_day'];
+  $end_month = $_POST['end_month'];
+  $end_time = $_POST['end_time'];
+  $end_year = 2013;
+
+  //Call Function to see if there is a survey with this name already
+  // Check if it is a valid start_date
+  $start_date = format_db_date($start_day, $start_month, $start_year);
+  if (!$start_date) {
+    $errors[] = 'Invalid Start Date';
+  }      
+
+  // Check if it is a valid end_date
+  $end_date = format_db_date($end_day, $end_month, $end_year);
+  if (!$end_date) {
+    $errors[] = 'Invalid End Date';
+  }      
+
   //If there are no validation errors attempt to create the survey
   if (empty($errors)) {
     //Survey type is the first value of the index passed to use from the select
     $survey_type = $_POST['survey_type'][0];
     $name = $_POST['name'];
-    //Call Function to see if there is a survey with this name already
-      //No survey with this name exists yet. Creaate survey
-    add_survey($name, $survey_type, 12);
+    //No survey with this name exists yet. Create survey
+    //Format the start_date 
+    add_survey($name, $survey_type, 12, $start_date, $end_date);
   }
   //There is an error on the page. Maintain sticky variables.
   else {   
@@ -72,18 +95,18 @@ if (!empty($_POST)) {
         <label>
           Start Date:<br/>
           <select name="start_month">
-            <option value="January">January</option>
-            <option value="Febuary">Febuary</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
+            <option value="1">January</option>
+            <option value="2">Febuary</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
           </select>
 
           <select name="start_day">
@@ -119,7 +142,7 @@ if (!empty($_POST)) {
             <option value="30">30</option>
             <option value="31">31</option>
           </select>  
-          <select name="time" id="time">
+          <select name="start_time" id="time">
             <option value="5:00 AM">5:00 AM</option>
             <option value="5:15 AM">5:15 AM</option>
             <option value="5:30 AM">5:30 AM</option>
@@ -222,18 +245,18 @@ if (!empty($_POST)) {
         <label>
           End Date:<br/>
           <select name="end_month">
-            <option value="January">January</option>
-            <option value="Febuary">Febuary</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
+            <option value="1">January</option>
+            <option value="2">Febuary</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
           </select>
 
           <select name="end_day">
@@ -269,7 +292,7 @@ if (!empty($_POST)) {
             <option value="30">30</option>
             <option value="31">31</option>
           </select> 
-          <select name="time" id="time">
+          <select name="end_time" id="time">
             <option value="5:00 AM">5:00 AM</option>
             <option value="5:15 AM">5:15 AM</option>
             <option value="5:30 AM">5:30 AM</option>
@@ -372,8 +395,8 @@ if (!empty($_POST)) {
         <label>
           Survey type:<br/>
            <select name="survey_type[]">
-               <option value="multiple_choice">Multiple Choice</option>
-               <option value="agree_or_disagree">Agree or Disagree</option>
+               <option value="1">Multiple Choice</option>
+               <option value="2">Agree or Disagree</option>
            </select>
         </label>
       </p>
