@@ -25,7 +25,7 @@ else if (!empty($_GET['survey'])) {
 // else if no survey. DIE
 $survey = get_survey($survey_number);
 $survey_type = $survey['survey_type'];
-$question_count = 3;
+$question_count = 1;
 for ($i=1; $i <= $question_count; $i++){
   ${"question_". $i} = '';
 }
@@ -86,7 +86,7 @@ if (!empty($_POST)) {
   
   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
-    <?php if ($survey_type == 'multiple_choice') {?>
+    <?php if ($survey_type == 'Multiple Choice') {?>
       <?php for ($i=1; $i <= $question_count; $i++){ ?>
         <p>
           <label>
