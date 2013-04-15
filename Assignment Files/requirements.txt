@@ -84,12 +84,13 @@ If we are done early possible additional pages to add:
   - Create email list, 
 
 
-What if we ask the user how many questions the survey has when creating the initial instance of the survey?
+
 
 
 TODO
 
-Turn get survey into a function
+DONE Turn get survey into a function
 DONE Remove user_id from user_answers table / functions (since anonymous users will take survey.)
 DONE Make Date format function to extract and insert dates to the database
-turn survey_type into a table and get based on id 
+DONE turn survey_type into a table and get based on id 
+DONE What if we ask the user how many questions the survey has when creating the initial instance of the survey?
