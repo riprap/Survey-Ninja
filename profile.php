@@ -11,9 +11,8 @@
 $page_name = "My Profile";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
-//get_login();
+$logged_in_profile = get_login();
 
-//$logged_in_profile = get_profile();
 ?>
   <body id="<?php echo strtolower($page_name);?>">
 
@@ -24,9 +23,9 @@ include 'partials/html_header.php';
   </h1>
 
   <div id="profile">
-    Name: <?php echo "user name"; ?>
+    Name: <?php echo $logged_in_profile['name']; ?>
     <br>
-    Email: <?php echo "user email"; ?>
+    Email: <?php echo $logged_in_profile['email']; ?>
     <br>
     Edit My Profile
   </div>

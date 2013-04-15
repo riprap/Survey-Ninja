@@ -23,16 +23,8 @@ function format_db_date($day, $month, $year) {
   return checkdate($month, $day, $year) ? "$year-$month-$day" : false;
 }
 
-
-
-function set_message($message_type, $message)
-{
-    $_SESSION['messages'][$message_type][] = $message;
-}
-
-function get_messages()
-{
-    $messages_array = [];
+function get_messages() {
+    $messages_array = array();
     if (isset($_SESSION['messages'])) {
         $messages_array = $_SESSION['messages'];
         unset($_SESSION['messages']);        
@@ -40,4 +32,12 @@ function get_messages()
     return $messages_array;
 }
 
+function set_message($message_type, $message) {
+    $_SESSION['messages'][$message_type][] = $message;
+}
+
 $user_id = 12;
+
+$_SESSION['email'] = "maddogmonty@gmail.com";
+
+date_default_timezone_set('America/Los_Angeles');

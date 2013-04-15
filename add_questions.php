@@ -12,8 +12,6 @@ $page_name = "Home";
 $errors = array();
 include "functions/functions.php";
 include 'partials/html_header.php'; 
-//$logged_in_profile = get_profile();
-
 
 
 if (!empty($_POST)) {

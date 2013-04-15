@@ -40,7 +40,7 @@ $questions = get_questions($survey_number);
 
 
 if (!empty($_POST)) {
-  $survey_number = $_POST['survey_id'];
+  $survey_number = $_POST['survey'];
   //Loop through each of the questions and save the corresponding answer
   $submission_id = add_submission($survey_number, $_SERVER['REMOTE_ADDR']);
   foreach ($questions as $question): 
@@ -52,7 +52,8 @@ if (!empty($_POST)) {
     }  
       
   endforeach;
-
+  set_message("success", "Thanks for completing the survey.");
+  header('Location: index.php');
 
 }
 

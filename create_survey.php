@@ -11,7 +11,7 @@
 $page_name = "Create Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
-//$logged_in_profile = get_profile();
+$logged_in_profile = get_login();
 
 $name = '';
 $start_date = '';
@@ -59,7 +59,7 @@ if (!empty($_POST)) {
   if (empty($errors)) {
     //No survey with this name exists yet. Create survey
     //Format the start_date 
-    add_survey($name, $survey_type, $user_id, $start_date, $end_date, $question_count);
+    add_survey($name, $survey_type, $logged_in_profile['id'], $start_date, $end_date, $question_count);
     set_message("success", "Survey has been created");
   }
   //There is an error on the page. Maintain sticky variables.

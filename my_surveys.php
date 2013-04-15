@@ -10,9 +10,9 @@
 $page_name = "My Surveys";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
-//$logged_in_profile = get_profile();
-$profile_id = 12;
-$surveys = get_user_surveys($profile_id)
+$logged_in_profile = get_login();
+
+$surveys = get_user_surveys($logged_in_profile['id'])
 ?>
   <body id="<?php echo strtolower($page_name);?>">
 

@@ -19,7 +19,7 @@ function add_user($name, $email, $password) {
   $password = mysql_real_escape_string($password);
 
   mysql_query("
-    INSERT INTO user_database
+    INSERT INTO users
     ( name, email, password)
     VALUES
     ( '$name', '$email', '$password')
@@ -85,4 +85,20 @@ function get_login(){
     header('Location: login.php');
     die;
   }
+  return get_user($_SESSION['email']);
 }
+
+function get_user($id) {
+  
+
+  $q = mysql_query("
+    SELECT *
+    FROM users
+    WHERE email = '$id'
+  ");
+
+  $row = mysql_fetch_array($q);
+
+  return $row;
+}
+
