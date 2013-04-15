@@ -24,24 +24,17 @@ function add_answer($question_id, $text) {
   ") ;
 }
 
-/*
-Save a users answer to a particular question
-@param question_id The id of the corresponding question
-@param answer = The text for the answer
-@param user_id The id of the user
-*/
-
-function add_submission_answer($survey_id, $question_id, $answer, $submission_id) {
-  $question_id = mysql_real_escape_string($question_id);
-  $submission_id = mysql_real_escape_string($submission_id);
-  $survey_id = mysql_real_escape_string($survey_id);
-  $answer = mysql_real_escape_string($answer);
+//Add a submisison for a survey to the database 
+function add_submission($survey_id, $ip = NULL) {
   mysql_query("
-    INSERT INTO submissions_answers
-    ( survey_id, question_id, submission_id, question_answer_id, date_created, date_updated)
+    INSERT INTO submissions
+    (survey_id, ip_address, date_created, date_updated)
     VALUES
-    ( '$survey_id', '$question_id', '$submission_id', '$answer', NOW(), NOW())
-  ") ;
+    ( '$survey_id', '$ip', NOW(), NOW())
+  ") ;  
+  //Get the value of the row we just inserted.
+  $id = mysql_insert_id();
+  return $id;  
 }
 
 /*
@@ -67,6 +60,26 @@ function add_question($survey_id, $question, $type) {
   return $id;
 }
 
+/*
+Save a users answer to a particular question
+@param question_id The id of the corresponding question
+@param answer = The text for the answer
+@param user_id The id of the user
+*/
+
+function add_submission_answer($survey_id, $question_id, $answer, $submission_id) {
+  $question_id = mysql_real_escape_string($question_id);
+  $submission_id = mysql_real_escape_string($submission_id);
+  $survey_id = mysql_real_escape_string($survey_id);
+  $answer = mysql_real_escape_string($answer);
+  mysql_query("
+    INSERT INTO submissions_answers
+    ( survey_id, question_id, submission_id, question_answer_id, date_created, date_updated)
+    VALUES
+    ( '$survey_id', '$question_id', '$submission_id', '$answer', NOW(), NOW())
+  ") ;
+}
+
 /* 
 Add a survey to the database 
 @param name The name of the survey
@@ -74,17 +87,18 @@ Add a survey to the database
 @param creator The creator of the survey
 @param start_date The date to start the survey
 @param end_date The date to end the survey
+@param question_count The number of questions in the survey
 */
 
-function add_survey($name, $type, $creator, $start_date = NULL, $end_date = NULL) {
+function add_survey($name, $type, $creator, $start_date = NULL, $end_date = NULL, $question_count) {
   $name = mysql_real_escape_string($name);
   $type = mysql_real_escape_string($type);
   $creator = mysql_real_escape_string($creator);
   mysql_query("
     INSERT INTO surveys
-    ( name, creator_id, type_id, date_created, date_updated, start_date, end_date)
+    ( name, creator_id, type_id, date_created, date_updated, start_date, end_date, question_count)
     VALUES
-    ( '$name', '$creator', '$type', NOW(), NOW(), '$start_date', '$end_date')
+    ( '$name', '$creator', '$type', NOW(), NOW(), '$start_date', '$end_date', '$question_count')
   ") ;
   //Get the value of the row we just inserted.
   $id = mysql_insert_id();
@@ -101,16 +115,59 @@ function check_servey_status($survey_id) {
   //Select start_date, end_date from surveys where id = survey_id 
 }
 
+
+function get_answers($question_id) {
+  $q = mysql_query("
+    SELECT * FROM question_answers
+    WHERE question_id = '$question_id'
+  ");
+  $answers = array();
+  while ($row = mysql_fetch_array($q)) {
+    $answers[] = $row;
+  }
+  return $answers;
+}
+
+//get the number of people that have chosen a specific answer
+function get_answer_count($answer_id) {
+  $q = mysql_query("
+  SELECT COUNT(*) 
+  FROM submissions_answers WHERE `question_answer_id` = '$answer_id'
+  ");  
+  
+  $row = mysql_fetch_row($q);
+  return $row[0];
+}
+
+
+function get_questions($survey_id) {
+  $q = mysql_query("
+    SELECT * FROM questions
+    WHERE survey_id = '$survey_id'
+  ");
+  $questions = array();
+  while ($row = mysql_fetch_array($q)) {
+    $questions[] = $row;
+  }
+  return $questions;
+}
+
+
+function get_submission_count($survey_id) {
+  $q = mysql_query("
+    SELECT COUNT(*) FROM submissions
+    WHERE survey_id = '$survey_id'
+  ");  
+  $row = mysql_fetch_row($q);
+  return $row[0];
+}
+
 /*
 Get all of the details for a survey so that it can be displayed to a user
 @param survey_id The id of the survey to show the user
 @return Survey Object, Question Object, Answers Object
 */
-
 function get_survey($survey_id) {
-// Select * from surveys where id = id 
-// Select * from questions where survey_id = id
-// Select * from answers where survey_id = id 
   $survey_id = mysql_real_escape_string($survey_id);
   $query = mysql_query("
     SELECT surveys.*, survey_types.name AS survey_type
@@ -124,34 +181,18 @@ function get_survey($survey_id) {
 }
 
 
-function get_questions($survey_id) {
+//get the types of surveys that can be created
+function get_survey_types() {
   $q = mysql_query("
-    SELECT * FROM questions
-    WHERE survey_id = '$survey_id'
+    SELECT *
+    FROM survey_types
   ");
 
-  $questions = array();
-
+  $types = array();
   while ($row = mysql_fetch_array($q)) {
-    $questions[] = $row;
+    $types[] = $row;
   }
-
-  return $questions;
-}
-
-function get_answers($question_id) {
-  $q = mysql_query("
-    SELECT * FROM question_answers
-    WHERE question_id = '$question_id'
-  ");
-
-  $answers = array();
-
-  while ($row = mysql_fetch_array($q)) {
-    $answers[] = $row;
-  }
-
-  return $answers;
+  return $types;
 }
 
 /*
@@ -166,36 +207,9 @@ function get_user_surveys($user_id) {
     LEFT JOIN survey_types ON survey_types.id = surveys.type_id
     WHERE creator_id = '$user_id'
   ");
-
-
   $surveys = array();
-
   while ($row = mysql_fetch_array($q)) {
     $surveys[] = $row;
   }
-
   return $surveys;
-}
-
-
-function get_submission_count($survey_id) {
-  $q = mysql_query("
-    SELECT COUNT(*) FROM submissions
-    WHERE survey_id = '$survey_id'
-  ");  
-  $row = mysql_fetch_row($q);
-  return $row[0];
-}
-
-//Add a submisison for a survey to the database 
-function add_submission($survey_id, $ip = NULL) {
-  mysql_query("
-    INSERT INTO submissions
-    (survey_id, ip_address, date_created, date_updated)
-    VALUES
-    ( '$survey_id', '$ip', NOW(), NOW())
-  ") ;  
-  //Get the value of the row we just inserted.
-  $id = mysql_insert_id();
-  return $id;  
 }

@@ -22,3 +22,22 @@ function format_db_date($day, $month, $year) {
   $date = $year . '-' . $month . '-' . $day;
   return checkdate($month, $day, $year) ? "$year-$month-$day" : false;
 }
+
+
+
+function set_message($message_type, $message)
+{
+    $_SESSION['messages'][$message_type][] = $message;
+}
+
+function get_messages()
+{
+    $messages_array = [];
+    if (isset($_SESSION['messages'])) {
+        $messages_array = $_SESSION['messages'];
+        unset($_SESSION['messages']);        
+    }
+    return $messages_array;
+}
+
+$user_id = 12;
