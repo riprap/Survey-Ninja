@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-    File Name: index.php
+    File Name: add_questions.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
     File Description: The index / home page of the sitee which displays an introduction and links to other 
@@ -17,15 +17,24 @@ include 'partials/html_header.php';
 
 
 if (!empty($_POST)) {
-  $survey_number = $_POST['survey_id'];
+  $survey_number = $_POST['survey'];
 }
 else if (!empty($_GET['survey'])) {
   $survey_number = $_GET['survey'];
 }
-// else if no survey. DIE
+else {
+  header('Location: index.php');
+  die;
+}
+
 $survey = get_survey($survey_number);
 $survey_type = $survey['survey_type'];
-$question_count = 1;
+$question_count = $survey['question_count'];
+//Check if the survey already has questions associated with it and redirect if true
+
+
+
+
 for ($i=1; $i <= $question_count; $i++){
   ${"question_". $i} = '';
 }
@@ -83,7 +92,10 @@ if (!empty($_POST)) {
       }
     ?>
   </div>
-  
+  <?php include 'partials/messages.php'; ?>
+
+
+
   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
     <?php if ($survey_type == 'Multiple Choice') {?>
@@ -105,7 +117,7 @@ if (!empty($_POST)) {
         </p>
       <?php }?>
     <?php }?>
-    <input type="hidden" name="survey_id" value=<? echo $survey['id']; ?> />
+    <input type="hidden" name="survey" value=<? echo $survey['id']; ?> />
 
     <input type="submit" value="Submit"/>
 

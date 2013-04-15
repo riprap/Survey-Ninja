@@ -12,17 +12,30 @@ $page_name = "Home";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 //$logged_in_profile = get_profile();
-$user_id = 12;
 
 if (!empty($_POST)) {
-  $survey_number = $_POST['survey_id'];
+  $survey_number = $_POST['survey'];
 }
 else if (!empty($_GET['survey'])) {
   $survey_number = $_GET['survey'];
 }
+else {
+  header('Location: index.php');
+  die;
+}
+
+
 $survey = get_survey($survey_number);
+
+if (empty($survey)) {
+  set_message("error", "There is no survey with the specified ID");
+  header('Location: index.php');
+  die;
+}
+
+
 $survey_type = $survey['survey_type'];
-$question_count = 5;
+$question_count = $survey['question_count'];
 $questions = get_questions($survey_number);
 
 
@@ -73,7 +86,7 @@ if (!empty($_POST)) {
         endforeach; 
         ?>
       </ul>
-      <input type="hidden" name="survey_id" value=<? echo $survey['id']; ?> />
+      <input type="hidden" name="survey" value=<? echo $survey['id']; ?> />
       <input type="submit" value="Submit Survey"/>
     </form>
 

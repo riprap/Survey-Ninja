@@ -26,9 +26,12 @@
   text-align: center;
 }
 
-/* CSS related to error messages */
+/* CSS related to messages */
 #errors {
   color: red;
+}
+#success {
+  color: green;
 }
 
 /* Css related to showing questions */

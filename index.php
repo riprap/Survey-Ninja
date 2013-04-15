@@ -17,12 +17,7 @@ include 'partials/html_header.php';
 
   <?php include 'partials/header.php'; ?>
 
-  <?php
-  if (isset($_SESSION['new_register'])) {
-        echo "Thanks for registering for " . $site_name . ". You have been automatically logged in.";
-        unset($_SESSION['new_register']);
-    }
-  ?>
+    <?php include 'partials/messages.php'; ?>
 
   <?php include 'partials/footer.php'; ?>
   
