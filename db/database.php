@@ -3,34 +3,20 @@
     File Name: database.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: This file connects to the database.
+    File Description: This file connects to the database, 
+                      creating a PDO.
 */
-@mysql_connect('localhost', 'root', '')
-  or die('Unable to connect to database');
 
-@mysql_select_db('survey')
-  or die('Unable to select database Survey')
-;
-
-/*
-    File Name: database.php
-    Authors Name: Scott Montgomery and Nolan Knill
-    Web Site Name: Survey Site
-    File Description: This file connects to the database.
-*/
-/*
-//enter database stuff here
 $host = "localhost";
 $database = "survey";
 $dsn = 'mysql:host=' . $host . ';dbname=' . $database . ';charset=UTF-8';
-$username = "sn";
-$password = "password";
+$username = "root";
+$password = "";
 
 try{
-$db = new PDO($dsn, $username, $password);
+	$db = new PDO($dsn, $username, $password);
 }
 catch (Exception $e){
 	exit($e);
 }
-*/
 ?>
