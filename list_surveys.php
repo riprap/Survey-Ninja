@@ -1,37 +1,32 @@
-<?php 
+<?php
 /*
-    File Name: my_surveys.php
+    File Name: list_surveys.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: The page to list all of the surveys a user has created and show details for each one.
+    File Description: The page that lists all of the active surveys and allows the user to take them. 
 */
 
-$page_name = "My Surveys";
+$page_name = "All Surveys";
 include "functions/functions.php";
-include 'partials/html_header.php'; 
-$logged_in_profile = get_login();
-
-$surveys = get_user_surveys($logged_in_profile['id'])
+$surveys = get_active_surveys();
+//$surveys = get_active_surveys(1);
 ?>
+
+
+<?php include 'partials/html_header.php'; ?>
   <body id="<?php echo strtolower($page_name);?>">
 
   <?php include 'partials/header.php'; ?>
-  <h1>
-    <?php echo $page_name;?>
-  </h1>
+  <?php include 'partials/messages.php'; ?>
+
+  <h1><?php echo $page_name;?></h1>
 
   <table>
     <tr>
       <th>Name</th>
       <th>Survey Type</th>
       <th>Number of Questions</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Email</th>
-      <th>Submissions</th>
       <th>URL</th>
-      <th>Edit</th>
-      <th>Details</th>
     </tr>
   <?php foreach ($surveys as $survey): 
     $questions = get_questions($survey['id']);
@@ -57,41 +52,32 @@ $surveys = get_user_surveys($logged_in_profile['id'])
         endif; //End the if statement to provide the url to add questions if the survey has no questions         
         ?>
       </td>
-       <td>
-        <?php 
-          if (!empty($survey['start_date'])){
-            echo format_date($survey['start_date']);
-          }
-        ?>
-      </td>
       <td>
-        <?php 
-          if (!empty($survey['end_date'])){
-            echo format_date($survey['end_date']);
-          }
-        ?>
-      </td> 
-      <td>
-        Link to email page
-      </td>
-      <td>
-        <?php 
-          echo get_submission_count($survey['id']);
-        ?>
-      </td> 
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>      
-        <a href="details.php?survey=<?php echo $survey['id']; ?>">
+        <a href="survey.php?survey=<?php echo $survey['id']; ?>">
           <?php echo htmlentities($survey['name']); ?>
-        </a>
-      </td>                             
+        </a>        
+      </td>                           
     </tr>
   <?php endforeach; //End of the foreach to loop through each of the surveys ?>
 
   </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <?php include 'partials/footer.php'; ?>
   

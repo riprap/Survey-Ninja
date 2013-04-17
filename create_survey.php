@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<!--
+<?php 
+/*
     File Name: create_survey.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
     File Description: The page that allows a user to create a new instance of a survey.
--->
+*/
 
 <?php 
 $page_name = "Create Survey";

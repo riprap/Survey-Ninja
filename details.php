@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<!--
+<?php 
+/*
     File Name: details.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
     File Description: The survey details page that shows all of the details of a specific survey.
--->
-
-<?php 
+*/
+ 
 $page_name = "Survey Details";
 include "functions/functions.php";
 include 'partials/html_header.php'; 

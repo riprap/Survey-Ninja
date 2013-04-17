@@ -246,3 +246,29 @@ function get_user_surveys($user_id) {
   }
   return $surveys;
 }
+
+
+/*
+Get all of the surveys that are created by the specifed user
+@param user_id The user we are getting the surveys for 
+@return All of the surveys created by the user
+*/
+function get_active_surveys() {
+  global $db;
+  $query = "
+   SELECT DISTINCT (questions.survey_id), surveys.*, survey_types.name AS survey_type
+   FROM questions
+   JOIN surveys ON surveys.id = questions.survey_id
+   LEFT JOIN survey_types ON survey_types.id = surveys.type_id
+
+  ";
+  
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+  
+  $surveys = array();
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $surveys[] = $row;
+  }
+  return $surveys;
+}
