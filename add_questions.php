@@ -24,9 +24,25 @@ else {
   die;
 }
 
+
 $survey = get_survey($survey_number);
 $survey_type = $survey['survey_type'];
 $question_count = $survey['question_count'];
+
+
+if (empty($_SESSION['id'])){
+  header('Location: login.php');
+  set_message("error", "You must be logged in to access this page.");
+  die;
+}
+$logged_in_profile = get_user($_SESSION['id']);
+
+if ($logged_in_profile['id'] != $survey['creator_id']) {  
+  set_message("error", "You do not have permission to edit this survey.");
+  header('Location: index.php');
+  die;
+}
+
 
 //Check if the survey already has questions associated with it and redirect if true
 $questions = get_questions($survey['id']);

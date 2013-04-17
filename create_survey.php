@@ -10,7 +10,9 @@ $page_name = "Create Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 if (empty($_SESSION['id'])){
+  set_message("error", "You must be logged in to access this page.");
 	header('Location: login.php');
+  die;
 }
 $logged_in_profile = get_user($_SESSION['id']);
 $name = '';

@@ -11,7 +11,9 @@ $page_name = "Edit Profile";
 include "functions/functions.php";
 
 if (empty($_SESSION['id'])){
+  set_message("error", "You must be logged in to access this page.");
   header('Location: login.php');
+  die;
 }
 $logged_in_profile = get_user($_SESSION['id']);
 
