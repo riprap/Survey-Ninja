@@ -62,13 +62,27 @@ if (!empty($_POST)) {
       $question = $_POST['question_'. $i];
       //Call the add question function
       $question_number = add_question($survey_number, $question, $survey_type);
+
+      //Submit the answers based on the type of survey
+      if ($survey_type == "Multiple Choice") {
       //Loop through each of the answers and save each to the database 
-      foreach(range('A','D') as $d) {
-        //Assign the answer variable the current answer 
-        $answer = $_POST['question_'. $i . '_answer_'. $d];
-        //Call the add answer function
+        foreach(range('A','D') as $d) {
+          //Assign the answer variable the current answer 
+          $answer = $_POST['question_'. $i . '_answer_'. $d];
+          //Call the add answer function
+          add_answer($question_number, $answer);
+        }  
+      }
+      else {
+        $answer = "Agree";
         add_answer($question_number, $answer);
-      }       
+        $answer = "Disagree";
+        add_answer($question_number, $answer);        
+      }
+
+
+
+     
     }
     header('Location: survey.php?survey='.$survey_number);    
   }

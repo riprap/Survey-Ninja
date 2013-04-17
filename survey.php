@@ -19,7 +19,7 @@ else if (!empty($_GET['survey'])) {
   $survey_number = $_GET['survey'];
 }
 else {
-  header('Location: index.php');
+  set_message("error", "Invalid survey id.");
   die;
 }
 
@@ -31,30 +31,38 @@ if (empty($survey)) {
   header('Location: index.php');
   die;
 }
-
-
 $survey_type = $survey['survey_type'];
 $question_count = $survey['question_count'];
 $questions = get_questions($survey_number);
-
+$errors = array();
 
 if (!empty($_POST)) {
   $survey_number = $_POST['survey'];
-  //Loop through each of the questions and save the corresponding answer
-  $submission_id = add_submission($survey_number, $_SERVER['REMOTE_ADDR']);
+
   foreach ($questions as $question): 
-    if (!empty($_POST['question_'. $question['id']])) {
-      $answer = $_POST['question_'. $question['id']];  
-      $question_id = $question['id'];
-      add_submission_answer($survey_number, $question_id, $answer, $submission_id);
+    if (empty($_POST['question_'. $question['id']])) {
+      $errors[] = "Please answer question: ". $question['text'];
     }  
-      
   endforeach;
-  set_message("success", "Thanks for completing the survey.");
-  header('Location: index.php');
+
+
+
+  //If there are no validation errors save the answers
+  if (empty($errors)) :
+    $submission_id = add_submission($survey_number, $_SERVER['REMOTE_ADDR']);
+    foreach ($questions as $question): 
+      if (!empty($_POST['question_'. $question['id']])) {
+        $answer = $_POST['question_'. $question['id']];  
+        $question_id = $question['id'];
+        add_submission_answer($survey_number, $question_id, $answer, $submission_id);
+      }  
+    endforeach;
+
+    set_message("success", "Thanks for completing the survey.");
+    header('Location: index.php');
+  endif;
 
 }
-
 
 ?>
   <body id="<?php echo strtolower($page_name);?>">
@@ -62,6 +70,8 @@ if (!empty($_POST)) {
   <?php include 'partials/header.php'; ?>
 
   <h1>Welcome to The: <? echo $survey['name']; ?> Survey</h1>
+
+  <?php include 'partials/messages.php'; ?>
 
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
       <ul>
@@ -71,17 +81,26 @@ if (!empty($_POST)) {
           <li id="question">
               <h2><?php echo htmlentities($question['text']) ?></h2>
           </li>
-          <?php if ($survey_type == 'Multiple Choice'):
-                  $answers = get_answers($question['id']);
+          <?php                   
+              $answers = get_answers($question['id']);
 
-                  foreach ($answers as $answer): ?>
-                    <input type="radio" name="question_<?php echo $question['id'];?>" value="<?php echo $answer['id']; ?>"><?php echo $answer['text']; ?><br>                  
-             <?php endforeach; 
-                else: 
-                  echo agree_disagree_buttons($question['id']);
-                endif;?>
 
-        <?php 
+                $selected_value= '';
+                
+                if (isset($_POST['question_'. $question['id']])) {
+                  $selected_value = $_POST['question_'. $question['id']];
+                }
+
+                foreach ($answers as $answer):
+                    $selected = '';
+                    if ($answer['id'] == $selected_value): 
+                      $selected = 'checked="checked"';
+                    endif ?>
+
+
+                  <input type="radio" name="question_<?php echo $question['id'];?>" <?php echo $selected; ?>  value="<?php echo $answer['id']; ?>"><?php echo $answer['text']; ?><br>                  
+           <?php endforeach; 
+
         endforeach; 
         ?>
       </ul>
