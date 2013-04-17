@@ -163,3 +163,16 @@ function format_date($date_string) {
 
 
 
+function format_details_text($answer, $count) {
+  if ($count > 1) {
+    $html = $count . " people have selected ". $answer;
+  }
+  else if ($count == 1) {
+    $html = " One person has selected ". $answer;
+  }
+  else {
+    $html = "No one has selected ". $answer;
+  }
+  return $html;
+}
+

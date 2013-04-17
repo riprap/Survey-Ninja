@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<!--
+<?php 
+/*
     File Name: survey.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
     File Description: The page that shows a survey and allows it to be filled in and submitted.
--->
+*/
 
-<?php 
 $page_name = "Home";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
@@ -35,34 +34,33 @@ if (empty($survey)) {
 $survey_type = $survey['survey_type'];
 $question_count = $survey['question_count'];
 $questions = get_questions($survey_number);
-$errors = array();
 
 if (!empty($_POST)) {
+
   $survey_number = $_POST['survey'];
 
-  foreach ($questions as $question): 
-    if (empty($_POST['question_'. $question['id']])) {
+  foreach ($questions as $question):
+
+    if (empty($_POST['question_'. $question['id']])):
       $errors[] = "Please answer question: ". $question['text'];
-    }  
-  endforeach;
+    endif; //End the if statement to check if the answer to the question is blank 
 
-
+  endforeach; // End the foreach to loop through each of the questions 
 
   //If there are no validation errors save the answers
   if (empty($errors)) :
     $submission_id = add_submission($survey_number, $_SERVER['REMOTE_ADDR']);
+    //Loop through each of the questions and save the corresponding answers
     foreach ($questions as $question): 
-      if (!empty($_POST['question_'. $question['id']])) {
-        $answer = $_POST['question_'. $question['id']];  
-        $question_id = $question['id'];
-        add_submission_answer($survey_number, $question_id, $answer, $submission_id);
-      }  
-    endforeach;
+      $answer = $_POST['question_'. $question['id']];  
+      add_submission_answer($survey_number, $question['id'], $answer, $submission_id); 
+    endforeach; //end the foreach to loop through and save each answer for the survey.
 
+    //Set message, redirect to the index page
     set_message("success", "Thanks for completing the survey.");
     header('Location: index.php');
     die;
-  endif;
+  endif; //End the if statement to check if there were any errors on the form 
 
 }
 

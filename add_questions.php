@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<!--
+<?php 
+/*
     File Name: add_questions.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
     File Description: The page that it displayed that allows the creator of a survey to add questions to it. 
--->
+*/
 
-<?php 
 $page_name = "Home";
-$errors = array();
-$field_errors = array();
 
 include "functions/functions.php";
 include 'partials/html_header.php'; 

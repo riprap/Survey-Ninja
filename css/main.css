@@ -1,3 +1,4 @@
+@charset "utf-8";
 /*
     File Name: main.css
     Authors Name: Scott Montgomery and Nolan Knill
@@ -45,4 +46,12 @@ td {
 
 .error {
   border:2px solid red;
+}
+
+.title {
+  font-size:60px;
+}
+
+#links {
+  font-size: 20px;
 }

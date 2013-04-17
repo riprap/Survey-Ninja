@@ -43,3 +43,6 @@ $user_id = 12;
 $_SESSION['id'] = 1;
 
 date_default_timezone_set('America/Los_Angeles');
+
+$errors = array();
+$field_errors = array();

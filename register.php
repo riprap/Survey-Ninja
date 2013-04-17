@@ -14,53 +14,41 @@ include 'partials/html_header.php';
 $email = '';
 $name = '';
 $password = '';
-$errors = array();
-//Success does not appear to be used anymore. Possibly need to remove it from this page
-$success = false;
 
 // if the user submitted the form (with method="post")
-if (!empty($_POST)) {
+if (!empty($_POST)) :
 
-  if (empty($_POST['name'])) {
+  if (empty($_POST['name'])) :
     $errors[] = "Please enter your name.";
-  }
+  endif; //End if to check if name is blank
 
-  if (empty($_POST['email'])) {
+  if (empty($_POST['email'])) :
     $errors[] = "Please enter your email address.";
-  }
-  else if ( !preg_match('/@.+\..+/', $_POST['email']) ) {
+  elseif ( !preg_match('/@.+\..+/', $_POST['email']) ):
     $errors[] = "Please enter a valid email address.";
-  }
+  endif;// End if to check if email is blank
 
-  if (empty($_POST['password'])) {
+  if (empty($_POST['password'])) :
     $errors[] = "Please enter your password.";
-  }
+  endif; // End if to check if the password field is blank
 
   //If there are no validation errors attempt to save the user to the database.
-  if (empty($errors)) {
-
+  if (empty($errors)) :
       //Search for the email in the database 
-      $exists= check_user_exists ($_POST['email']);
-
-       if ($exists) {
+       if (check_user_exists($_POST['email'])) :
           $errors[] = "That email address is already in use.";
           $name = $_POST['name'];
           $password = $_POST['password'];
-        }
-      else {
+      else :
         add_user($_POST['name'], $_POST['email'], md5($_POST['password']));
-        $success = true;
-        }
-    }
-
-  else {
+      endif; //End of if statement to check if email address is in use
+  else :
     //There is an error on the page. Maintain sticky variables.
     $email = $_POST['email'];
     $name = $_POST['name'];
     $password = $_POST['password'];
-  }
-
-}
+  endif; //End of the if statement to check if there are validation errors on the form.
+endif; //End of the if statement dealing with submitting the form
 
 ?>
 

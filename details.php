@@ -40,7 +40,6 @@ $questions = get_questions($survey_number);
       ?>
     </h2>
 
-
     <?php 
     foreach ($questions as $question): 
     ?>
@@ -49,26 +48,16 @@ $questions = get_questions($survey_number);
       </li>
       <?php
         $answers = get_answers($question['id']);
-        foreach ($answers as $answer):
-      ?>
+        foreach ($answers as $answer): ?>
+          <li id="answer">
+            <?php echo format_details_text($answer['text'], get_answer_count($answer['id']));?>
+          </li>
+         
+  <?php endforeach; //End the foreach that loops through each of the answers
+    endforeach; //End the foreach that loops through each of the questions
 
-        <li id="answer">
-          <?php echo $answer['text']; ?>:
-          <?php echo get_answer_count($answer['id']);?> Person
-        </li>
-
-      <?php 
-        endforeach; 
-      ?>
-
-    <?php 
-    endforeach; 
-    ?>
-
-
-
-
-  <?php include 'partials/footer.php'; ?>
+  include 'partials/footer.php'; 
+  ?>
   
   </body>
 </html>

@@ -16,9 +16,6 @@ $name = '';
 $start_date = '';
 $end_date = '';
 
-$errors = array();
-$field_errors = array();
-
 // if the user submitted the form (with method="post")
 if (!empty($_POST)) {
 
