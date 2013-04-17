@@ -9,7 +9,6 @@
 $page_name = "Survey Details";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
-//$logged_in_profile = get_profile();
 
 if (!empty($_POST)) {
   $survey_number = $_POST['survey_id'];

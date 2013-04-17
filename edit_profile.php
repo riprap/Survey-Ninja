@@ -12,6 +12,7 @@ include "functions/functions.php";
 
 if (empty($_SESSION['id'])){
   header('Location: login.php');
+  die;
 }
 $logged_in_profile = get_user($_SESSION['id']);
 

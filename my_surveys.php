@@ -11,6 +11,7 @@ include "functions/functions.php";
 include 'partials/html_header.php'; 
 if (empty($_SESSION['id'])){
 	header('Location: login.php');
+  die;
 }
 $logged_in_profile = get_user($_SESSION['id']);
 $surveys = get_user_surveys($logged_in_profile['id'])
