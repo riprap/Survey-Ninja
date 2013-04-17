@@ -113,7 +113,6 @@ function add_survey($name, $type, $creator, $start_date = NULL, $end_date = NULL
                        $start_date,
 					   $end_date,
 					   $question_count));
-  
   //Get the value of the row we just inserted.
   return $db->lastInsertId();
 }
@@ -152,6 +151,7 @@ function get_answer_count($answer_id) {
   $stmt = $db->prepare($query);
   $stmt->execute(array($answer_id));
   $row = $stmt->fetch();
+  //returns count(*)
   return $row[0];
 }
 
@@ -203,7 +203,7 @@ function get_survey($survey_id) {
 
   $stmt = $db->prepare($query);
   $stmt->execute(array($survey_id));
-  $survey = $stmt->fetch();
+  $survey = $stmt->fetchAll(PDO::FETCH_ASSOC);
   return $survey[0];
 }
 
