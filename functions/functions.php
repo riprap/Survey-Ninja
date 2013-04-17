@@ -112,7 +112,7 @@ function create_question($number, $question) {
 
 
 
-function create_hidden_servey_id_field($id) {
+function create_hidden_survey_id_field($id) {
   return "<input type=\"hidden\" name=\"survey\" value='$id' />";
 }
 

@@ -97,34 +97,19 @@ if (!empty($_POST)) {
           Start Date:<br/>
           <select name="start_month">
             <?php 
-              if (isset($start_month)) {
-                echo create_month_dropdown($start_month);
-              }
-              else {
-                echo create_month_dropdown();
-              }              
+                echo create_month_dropdown($start_month);             
             ?>    
           </select>
 
           <select name="start_day">
             <?php  
-              if (isset($start_day)) {
-                echo create_day_dropdown($start_day); 
-              }
-              else {
-                echo create_day_dropdown();
-              }               
+                echo create_day_dropdown($start_day);              
             ?> 
           </select>  
 
           <select name="start_year" id="year">
             <?php 
-              if (isset($start_year)) {
-                echo create_year_dropdown($start_year); 
-              }
-              else {
-                echo create_year_dropdown();
-              }               
+                echo create_year_dropdown($start_year);             
             ?>
           </select>                     
         </label>      
@@ -135,33 +120,18 @@ if (!empty($_POST)) {
           End Date:<br/>
           <select name="end_month">
             <?php 
-              if (isset($end_month)) {
                 echo create_month_dropdown($end_month);
-              }
-              else {
-                echo create_month_dropdown();
-              }
             ?>            
           </select>
 
           <select name="end_day">
             <?php  
-              if (isset($end_day)) {
                 echo create_day_dropdown($end_day); 
-              }
-              else {
-                echo create_day_dropdown();
-              }  
             ?>          
           </select> 
           <select name="end_year" id="year">
             <?php 
-              if (isset($end_year)) {
-                echo create_year_dropdown($end_year); 
-              }
-              else {
-                echo create_year_dropdown();
-              } 
+                echo create_year_dropdown($end_year);
             ?>
           </select>                               
         </label> 
@@ -172,14 +142,7 @@ if (!empty($_POST)) {
           Survey type:<br/>
             <select name="survey_type">
             <?php 
-              
-              if (isset($survey_type)) {             
-                echo create_survey_type_dropdown($survey_type); 
-              }
-              else {
-
-                echo create_survey_type_dropdown();
-              } 
+                echo create_survey_type_dropdown($survey_type);
             ?> 
             </select>          
         </label>
