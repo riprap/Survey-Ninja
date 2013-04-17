@@ -40,7 +40,6 @@ function set_message($message_type, $message) {
 
 $user_id = 12;
 
-$_SESSION['email'] = "maddogmonty@gmail.com";
+$_SESSION['id'] = 1;
 
 date_default_timezone_set('America/Los_Angeles');
-
