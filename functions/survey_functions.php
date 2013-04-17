@@ -151,8 +151,8 @@ function get_answer_count($answer_id) {
   
   $stmt = $db->prepare($query);
   $stmt->execute(array($answer_id));
-  //returns first row
-  return $stmt->fetch();
+  $row = $stmt->fetch();
+  return $row[0];
 }
 
 function get_questions($survey_id) {
@@ -183,7 +183,8 @@ function get_submission_count($survey_id) {
   $stmt = $db->prepare($query);
   $stmt->execute(array($survey_id));
   //returns first row
-  return $stmt->fetch();
+  $row = $stmt->fetch();
+  return $row[0];
 }
 
 /*
@@ -202,8 +203,8 @@ function get_survey($survey_id) {
 
   $stmt = $db->prepare($query);
   $stmt->execute(array($survey_id));
-  $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);	
-  return $questions;
+  $survey = $stmt->fetch();
+  return $survey[0];
 }
 
 //get the types of surveys that can be created
