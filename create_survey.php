@@ -81,14 +81,7 @@ if (!empty($_POST)) {
       <? echo $page_name;?>
     </h1>
 
-    <div id="errors">
-      <?php
-        //Loop over each error in the erros array and print any errors that exist. 
-        foreach ($errors as $error) {
-          echo "<p>$error</p>";
-        }
-      ?>
-    </div>
+    <?php include 'partials/messages.php'; ?>
 
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
