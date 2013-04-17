@@ -15,15 +15,6 @@ $logged_in_profile = get_login();
 $name = '';
 $start_date = '';
 $end_date = '';
-$survey_type = '';
-$start_year ='';
-$end_year = '';
-$start_month = '';
-$end_month = '';
-$start_day = '';
-$end_day = '';
-$start_hour = '';
-$start_minute = '';
 
 $errors = array();
 
@@ -112,17 +103,27 @@ if (!empty($_POST)) {
         <label>
           Start Date:<br/>
           <select name="start_month">
-            <?php echo create_month_dropdown($start_month); ?>
+            <?php 
+              if (isset($start_month)) {
+                echo create_month_dropdown($start_month);
+              }
+            ?>    
           </select>
 
           <select name="start_day">
-            <?php echo create_day_dropdown($start_day); ?>
+            <?php  
+              if (isset($start_day)) {
+                echo create_day_dropdown($start_day); 
+              }  
+            ?> 
           </select>  
 
           <select name="start_year" id="year">
-          <?php 
-            echo create_year_dropdown($start_year);          
-          ?>
+            <?php 
+              if (isset($start_year)) {
+                echo create_year_dropdown($start_year); 
+              }
+            ?>
           </select>                     
         </label>      
       </p>
@@ -131,14 +132,26 @@ if (!empty($_POST)) {
         <label>
           End Date:<br/>
           <select name="end_month">
-            <?php echo create_month_dropdown($end_month); ?>
+            <?php 
+              if (isset($end_month)) {
+                echo create_month_dropdown($end_month);
+              }
+            ?>            
           </select>
 
           <select name="end_day">
-            <?php echo create_day_dropdown($end_day); ?>
+            <?php  
+              if (isset($end_day)) {
+                echo create_day_dropdown($end_day); 
+              }  
+            ?>          
           </select> 
           <select name="end_year" id="year">
-            <?php echo create_year_dropdown($end_year); ?>
+            <?php 
+              if (isset($end_year)) {
+                echo create_year_dropdown($end_year); 
+              }
+            ?>
           </select>                               
         </label> 
       </p>
