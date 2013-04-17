@@ -33,7 +33,7 @@ $questions = get_questions($survey_number);
   </h1>
 
     <h2>
-      Total submissions:
+      Total Submissions:
       <?php 
         echo get_submission_count($survey['id']);
       ?>
