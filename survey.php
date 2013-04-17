@@ -71,7 +71,7 @@ if (!empty($_POST)) {
 
   <?php include 'partials/header.php'; ?>
 
-  <h1>Welcome to The: <? echo $survey['name']; ?> Survey</h1>
+  <h1>Welcome to The: <?php echo $survey['name']; ?> Survey</h1>
 
   <?php include 'partials/messages.php'; ?>
 

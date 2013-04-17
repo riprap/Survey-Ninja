@@ -116,11 +116,11 @@ if (!empty($_POST)) {
 
   <?php include 'partials/header.php'; ?>
 
-  <h1>Adding Questions for Survey: <? echo $survey['name']; ?> </h1>
+  <h1>Adding Questions for Survey: <?php echo $survey['name']; ?> </h1>
 
   <?php include 'partials/messages.php'; ?>
 
-  <p>This is a <? echo $survey_type; ?> survey.</p>
+  <p>This is a <?php echo $survey_type; ?> survey.</p>
 
 
   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">

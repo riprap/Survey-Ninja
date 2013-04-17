@@ -30,7 +30,7 @@ $questions = get_questions($survey_number);
   <?php include 'partials/header.php'; ?>
 
   <h1>
-    Showing Details for Survey: <? echo $survey['name']; ?> 
+    Showing Details for Survey: <?php echo $survey['name']; ?> 
   </h1>
 
     <h2>
