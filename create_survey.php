@@ -9,8 +9,10 @@
 $page_name = "Create Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
-$logged_in_profile = get_login();
-
+if (empty($_SESSION['id'])){
+	header('Location: login.php');
+}
+$logged_in_profile = get_user($_SESSION['id']);
 $name = '';
 $start_date = '';
 $end_date = '';

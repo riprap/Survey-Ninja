@@ -6,10 +6,10 @@
     File Description: The page that shows a survey and allows it to be filled in and submitted.
 */
 
-$page_name = "Home";
+$page_name = "Take Survey";
+
 include "functions/functions.php";
 include 'partials/html_header.php'; 
-//$logged_in_profile = get_profile();
 
 if (!empty($_POST)) {
   $survey_number = $_POST['survey'];

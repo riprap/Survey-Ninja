@@ -4,8 +4,8 @@
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
     File Description: The navbar that a user will see if they are logged into the site.
-*/  
-$logged_in_profile = get_login();    
+*/ 
+$logged_in_profile = get_user($_SESSION['id']);
 ?>
 
 <ul id="links">

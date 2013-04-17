@@ -9,8 +9,11 @@
 <?php 
 $page_name = "My Profile";
 include "functions/functions.php";
-include 'partials/html_header.php'; 
-$logged_in_profile = get_login();
+include 'partials/html_header.php';
+if (empty($_SESSION['id'])){
+	header('Location: login.php');
+}
+$logged_in_profile = get_user($_SESSION['id']);
 
 ?>
   <body id="<?php echo strtolower($page_name);?>">

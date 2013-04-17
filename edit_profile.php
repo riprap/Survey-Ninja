@@ -7,7 +7,7 @@
 -->
 
 <?php 
-$page_name = "Home";
+$page_name = "Edit Profile";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 //$logged_in_profile = get_profile();

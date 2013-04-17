@@ -28,7 +28,7 @@ function add_user($name, $email, $password) {
   $stmt->execute(array($name, $email, $password));
   
   
-  $_SESSION['email'] = $email;
+  $_SESSION['id'] = $db->lastInsertId();
 
   set_message("Success", "Thank you for registering.");
 }
@@ -78,25 +78,9 @@ function check_password_correct($email, $password){
   $password = secure_password($password);
   
   if ($password == $user['password']){
-  	$correct = true;
+  	return $user['id'];
   }
-  else{
-  	$correct = false;
-  }
-
-  return $correct;
-}
-
-/*
-Check if the user is logged in. 
-If not they are redirected to the login page and prompted to login.
-*/
-function get_login(){
-  if (empty($_SESSION['id'])) { 
-    header('Location: login.php');
-    die;
-  }
-  return get_user($_SESSION['id']);
+  return false;
 }
 
 function get_user($id) {
@@ -110,6 +94,16 @@ function get_user($id) {
   $stmt = $db->prepare($query);
   $stmt->execute(array($id));
   return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+//Check if the user is logged in.
+function is_logged_in(){
+  if (empty($_SESSION['id'])) { 
+    return false;
+  }
+  else{
+  	return true;
+  }
 }
 
 function secure_password($password){

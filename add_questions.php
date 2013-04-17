@@ -6,7 +6,8 @@
     File Description: The page that it displayed that allows the creator of a survey to add questions to it. 
 */
 
-$page_name = "Home";
+
+$page_name = "Add Questions to Survey";
 
 include "functions/functions.php";
 include 'partials/html_header.php'; 

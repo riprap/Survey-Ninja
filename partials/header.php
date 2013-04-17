@@ -11,7 +11,12 @@
                 <?php echo $site_title; ?>
                 <?php
                 //Check log in status and include the appropriate navbar 
-                include 'logged_in_nav.php'; 
+                if (is_logged_in() == true){
+                	include 'logged_in_nav.php'; 
+                }
+				else{
+					include 'logged_out_nav.php';
+				}
                 ?>
                 
             </header>

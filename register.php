@@ -40,7 +40,8 @@ if (!empty($_POST)) :
           $name = $_POST['name'];
           $password = $_POST['password'];
       else :
-        add_user($_POST['name'], $_POST['email'], md5($_POST['password']));
+        add_user($_POST['name'], $_POST['email'], $_POST['password']);
+        header("Location: index.php");
       endif; //End of if statement to check if email address is in use
   else :
     //There is an error on the page. Maintain sticky variables.
