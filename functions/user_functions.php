@@ -112,3 +112,15 @@ function secure_password($password){
 	$secured_password = $salt . sha1($password) . $pepper;
 	return $secured_password;
 }
+
+function update_user($id, $name, $email){
+	global $db;
+  $query = "
+    UPDATE users 
+    SET name = ?, email = ?
+    WHERE id = ?
+  ";
+	
+  $stmt = $db->prepare($query);
+  $stmt->execute(array($name, $email, $id));
+}
