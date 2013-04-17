@@ -6,12 +6,6 @@
     File Description: This file contains all of the html php functions that are used throughout the site.
 */
 
-function agree_disagree_buttons($question_id) {
-  $button_html = '<input type="radio" name="question_'.$question_id.'" value="agree">Agree<br>';                  
-  $button_html .= '<input type="radio" name="question_'.$question_id.'" value="disagree">Disagree<br>';  
-  return $button_html;  
-}
-
 function check_field_errors($fieldname, $error_list) {
   $html = "";
   if (in_array($fieldname, $error_list)) {

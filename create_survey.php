@@ -35,7 +35,7 @@ if (!empty($_POST)) {
   $end_month = $_POST['end_month'];
   $end_year = $_POST['end_year'];
 
-  $question_count = $_POST['question_count'][0];
+  $question_count = $_POST['question_count'];
 
   //Survey type is the first value of the index passed to use from the select
   $survey_type = $_POST['survey_type'];
@@ -180,8 +180,14 @@ if (!empty($_POST)) {
       </p>
       <p>
         Number of Questions:<br/>
-         <select name="question_count[]">
-            <?php include 'partials/select_day.php'; ?>
+         <select name="question_count">
+            <?php  
+                if (isset($question_count)) {
+                  echo create_day_dropdown($question_count); 
+                } else {
+                  echo create_day_dropdown(); 
+                }
+            ?> 
          </select>        
       </p>
 

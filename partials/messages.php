@@ -32,8 +32,10 @@ $messages = get_messages();
       if (isset($messages['success'])) {
         foreach ($messages['success'] as $success) {
           echo "<p>$success</p>";
-        }        
+        }      
       }
+      
+
 
     ?>
   </div>
