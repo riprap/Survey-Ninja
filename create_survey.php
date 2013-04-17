@@ -6,7 +6,6 @@
     File Description: The page that allows a user to create a new instance of a survey.
 */
 
-<?php 
 $page_name = "Create Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
