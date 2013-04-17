@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <!--
-    File Name: index.php
+    File Name: logout.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: The index / home page of the sitee which displays an introduction and links to other 
-    sections of the site. 
+    File Description: The logout page that destroys the user session and returns to the index page.
 -->
 
 <?php 

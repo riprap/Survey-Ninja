@@ -1,9 +1,9 @@
 <?php
 /*
-    File Name: select_month.php
+    File Name: select_day.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: The navbar that a user will see if they are logged into the site.
+    File Description: A partial of all the values for day numbers
 */  
 ?>
 

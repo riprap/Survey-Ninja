@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <!--
-    File Name: index.php
+    File Name: login.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: The index / home page of the site which displays an introduction and links to other 
-    sections of the site. 
+    File Description: The login page of the survey site.
 -->
 
 <?php 

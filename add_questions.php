@@ -3,8 +3,7 @@
     File Name: add_questions.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: The index / home page of the sitee which displays an introduction and links to other 
-    sections of the site. 
+    File Description: The page that it displayed that allows the creator of a survey to add questions to it. 
 -->
 
 <?php 
