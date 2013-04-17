@@ -107,6 +107,9 @@ if (!empty($_POST)) {
               if (isset($start_month)) {
                 echo create_month_dropdown($start_month);
               }
+              else {
+                echo create_month_dropdown();
+              }              
             ?>    
           </select>
 
@@ -114,7 +117,10 @@ if (!empty($_POST)) {
             <?php  
               if (isset($start_day)) {
                 echo create_day_dropdown($start_day); 
-              }  
+              }
+              else {
+                echo create_day_dropdown();
+              }               
             ?> 
           </select>  
 
@@ -123,6 +129,9 @@ if (!empty($_POST)) {
               if (isset($start_year)) {
                 echo create_year_dropdown($start_year); 
               }
+              else {
+                echo create_year_dropdown();
+              }               
             ?>
           </select>                     
         </label>      
@@ -136,6 +145,9 @@ if (!empty($_POST)) {
               if (isset($end_month)) {
                 echo create_month_dropdown($end_month);
               }
+              else {
+                echo create_month_dropdown();
+              }
             ?>            
           </select>
 
@@ -143,6 +155,9 @@ if (!empty($_POST)) {
             <?php  
               if (isset($end_day)) {
                 echo create_day_dropdown($end_day); 
+              }
+              else {
+                echo create_day_dropdown();
               }  
             ?>          
           </select> 
@@ -151,6 +166,9 @@ if (!empty($_POST)) {
               if (isset($end_year)) {
                 echo create_year_dropdown($end_year); 
               }
+              else {
+                echo create_year_dropdown();
+              } 
             ?>
           </select>                               
         </label> 
