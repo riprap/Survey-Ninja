@@ -63,8 +63,10 @@ if (!empty($_POST)) {
   if (empty($errors)) {
     //No survey with this name exists yet. Create survey
     //Format the start_date 
-    add_survey($name, $survey_type, $logged_in_profile['id'], $start_date, $end_date, $question_count);
+    $survey_id = add_survey($name, $survey_type, $logged_in_profile['id'], $start_date, $end_date, $question_count);
     set_message("success", "Survey has been created");
+    header('Location: add_questions.php?survey='.$survey_id);
+
   }
   //There is an error on the page. Maintain sticky variables.
   else {   
