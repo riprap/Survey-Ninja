@@ -81,17 +81,20 @@ function create_day_dropdown($day= null) {
 }
 
 
-/*
-function create_survey_type_dropdown() {  
-  $optionsList = '';    
+
+function create_survey_type_dropdown($value = null) {  
+  $optionsList = ''; 
+  $types = get_survey_types();   
   foreach ($types as $type){
     $selected = '';
-    if ($i == $day) {
+    $id = $type['id'];
+    $name = $type['name'];
+
+    if ($id == $value) {
       $selected = 'selected="selected"';
     }
 
-    $optionsList .= "<option value='$i' $selected >$i</option>\n"; 
-    $optionsList .= "<option value=""></option>\n";
+    $optionsList .= "<option value='$id' $selected >$name</option>\n"; 
 
   } 
   return $optionsList;      

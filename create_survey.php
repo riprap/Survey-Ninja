@@ -38,7 +38,7 @@ if (!empty($_POST)) {
   $question_count = $_POST['question_count'][0];
 
   //Survey type is the first value of the index passed to use from the select
-  $survey_type = $_POST['survey_type'][0];
+  $survey_type = $_POST['survey_type'];
   $name = $_POST['name'];
 
   //Call Function to see if there is a survey with this name already
@@ -177,7 +177,18 @@ if (!empty($_POST)) {
       <p>
         <label>
           Survey type:<br/>
-           <?php include 'partials/selects/select_survey_type.php'; ?>
+            <select name="survey_type">
+            <?php 
+              
+              if (isset($survey_type)) {             
+                echo create_survey_type_dropdown($survey_type); 
+              }
+              else {
+
+                echo create_survey_type_dropdown();
+              } 
+            ?> 
+            </select>          
         </label>
       </p>
       <p>
