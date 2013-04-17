@@ -6,11 +6,12 @@
     File Description: This file contains all of the functions relating to suveys of the site
 */
 
-/* 
-Save the potential answer to a specific question
-@param question_id The id of the corresponding question
-@param answer The answer to the question
-*/
+/** 
+* Save the potential answer to a specific question
+*
+* @param question_id The id of the corresponding question
+* @param answer The answer to the question
+**/
 function add_answer($question_id, $text) {
   global $db;  
   $query = "
@@ -24,7 +25,11 @@ function add_answer($question_id, $text) {
   $stmt->execute(array($question_id, $text));
 }
 
-//Add a submission for a survey to the database 
+/**
+* Add a submission to the database.
+* @param survey_id The survey we are adding a submission for.
+* @param ip The ip address that the submission is being created from.
+**/
 function add_submission($survey_id, $ip = NULL) {
   global $db; 
   $query = "
@@ -41,12 +46,13 @@ function add_submission($survey_id, $ip = NULL) {
   return $id; 
 }
 
-/*
-Save a question related to a survey 
-@param survey_id The id of the related survey 
-@param question The question 
-@param type The type of question
-*/
+/**
+* Save a question related to a survey 
+* @param survey_id The id of the related survey 
+* @param question The question 
+* @param type The type of question
+* @return id The id of the question that has been created
+**/
 function add_question($survey_id, $question, $type) {
   global $db;
   $query ="
@@ -66,12 +72,12 @@ function add_question($survey_id, $question, $type) {
   return $id; 
 }
 
-/*
-Save a users answer to a particular question
-@param question_id The id of the corresponding question
-@param answer = The text for the answer
-@param user_id The id of the user
-*/
+/**
+* Save a users answer to a particular question
+* @param question_id The id of the corresponding question
+* @param answer = The text for the answer
+* @param user_id The id of the user
+**/
 function add_submission_answer($survey_id, $question_id, $answer, $submission_id) {
   global $db;
   $query = "
@@ -88,15 +94,17 @@ function add_submission_answer($survey_id, $question_id, $answer, $submission_id
                        $answer));
 }
 
-/* 
-Add a survey to the database 
-@param name The name of the survey
-@param type The type of survey
-@param creator The creator of the survey
-@param start_date The date to start the survey
-@param end_date The date to end the survey
-@param question_count The number of questions in the survey
-*/
+/** 
+* Add a survey to the database 
+* 
+* @param name The name of the survey
+* @param type The type of survey
+* @param creator The creator of the survey
+* @param start_date The date to start the survey
+* @param end_date The date to end the survey
+* @param question_count The number of questions in the survey
+* @return The id of the survey has been created
+**/
 function add_survey($name, $type, $creator, $start_date = NULL, $end_date = NULL, $question_count) {
   global $db;
   $query = "
@@ -117,15 +125,21 @@ function add_survey($name, $type, $creator, $start_date = NULL, $end_date = NULL
   return $db->lastInsertId();
 }
 
-/*
-Check if a survey is open or closed 
-@param survey_id The id of the survey to find the details for
-@return Whether the survey is open (true) or closed (false)
-*/
+/**
+* Check if a survey is open or closed 
+* @param survey_id The id of the survey to find the details for
+* @return Whether the survey is open (true) or closed (false)
+**/
 function check_survey_status($survey_id) {
   //Select start_date, end_date from surveys where id = survey_id 
 }
 
+/**
+* Get all of the answers associated with a question
+* 
+* @param question_id The id of the question we are getting the answers for
+* @return answers An array of al the answers associated with the current questions
+**/
 function get_answers($question_id) {
   global $db;
   $query = "
@@ -140,7 +154,14 @@ function get_answers($question_id) {
   return $answers;
 }
 
-//get the number of people that have chosen a specific answer
+
+/**
+* Get the number of people that have chosen a particular answer
+* 
+* @param answer_id The answer we are getting the count for 
+* @return The count of people that have selected that answer.
+*
+**/
 function get_answer_count($answer_id) {
   global $db;
   $query = "
@@ -155,6 +176,13 @@ function get_answer_count($answer_id) {
   return $row[0];
 }
 
+/**
+* Get all of the questions associated with a question
+* 
+* @param survey_id The id of the survey to get the questions for 
+* @return questions An array of all the questions associated with the specified survey
+*
+**/
 function get_questions($survey_id) {
   global $db;
   $query = "
@@ -173,6 +201,13 @@ function get_questions($survey_id) {
   return $questions;
 }
 
+/**
+* Get 
+* 
+* @param survey_id The id of the survey to get the questions for 
+* @return questions An array of all the questions associated with the specified survey
+*
+**/
 function get_submission_count($survey_id) {
   global $db;
   $query = "
@@ -187,11 +222,13 @@ function get_submission_count($survey_id) {
   return $row[0];
 }
 
-/*
-Get all of the details for a survey so that it can be displayed to a user
-@param survey_id The id of the survey to show the user
-@return Survey Object, Question Object, Answers Object
-*/
+/**
+* Get all of the details for the specified survey
+* 
+* @param survey_id The survey we are getting the information for. 
+* @return An array of the details for the survey.
+*
+**/
 function get_survey($survey_id) {
   global $db;
   $query = "
@@ -207,7 +244,12 @@ function get_survey($survey_id) {
   return $survey[0];
 }
 
-//get the types of surveys that can be created
+/**
+* Get all of the types of surveys that can be created. 
+* 
+* @return An array of the types of surveys that can be created.
+*
+**/
 function get_survey_types() {
   global $db;
   $query = "
@@ -222,12 +264,13 @@ function get_survey_types() {
   }
   return $types;
 }
-
-/*
-Get all of the surveys that are created by the specifed user
-@param user_id The user we are getting the surveys for 
-@return All of the surveys created by the user
-*/
+/**
+* Get all of the surveys that a user has created
+* 
+* @param user_id The user id we are getting the surveys for 
+* @return An array of the surveys the user has created.
+*
+**/
 function get_user_surveys($user_id) {
   global $db;
   $query = "
@@ -248,11 +291,12 @@ function get_user_surveys($user_id) {
 }
 
 
-/*
-Get all of the surveys that are created by the specifed user
-@param user_id The user we are getting the surveys for 
-@return All of the surveys created by the user
-*/
+/**
+* Get all of the surveys that are currently active and have questions associated with them 
+* 
+* @return An array of all the active surveys with questions
+*
+**/
 function get_active_surveys() {
   global $db;
   $query = "
@@ -260,7 +304,7 @@ function get_active_surveys() {
    FROM questions
    JOIN surveys ON surveys.id = questions.survey_id
    LEFT JOIN survey_types ON survey_types.id = surveys.type_id
-
+   WHERE (NOW() > DATE(start_date) AND NOW() < DATE(end_date))
   ";
   
   $stmt = $db->prepare($query);

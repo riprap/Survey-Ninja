@@ -27,10 +27,10 @@ $surveys = get_user_surveys($logged_in_profile['id'])
       <th>Number of Questions</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Email</th>
+      <!--<th>Email</th>-->
       <th>Submissions</th>
-      <th>URL</th>
-      <th>Edit</th>
+      <!--<th>URL</th>
+      <th>Edit</th>-->
       <th>Details</th>
     </tr>
   <?php foreach ($surveys as $survey): 
@@ -71,18 +71,14 @@ $surveys = get_user_surveys($logged_in_profile['id'])
           }
         ?>
       </td> 
-      <td>
+      <!--<td>
         Link to email page
-      </td>
+      </td>-->
       <td>
         <?php 
           echo get_submission_count($survey['id']);
         ?>
       </td> 
-      <td>
-      </td>
-      <td>
-      </td>
       <td>      
         <a href="details.php?survey=<?php echo $survey['id']; ?>">
           <?php echo htmlentities($survey['name']); ?>

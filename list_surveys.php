@@ -9,9 +9,7 @@
 $page_name = "All Surveys";
 include "functions/functions.php";
 $surveys = get_active_surveys();
-//$surveys = get_active_surveys(1);
 ?>
-
 
 <?php include 'partials/html_header.php'; ?>
   <body id="<?php echo strtolower($page_name);?>">
@@ -26,7 +24,6 @@ $surveys = get_active_surveys();
       <th>Name</th>
       <th>Survey Type</th>
       <th>Number of Questions</th>
-      <th>URL</th>
     </tr>
   <?php foreach ($surveys as $survey): 
     $questions = get_questions($survey['id']);
@@ -51,12 +48,7 @@ $surveys = get_active_surveys();
         <?php 
         endif; //End the if statement to provide the url to add questions if the survey has no questions         
         ?>
-      </td>
-      <td>
-        <a href="survey.php?survey=<?php echo $survey['id']; ?>">
-          <?php echo htmlentities($survey['name']); ?>
-        </a>        
-      </td>                           
+      </td>                         
     </tr>
   <?php endforeach; //End of the foreach to loop through each of the surveys ?>
 

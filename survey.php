@@ -30,7 +30,25 @@ if (empty($survey)) {
   set_message("error", "There is no survey with the specified ID");
   header('Location: index.php');
   die;
+} 
+$start_date = strtotime($survey['start_date']);
+$end_date = strtotime($survey['end_date']);
+$now = strtotime(date('Y-m-d'));
+
+
+if ($end_date < $now) {
+  set_message("error", "We're sorry, this survey is closed.");
+  header('Location: index.php');
+  die;
+} 
+else if ($start_date > $now) {
+  set_message("error", "This survey is not open yet. Please come back on: ". format_date($survey['start_date']));
+  header('Location: index.php');
+  die;
 }
+
+
+
 $survey_type = $survey['survey_type'];
 $question_count = $survey['question_count'];
 $questions = get_questions($survey_number);
