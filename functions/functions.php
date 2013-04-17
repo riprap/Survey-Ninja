@@ -42,7 +42,7 @@ $_SESSION['id'] = 1;
 
 date_default_timezone_set('America/Los_Angeles');
 
-function create_year_dropdown($selected_year) {
+function create_year_dropdown($selected_year = null) {
   $optionsList = '';    
   for( $i = date("Y"); $i <= date("Y") + 5; $i++){
     $selected = '';
@@ -54,7 +54,7 @@ function create_year_dropdown($selected_year) {
   return $optionsList;    
 }
 
-function create_month_dropdown($month){
+function create_month_dropdown($month= null){
   $optionsList = '';    
   for( $i = 1; $i <= 12; $i++){
     $selected = '';
@@ -67,7 +67,7 @@ function create_month_dropdown($month){
   return $optionsList;     
 }
 
-function create_day_dropdown($day) {  
+function create_day_dropdown($day= null) {  
   $optionsList = '';    
   for ($i=1; $i < 31; $i++){
     $selected = '';
@@ -80,3 +80,19 @@ function create_day_dropdown($day) {
   return $optionsList;      
 }
 
+
+/*
+function create_survey_type_dropdown() {  
+  $optionsList = '';    
+  foreach ($types as $type){
+    $selected = '';
+    if ($i == $day) {
+      $selected = 'selected="selected"';
+    }
+
+    $optionsList .= "<option value='$i' $selected >$i</option>\n"; 
+    $optionsList .= "<option value=""></option>\n";
+
+  } 
+  return $optionsList;      
+}
