@@ -16,6 +16,15 @@ $name = '';
 $start_date = '';
 $end_date = '';
 $survey_type = '';
+$start_year ='';
+$end_year = '';
+$start_month = '';
+$end_month = '';
+$start_day = '';
+$end_day = '';
+$start_hour = '';
+$start_minute = '';
+
 $errors = array();
 
 // if the user submitted the form (with method="post")
@@ -27,12 +36,12 @@ if (!empty($_POST)) {
   
   $start_day = $_POST['start_day'];
   $start_month = $_POST['start_month'];
-  $start_time = $_POST['start_time'];
+  //$start_time = $_POST['start_time'];
   $start_year = $_POST['start_year'];
 
   $end_day = $_POST['end_day'];
   $end_month = $_POST['end_month'];
-  $end_time = $_POST['end_time'];
+  //$end_time = $_POST['end_time'];
   $end_year = $_POST['end_year'];
 
   $question_count = $_POST['question_count'][0];
@@ -52,7 +61,12 @@ if (!empty($_POST)) {
   $end_date = format_db_date($end_day, $end_month, $end_year);
   if (!$end_date) {
     $errors[] = 'Invalid End Date';
-  }      
+  }   
+
+  //Check if the end date is before the start date
+  if ($start_date > $end_date) {
+    $errors[] = 'Start Date cannot be after End Date';
+  }
 
   //If there are no validation errors attempt to create the survey
   if (empty($errors)) {
@@ -98,17 +112,17 @@ if (!empty($_POST)) {
         <label>
           Start Date:<br/>
           <select name="start_month">
-            <?php include 'partials/select_month.php'; ?>
+            <?php echo create_month_dropdown($start_month); ?>
           </select>
 
           <select name="start_day">
-            <?php include 'partials/select_day.php'; ?>
+            <?php echo create_day_dropdown($start_day); ?>
           </select>  
-          <select name="start_time" id="time">
-            <?php include 'partials/select_time.php'; ?>
-          </select> 
+
           <select name="start_year" id="year">
-            <?php include 'partials/select_year.php'; ?>
+          <?php 
+            echo create_year_dropdown($start_year);          
+          ?>
           </select>                     
         </label>      
       </p>
@@ -117,18 +131,14 @@ if (!empty($_POST)) {
         <label>
           End Date:<br/>
           <select name="end_month">
-            <?php include 'partials/select_month.php'; ?>
+            <?php echo create_month_dropdown($end_month); ?>
           </select>
 
           <select name="end_day">
-            <?php include 'partials/select_day.php'; ?>
+            <?php echo create_day_dropdown($end_day); ?>
           </select> 
-          <select name="end_time" id="time">
-            <?php include 'partials/select_time.php'; ?>
-          </select>
-
           <select name="end_year" id="year">
-            <?php include 'partials/select_year.php'; ?>
+            <?php echo create_year_dropdown($end_year); ?>
           </select>                               
         </label> 
       </p>
