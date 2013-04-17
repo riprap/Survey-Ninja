@@ -80,7 +80,7 @@ if (!empty($_POST)) {
   <?php include 'partials/header.php'; ?>
 
     <h1>
-      <? echo $page_name;?>
+      <?php echo $page_name;?>
     </h1>
 
     <?php include 'partials/messages.php'; ?>

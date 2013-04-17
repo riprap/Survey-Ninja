@@ -18,7 +18,7 @@ $logged_in_profile = get_login();
   <?php include 'partials/header.php'; ?>
 
   <h1>
-    <? echo $page_name;?>
+    <?php echo $page_name;?>
   </h1>
 
   <div id="profile">

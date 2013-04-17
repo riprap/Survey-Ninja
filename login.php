@@ -17,7 +17,7 @@ include 'partials/html_header.php';
   <?php include 'partials/header.php'; ?>
     <?php include 'partials/messages.php'; ?>
   <h1>
-    <? echo $page_name;?>
+    <?php echo $page_name;?>
   </h1>
 
   <?php include 'partials/footer.php'; ?>

@@ -18,7 +18,7 @@ $surveys = get_user_surveys($logged_in_profile['id'])
 
   <?php include 'partials/header.php'; ?>
   <h1>
-    <? echo $page_name;?>
+    <?php echo $page_name;?>
   </h1>
 
   <table>
