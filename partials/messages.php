@@ -1,9 +1,9 @@
 <?php
 /*
-    File Name: header.php
+    File Name: messages.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: This file contains the header with site title and logo that is used on all desktop pages of the site.
+    File Description: This partial contains the divs for any messages that need to be displayed.
 */  
 $messages = get_messages();    
 ?>

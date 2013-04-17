@@ -3,7 +3,7 @@
     File Name: select_month.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: The navbar that a user will see if they are logged into the site.
+    File Description: A partial with all the values of month numbers.
 */  
 ?>
 

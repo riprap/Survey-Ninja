@@ -1,9 +1,9 @@
 <?php
 /*
-    File Name: select_month.php
+    File Name: select_time.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: The navbar that a user will see if they are logged into the site.
+    File Description: A partial with a set list of predefined times
 */  
 ?>
 
