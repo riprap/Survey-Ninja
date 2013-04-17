@@ -41,3 +41,42 @@ $user_id = 12;
 $_SESSION['id'] = 1;
 
 date_default_timezone_set('America/Los_Angeles');
+
+function create_year_dropdown($selected_year) {
+  $optionsList = '';    
+  for( $i = date("Y"); $i <= date("Y") + 5; $i++){
+    $selected = '';
+    if ($i == $selected_year) {
+      $selected = 'selected="selected"';
+    }
+    $optionsList .= "<option value='$i' $selected >$i</option>\n"; 
+  } 
+  return $optionsList;    
+}
+
+function create_month_dropdown($month){
+  $optionsList = '';    
+  for( $i = 1; $i <= 12; $i++){
+    $selected = '';
+    if ($i == $month) {
+      $selected = 'selected="selected"';
+    }
+    $monthName = date("F", mktime(0, 0, 0, $i, 10));
+    $optionsList .= "<option value='$i' $selected >$monthName</option>\n"; 
+  } 
+  return $optionsList;     
+}
+
+function create_day_dropdown($day) {  
+  $optionsList = '';    
+  for ($i=1; $i < 31; $i++){
+    $selected = '';
+    if ($i == $day) {
+      $selected = 'selected="selected"';
+    }
+
+    $optionsList .= "<option value='$i' $selected >$i</option>\n"; 
+  } 
+  return $optionsList;      
+}
+
