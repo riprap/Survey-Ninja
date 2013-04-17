@@ -99,3 +99,28 @@ function create_survey_type_dropdown($value = null) {
   } 
   return $optionsList;      
 }
+
+function format_date($date_string) {
+  return date('F d, Y', strtotime($date_string));
+}
+
+function create_question($number, $question) {
+  $question_html = "Question #". $number ."<br/>\n"; 
+  $question_html .= '<input type="text" name="question_'.$number.'" value="'.$question.'"/>';
+  return $question_html;
+}
+
+
+
+function create_hidden_servey_id_field($id) {
+  return "<input type=\"hidden\" name=\"survey\" value='$id' />";
+}
+
+
+function agree_disagree_buttons($question_id) {
+  $button_html = '<input type="radio" name="question_'.$question_id.'" value="agree">Agree<br>';                  
+  $button_html .= '<input type="radio" name="question_'.$question_id.'" value="disagree">Disagree<br>';  
+  return $button_html;  
+             
+
+}

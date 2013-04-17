@@ -18,6 +18,12 @@ $messages = get_messages();
           echo "<p>$error</p>";
         }
       }
+      //Loop through any errors in form errors array
+      if (isset($errors)) {
+        foreach ($errors as $error) {
+          echo "<p>$error</p>";
+        }
+      }
     ?>
   </div>
    <div id="success">

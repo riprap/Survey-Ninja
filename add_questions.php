@@ -27,8 +27,14 @@ else {
 $survey = get_survey($survey_number);
 $survey_type = $survey['survey_type'];
 $question_count = $survey['question_count'];
-//Check if the survey already has questions associated with it and redirect if true
 
+//Check if the survey already has questions associated with it and redirect if true
+$questions = get_questions($survey['id']);
+if (!empty($questions) ) {
+  set_message("error", "Survey already has questions associated with it.");
+  header('Location: index.php');
+  die;
+}
 
 
 
@@ -79,43 +85,30 @@ if (!empty($_POST)) {
 
   <?php include 'partials/header.php'; ?>
   <h1>Adding Questions for Survey: <? echo $survey['name']; ?> </h1>
-  <p>This is a <? echo $survey_type; ?> survey. Each question must be filled in and include four possible answers.</p>
 
-  <div id="errors">
-    <?php
-      //Loop over each error in the erros array and print any errors that exist. 
-      foreach ($errors as $error) {
-        echo "<p>$error</p>";
-      }
-    ?>
-  </div>
   <?php include 'partials/messages.php'; ?>
+
+  <p>This is a <? echo $survey_type; ?> survey. Each question must be filled in and include four possible answers.</p>
 
 
 
   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
-    <?php if ($survey_type == 'Multiple Choice') {?>
-      <?php for ($i=1; $i <= $question_count; $i++){ ?>
-        <p>
-          <label>
-            Question #<?php echo $i;?>:<br/>
-            <input type="text" name="question_<?php echo $i;?>" value="<?php echo ${"question_". $i};?>"/>
-          </label>
-          
-          <?php foreach(range('A','D') as $d) { ?>
-            <br/>
-            <label>
+    
+
+      <?php for ($i=1; $i <= $question_count; $i++): ?>
+          <?php echo create_question($i, ${"question_". $i} ); ?>
+          <?php if ($survey_type == 'Multiple Choice') :?>
+            <?php foreach(range('A','D') as $d) : ?>
+              <br/>
               Answer <? echo $d;?>:<br/>
-              <input type="text" name="question_<?php echo $i;?>_answer_<?php echo $d;?>" value=""/>
-            </label>        
-          <?php } ?>
-
-        </p>
-      <?php }?>
-    <?php }?>
-    <input type="hidden" name="survey" value=<? echo $survey['id']; ?> />
-
+              <input type="text" name="question_<?php echo $i;?>_answer_<?php echo $d;?>" value=""/>       
+            <?php endforeach;  ?>
+          <?php endif?>
+      <?php endfor ?>
+    
+    <?php echo create_hidden_servey_id_field($survey['id']); ?>
+    <br>
     <input type="submit" value="Submit"/>
 
   </form>  

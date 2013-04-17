@@ -40,26 +40,39 @@ $surveys = get_user_surveys($logged_in_profile['id'])
     <tr>
       <td>      
         <a href="survey.php?survey=<?php echo $survey['id']; ?>">
-          <?php echo htmlentities($survey['name']) ?>
+          <?php echo htmlentities($survey['name']); ?>
         </a>
       </td>
       <td>
         <?php echo $survey['survey_type'];?>
       </td>
       <td>
-        <?php echo count($questions);?>
+        <?php 
+        if (!empty($questions)) :
+          echo count($questions);
+        else: 
+        ?>
+          
+        <a href="add_questions.php?survey=<?php echo $survey['id']; ?>">
+          <?php echo count($questions); ?>
+        </a>          
+
+        <?php 
+        endif 
+        
+        ?>
       </td>
        <td>
         <?php 
-          if ($survey['start_date'] != ""){
-            echo date('F d, Y', strtotime($survey['start_date']));
+          if (!empty($survey['start_date'])){
+            echo format_date($survey['start_date']);
           }
         ?>
       </td>
       <td>
         <?php 
-          if ($survey['end_date'] != ""){
-            echo date('F d, Y', strtotime($survey['end_date']));
+          if (!empty($survey['end_date'])){
+            echo format_date($survey['end_date']);
           }
         ?>
       </td> 
@@ -77,7 +90,7 @@ $surveys = get_user_surveys($logged_in_profile['id'])
       </td>
       <td>      
         <a href="details.php?survey=<?php echo $survey['id']; ?>">
-          <?php echo htmlentities($survey['name']) ?>
+          <?php echo htmlentities($survey['name']); ?>
         </a>
       </td>                             
     </tr>

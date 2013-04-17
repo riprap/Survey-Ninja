@@ -44,8 +44,7 @@ if (!empty($_POST)) {
   $submission_id = add_submission($survey_number, $_SERVER['REMOTE_ADDR']);
   foreach ($questions as $question): 
     if (!empty($_POST['question_'. $question['id']])) {
-      $errors[] = "Please enter your name.";
-      $answer = $_POST['question_'. $question['id']];
+      $answer = $_POST['question_'. $question['id']];  
       $question_id = $question['id'];
       add_submission_answer($survey_number, $question_id, $answer, $submission_id);
     }  
@@ -72,21 +71,21 @@ if (!empty($_POST)) {
           <li id="question">
               <h2><?php echo htmlentities($question['text']) ?></h2>
           </li>
-          <?php
-            $answers = get_answers($question['id']);
+          <?php if ($survey_type == 'Multiple Choice'):
+                  $answers = get_answers($question['id']);
 
-            foreach ($answers as $answer):
-          ?>
-            <input type="radio" name="question_<?php echo $question['id'];?>" value="<?php echo $answer['id']; ?>"><?php echo $answer['text']; ?><br>
-          <?php 
-            endforeach; 
-          ?>
+                  foreach ($answers as $answer): ?>
+                    <input type="radio" name="question_<?php echo $question['id'];?>" value="<?php echo $answer['id']; ?>"><?php echo $answer['text']; ?><br>                  
+             <?php endforeach; 
+                else: 
+                  echo agree_disagree_buttons($question['id']);
+                endif;?>
 
         <?php 
         endforeach; 
         ?>
       </ul>
-      <input type="hidden" name="survey" value=<? echo $survey['id']; ?> />
+      <?php echo create_hidden_servey_id_field($survey['id']); ?>
       <input type="submit" value="Submit Survey"/>
     </form>
 
