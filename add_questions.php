@@ -46,13 +46,27 @@ for ($i=1; $i <= $question_count; $i++){
 
 // if the user submitted the form (with method="post")
 if (!empty($_POST)) {
+
   //loop through each of the questions and check if blank
   for ($i=1; $i <= $question_count; $i++){
     if (empty($_POST['question_'.$i])) {
       $errors[] = "Question #". $i . " cannot be blank";
       $field_errors[] = 'question_'.$i;
     }
+    if ($survey_type == 'Multiple Choice') :
+      foreach(range('A','D') as $d) :
+        ${"question_". $i .'_answer_'.$d} =  $_POST["question_". $i .'_answer_'.$d];
+        if (empty($_POST["question_". $i .'_answer_'.$d])) {
+
+          $errors[] = "Question #". $i . " Answer ". $d ." cannot be blank";
+          $field_errors[] = "question_". $i .'_answer_'. $d;
+        }      
+      endforeach;
+    endif;
+
+
   }
+
   //If there are no validation errors attempt to save the questions to the database
   if (empty($errors)) {
 
@@ -119,16 +133,23 @@ if (!empty($_POST)) {
         echo create_question($i, ${"question_". $i}, $field_errors );
         //If the survey type is multiple choice then loop through A-D
         if ($survey_type == 'Multiple Choice') :
-          foreach(range('A','D') as $d) : ?>
-            <br/>
-            Answer <? echo $d;?>:<br/>
-            <input type="text" name="question_<?php echo $i;?>_answer_<?php echo $d;?>" value=""/>       
-          <?php endforeach;
+          foreach(range('A','D') as $d) :
+            
+            if (isset(${"question_". $i .'_answer_'.$d})) {
+              echo create_answer($i, $d, ${"question_". $i .'_answer_'.$d}, $field_errors);
+            }
+            else {
+              echo create_answer($i, $d, "", $field_errors);
+            }
+            
+          endforeach;
         endif;
-        ?> <br> <?php
-    endfor; ?>
+        echo "<br>";
+    endfor;
     
-    <?php echo create_hidden_survey_id_field($survey['id']); ?>
+    echo create_hidden_survey_id_field($survey['id']); 
+
+    ?>
     <br>
     <input type="submit" value="Submit"/>
 

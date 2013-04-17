@@ -20,6 +20,7 @@ else if (!empty($_GET['survey'])) {
 }
 else {
   set_message("error", "Invalid survey id.");
+  header('Location: index.php');
   die;
 }
 
@@ -60,6 +61,7 @@ if (!empty($_POST)) {
 
     set_message("success", "Thanks for completing the survey.");
     header('Location: index.php');
+    die;
   endif;
 
 }
