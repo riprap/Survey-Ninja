@@ -28,12 +28,12 @@ if (!empty($_POST)) {
   $start_day = $_POST['start_day'];
   $start_month = $_POST['start_month'];
   $start_time = $_POST['start_time'];
-  $start_year = 2013;
+  $start_year = $_POST['start_year'];
 
   $end_day = $_POST['end_day'];
   $end_month = $_POST['end_month'];
   $end_time = $_POST['end_time'];
-  $end_year = 2013;
+  $end_year = $_POST['end_year'];
 
   $question_count = $_POST['question_count'][0];
 
@@ -106,7 +106,10 @@ if (!empty($_POST)) {
           </select>  
           <select name="start_time" id="time">
             <?php include 'partials/select_time.php'; ?>
-          </select>          
+          </select> 
+          <select name="start_year" id="year">
+            <?php include 'partials/select_year.php'; ?>
+          </select>                     
         </label>      
       </p>
 
@@ -122,7 +125,11 @@ if (!empty($_POST)) {
           </select> 
           <select name="end_time" id="time">
             <?php include 'partials/select_time.php'; ?>
-          </select>                     
+          </select>
+
+          <select name="end_year" id="year">
+            <?php include 'partials/select_year.php'; ?>
+          </select>                               
         </label> 
       </p>
 
