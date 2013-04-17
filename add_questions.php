@@ -32,6 +32,7 @@ $question_count = $survey['question_count'];
 
 if (empty($_SESSION['id'])){
   header('Location: login.php');
+  set_message("error", "You must be logged in to access this page.");
   die;
 }
 $logged_in_profile = get_user($_SESSION['id']);

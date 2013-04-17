@@ -10,6 +10,7 @@ $page_name = "My Surveys";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 if (empty($_SESSION['id'])){
+  set_message("error", "You must be logged in to access this page.");
 	header('Location: login.php');
   die;
 }
