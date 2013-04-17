@@ -9,6 +9,8 @@
 <?php 
 $page_name = "Home";
 $errors = array();
+$field_errors = array();
+
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 
@@ -48,6 +50,7 @@ if (!empty($_POST)) {
   for ($i=1; $i <= $question_count; $i++){
     if (empty($_POST['question_'.$i])) {
       $errors[] = "Question #". $i . " cannot be blank";
+      $field_errors[] = 'question_'.$i;
     }
   }
   //If there are no validation errors attempt to save the questions to the database
@@ -99,7 +102,7 @@ if (!empty($_POST)) {
     //Loop through each of the questions until the question count is reached
     for ($i=1; $i <= $question_count; $i++):
         //Use the create_question to create a textbox for the current question
-        echo create_question($i, ${"question_". $i} );
+        echo create_question($i, ${"question_". $i}, $field_errors );
         //If the survey type is multiple choice then loop through A-D
         if ($survey_type == 'Multiple Choice') :
           foreach(range('A','D') as $d) : ?>
@@ -108,6 +111,7 @@ if (!empty($_POST)) {
             <input type="text" name="question_<?php echo $i;?>_answer_<?php echo $d;?>" value=""/>       
           <?php endforeach;
         endif;
+        ?> <br> <?php
     endfor; ?>
     
     <?php echo create_hidden_survey_id_field($survey['id']); ?>

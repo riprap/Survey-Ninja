@@ -14,6 +14,8 @@ require "db/database.php";
 include "survey_functions.php";
 //Include the file with all of the functions relating to users
 include "user_functions.php";
+//Include the file with all of the functions relating to generating HTML
+include "html_functions.php";
 //Include the locales file which contains all of the appropriate text variables
 include "locales/en.php";
 
@@ -42,85 +44,3 @@ $_SESSION['email'] = "maddogmonty@gmail.com";
 
 date_default_timezone_set('America/Los_Angeles');
 
-function create_year_dropdown($selected_year = null) {
-  $optionsList = '';    
-  for( $i = date("Y"); $i <= date("Y") + 5; $i++){
-    $selected = '';
-    if ($i == $selected_year) {
-      $selected = 'selected="selected"';
-    }
-    $optionsList .= "<option value='$i' $selected >$i</option>\n"; 
-  } 
-  return $optionsList;    
-}
-
-function create_month_dropdown($month= null){
-  $optionsList = '';    
-  for( $i = 1; $i <= 12; $i++){
-    $selected = '';
-    if ($i == $month) {
-      $selected = 'selected="selected"';
-    }
-    $monthName = date("F", mktime(0, 0, 0, $i, 10));
-    $optionsList .= "<option value='$i' $selected >$monthName</option>\n"; 
-  } 
-  return $optionsList;     
-}
-
-function create_day_dropdown($day= null) {  
-  $optionsList = '';    
-  for ($i=1; $i < 31; $i++){
-    $selected = '';
-    if ($i == $day) {
-      $selected = 'selected="selected"';
-    }
-
-    $optionsList .= "<option value='$i' $selected >$i</option>\n"; 
-  } 
-  return $optionsList;      
-}
-
-
-
-function create_survey_type_dropdown($value = null) {  
-  $optionsList = ''; 
-  $types = get_survey_types();   
-  foreach ($types as $type){
-    $selected = '';
-    $id = $type['id'];
-    $name = $type['name'];
-
-    if ($id == $value) {
-      $selected = 'selected="selected"';
-    }
-
-    $optionsList .= "<option value='$id' $selected >$name</option>\n"; 
-
-  } 
-  return $optionsList;      
-}
-
-function format_date($date_string) {
-  return date('F d, Y', strtotime($date_string));
-}
-
-function create_question($number, $question) {
-  $question_html = "Question #". $number ."<br/>\n"; 
-  $question_html .= '<input type="text" name="question_'.$number.'" value="'.$question.'"/>';
-  return $question_html;
-}
-
-
-
-function create_hidden_survey_id_field($id) {
-  return "<input type=\"hidden\" name=\"survey\" value='$id' />";
-}
-
-
-function agree_disagree_buttons($question_id) {
-  $button_html = '<input type="radio" name="question_'.$question_id.'" value="agree">Agree<br>';                  
-  $button_html .= '<input type="radio" name="question_'.$question_id.'" value="disagree">Disagree<br>';  
-  return $button_html;  
-             
-
-}
