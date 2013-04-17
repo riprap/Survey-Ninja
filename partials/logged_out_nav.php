@@ -9,5 +9,5 @@
 
 <ul id="links">
     <li><a href="login.php" id="login">Login</a></li>
-    <li><a href="my_surveys.php" id="surveys">Take a survey!</a></li>
+    <li><a href="list_surveys.php" id="surveys">Take a survey!</a></li>
 </ul>
