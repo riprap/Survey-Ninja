@@ -85,7 +85,7 @@ if (!empty($_POST)) {
         endforeach; 
         ?>
       </ul>
-      <?php echo create_hidden_servey_id_field($survey['id']); ?>
+      <?php echo create_hidden_survey_id_field($survey['id']); ?>
       <input type="submit" value="Submit Survey"/>
     </form>
 

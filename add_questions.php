@@ -84,30 +84,33 @@ if (!empty($_POST)) {
   <body id="<?php echo strtolower($page_name);?>">
 
   <?php include 'partials/header.php'; ?>
+
   <h1>Adding Questions for Survey: <? echo $survey['name']; ?> </h1>
 
   <?php include 'partials/messages.php'; ?>
 
-  <p>This is a <? echo $survey_type; ?> survey. Each question must be filled in and include four possible answers.</p>
-
+  <p>This is a <? echo $survey_type; ?> survey.</p>
 
 
   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
-    
 
-      <?php for ($i=1; $i <= $question_count; $i++): ?>
-          <?php echo create_question($i, ${"question_". $i} ); ?>
-          <?php if ($survey_type == 'Multiple Choice') :?>
-            <?php foreach(range('A','D') as $d) : ?>
-              <br/>
-              Answer <? echo $d;?>:<br/>
-              <input type="text" name="question_<?php echo $i;?>_answer_<?php echo $d;?>" value=""/>       
-            <?php endforeach;  ?>
-          <?php endif?>
-      <?php endfor ?>
+    <?php 
+    //Loop through each of the questions until the question count is reached
+    for ($i=1; $i <= $question_count; $i++):
+        //Use the create_question to create a textbox for the current question
+        echo create_question($i, ${"question_". $i} );
+        //If the survey type is multiple choice then loop through A-D
+        if ($survey_type == 'Multiple Choice') :
+          foreach(range('A','D') as $d) : ?>
+            <br/>
+            Answer <? echo $d;?>:<br/>
+            <input type="text" name="question_<?php echo $i;?>_answer_<?php echo $d;?>" value=""/>       
+          <?php endforeach;
+        endif;
+    endfor; ?>
     
-    <?php echo create_hidden_servey_id_field($survey['id']); ?>
+    <?php echo create_hidden_survey_id_field($survey['id']); ?>
     <br>
     <input type="submit" value="Submit"/>
 
