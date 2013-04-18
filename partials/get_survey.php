@@ -15,3 +15,9 @@ else :
   header('Location: my_surveys.php');
   die;
 endif;
+
+//Set the variables relating to a survey
+
+$survey = get_survey($survey_number);
+$survey_type = $survey['survey_type'];
+$questions = get_questions($survey_number);

@@ -9,9 +9,8 @@
 $page_name = "Email Survey";
 include "functions/functions.php";
 
-//Including this partial will set the value of the $survey_number variable
+//Including this partial will set the value of the $survey_number, $survey, $survey_type and $questions
 include 'partials/get_survey.php'; 
-$survey = get_survey($survey_number);
 
 $to_email = '';
 $body = "Check out my ". $survey['name'] ." survey! ". $site_url . "survey.php?survey=".$survey_number;

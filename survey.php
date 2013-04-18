@@ -11,20 +11,14 @@ $page_name = "Take Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 
-//Including this partial will set the value of the $survey_number variable
+//Including this partial will set the value of the $survey_number, $survey, $survey_type and $questions
 include 'partials/get_survey.php'; 
-
-$survey = get_survey($survey_number);
 
 if (empty($survey)) :
   set_message("error", "There is no survey with the specified ID");
   header('Location: index.php');
   die;
 endif; 
-
-$survey_type = $survey['survey_type'];
-$question_count = $survey['question_count'];
-$questions = get_questions($survey_number);
 
 $start_date = strtotime($survey['start_date']);
 $end_date = strtotime($survey['end_date']);

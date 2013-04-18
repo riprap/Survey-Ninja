@@ -8,25 +8,12 @@
  
 $page_name = "Survey Details";
 include "functions/functions.php";
-include 'partials/html_header.php'; 
 
-if (!empty($_POST)) {
-  $survey_number = $_POST['survey_id'];
-}
-else if (!empty($_GET['survey'])) {
-  $survey_number = $_GET['survey'];
-}
-else{
-  set_message("error", "No survey selected!");
-  header("Location:list_surveys.php");
-  die;
-}
-$survey = get_survey($survey_number);
-$survey_type = $survey['survey_type'];
-$survey['question_count'];
-$questions = get_questions($survey_number);
-
+//Including this partial will set the value of the $survey_number, $survey, $survey_type and $questions
+include 'partials/get_survey.php'; 
 ?>
+
+<?php include 'partials/html_header.php'; ?>
   <body id="<?php echo strtolower($page_name);?>">
     <?php include 'partials/header.php'; ?>
     <div class="row">

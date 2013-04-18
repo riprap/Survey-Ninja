@@ -12,11 +12,8 @@ $page_name = "Add Questions to Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 
-//Including this partial will set the value of the $survey_number variable
+//Including this partial will set the value of the $survey_number, $survey, $survey_type and $questions
 include 'partials/get_survey.php'; 
-
-$survey = get_survey($survey_number);
-$survey_type = $survey['survey_type'];
 $question_count = $survey['question_count'];
 
 if ($logged_in_profile['id'] != $survey['creator_id']) :
@@ -26,7 +23,6 @@ if ($logged_in_profile['id'] != $survey['creator_id']) :
 endif;
 
 //Check if the survey already has questions associated with it and redirect if true
-$questions = get_questions($survey['id']);
 if (!empty($questions) ) :
   set_message("error", "Survey already has questions associated with it.");
   header('Location: index.php');

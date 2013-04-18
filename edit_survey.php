@@ -10,10 +10,9 @@ $page_name = "Edit Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 
-//Including this partial will set the value of the $survey_number variable
+//Including this partial will set the value of the $survey_number, $survey, $survey_type and $questions
 include 'partials/get_survey.php'; 
 
-$survey = get_survey($survey_number);
 $name = $survey['name'];
 
 if ($logged_in_profile['id'] != $survey['creator_id']) {  
@@ -33,36 +32,8 @@ if (!empty($_POST)) :
     $field_errors[] = 'name';
   endif;
   
-  $start_day = $_POST['start_day'];
-  $start_day = str_pad($start_day, 2, " ", STR_PAD_LEFT);
-  $start_month = $_POST['start_month'];
-  $start_month = str_pad($start_month, 2, " ", STR_PAD_LEFT);
-  $start_year = $_POST['start_year'];
-
-  $end_day = $_POST['end_day'];
-  $end_day = str_pad($end_day, 2, " ", STR_PAD_LEFT);
-  $end_month = $_POST['end_month'];
-  $end_month = str_pad($end_month, 2, " ", STR_PAD_LEFT);
-  $end_year = $_POST['end_year'];
-
-  $name = $_POST['name'];
-
-  // Check if it is a valid start_date
-  $start_date = format_db_date($start_day, $start_month, $start_year);
-  if (!$start_date) :
-    $errors[] = 'Invalid Start Date';
-  endif;      
-
-  // Check if it is a valid end_date
-  $end_date = format_db_date($end_day, $end_month, $end_year);
-  if (!$end_date) :
-    $errors[] = 'Invalid End Date';
-  endif;   
-
-  //Check if the end date is before the start date
-  if ($start_date > $end_date) :
-    $errors[] = 'Start Date cannot be after End Date';
-  endif;
+  //Including this partial will validate the date fields for start_date and end_date. It will set the values of $start_date and $end_date
+  include "partials/date_validation.php";
 
   //If there are no validation errors attempt to create the survey
   if (empty($errors)) :
