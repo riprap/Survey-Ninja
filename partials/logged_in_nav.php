@@ -19,7 +19,7 @@ $logged_in_profile = get_user($_SESSION['id']);
         </ul>
       </div>
       <h1><?php echo $site_name;?></h1>
-      <hr />
+      <hr/>
     </div>
   </div>
 </div>
