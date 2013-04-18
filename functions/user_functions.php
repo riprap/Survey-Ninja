@@ -3,17 +3,17 @@
     File Name: userfunctions.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: This file contains all of the 
-                      functions relating to users of 
-                      the site.
+    File Description: This file contains all of the functions relating to users of the site.
 */
 
-/* 
-Add a user to the database 
-@param name The users name
-@param email The users email address
-@param password The users password
-*/
+/**
+ * Add a user to the database 
+ * 
+ * @param name The name of the user to add
+ * @param email The users email address
+ * @param password The users password
+ * @author Scott Montgomery
+ **/
 function add_user($name, $email, $password) {
   global $db;
   $query = "
@@ -27,17 +27,18 @@ function add_user($name, $email, $password) {
   $stmt = $db->prepare($query);
   $stmt->execute(array($name, $email, $password));
   
-  
   $_SESSION['id'] = $db->lastInsertId();
 
   set_message("Success", "Thank you for registering.");
 }
 
-/* 
-Check if the email address is already associated with a user in the database 
-@param email The users email address
-@return boolean Whether or not the user was found in the database
-*/
+/**
+ * Check if the email address is already associated with a user in the database  
+ * 
+ * @param email The users email address
+ * @return boolean If the email address was found in the database
+ * @author Scott Montgomery
+ **/
 function check_user_exists($email){
   global $db;
   $query = "
@@ -59,12 +60,14 @@ function check_user_exists($email){
   return $user_exists;
 }
 
-/* 
-Check if the password given corresponds with an email address
-@param password The supplied password
-@param email The supplied email address
-@return boolean Whether or not the password matches the one in the database
-*/
+/**
+ * Check if the password given corresponds with an email address
+ * 
+ * @param password The supplied password
+ * @param email The supplied email address
+ * @return boolean Whether or not the password matches the one in the database
+ * @author Scott Montgomery
+ **/
 function check_password_correct($email, $password){
   global $db;
   $query = "
@@ -83,6 +86,13 @@ function check_password_correct($email, $password){
   return false;
 }
 
+/**
+ * Get the details for the supplied user
+ * 
+ * @param id The supplied user id
+ * @return array An array of the users details
+ * @author Scott Montgomery
+ **/
 function get_user($id) {
   global $db;
   $query = "
@@ -96,7 +106,12 @@ function get_user($id) {
   return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-//Check if the user is logged in.
+/**
+ * Check if a user is logged in
+ * 
+ * @return boolean If a user is logged in or not
+ * @author Scott Montgomery
+ **/
 function is_logged_in(){
   if (empty($_SESSION['id'])) { 
     return false;
@@ -106,6 +121,13 @@ function is_logged_in(){
   }
 }
 
+/**
+ * Encrypt a password using salt and pepper
+ *
+ * @param password The password to encrypt 
+ * @return string The encrypted version of the password
+ * @author Scott Montgomery
+ **/
 function secure_password($password){
 	$salt = sha1("facebook");
 	$pepper = sha1("twitter");
@@ -113,6 +135,14 @@ function secure_password($password){
 	return $secured_password;
 }
 
+/**
+ * Update the details for a user
+ *
+ * @param id The id of the user to update the details for
+ * @param name The updated version of the users name
+ * @param email The updated version of the users emails
+ * @author Scott Montgomery
+ **/
 function update_user($id, $name, $email){
 	global $db;
   $query = "

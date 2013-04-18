@@ -8,6 +8,12 @@
 
 session_start();
 
+//Initialize the error arrays
+$errors = array();
+$field_errors = array();
+
+date_default_timezone_set('America/New_York');
+
 //Include the database connection file
 require "db/database.php";
 //Include the file with all of the functions relating to surveys
@@ -19,12 +25,40 @@ include "html_functions.php";
 //Include the locales file which contains all of the appropriate text variables
 include "locales/en.php";
 
-
+/**
+ * Create a date so that it can be inserted into the database
+ * 
+ * @param $day The day 
+ * @param $month The month
+ * @param $year The year
+ * @return The formatted date 
+ * @author Scott Montgomery
+ **/
 function format_db_date($day, $month, $year) {
   $date = $year . '-' . $month . '-' . $day;
   return checkdate($month, $day, $year) ? "$year-$month-$day" : false;
 }
 
+/**
+ * Break apart a date into indvidual parts
+ * 
+ * @param date The date to break apart
+ * @return An array with the day month and year
+ * @author Scott Montgomery
+ **/
+function get_date_params($date) {
+  $day = date("d",strtotime($date)); 
+  $month = date("m",strtotime($date));
+  $year = date("y",strtotime($date));
+  return array($day, $month, $year);
+}
+
+/**
+ * Get all of the messages that are stored in the session
+ * 
+ * @return An array with all messages
+ * @author Scott Montgomery
+ **/
 function get_messages() {
     $messages_array = array();
     if (isset($_SESSION['messages'])) {
@@ -34,14 +68,15 @@ function get_messages() {
     return $messages_array;
 }
 
+/**
+ * Add a message to the session variable
+ * 
+ * @param message_type The type of message we are creating
+ * @param The message to add to the session variable
+ * @author Scott Montgomery
+ **/
 function set_message($message_type, $message) {
-    $_SESSION['messages'][$message_type][] = $message;
+  $_SESSION['messages'][$message_type][] = $message;
 }
 
-
-
-$errors = array();
-$field_errors = array();
-
-date_default_timezone_set('America/New_York');
 

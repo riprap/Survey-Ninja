@@ -14,7 +14,7 @@
          <li><a href="list_surveys.php" class="button">Take a survey!</a></li>
         </ul>
       </div>
-      <h1>Survey Site</h1>
+      <h1><?php echo $site_name;?></h1>
       <hr />
     </div>
 </div>
