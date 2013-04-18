@@ -31,7 +31,11 @@ if (!empty($_POST)) :
   if (empty($_POST['password'])) :
     $errors[] = "Please enter your password.";
   endif; // End if to check if the password field is blank
-
+  
+  if ($_POST['password'] != $_POST['confirm']) :
+	  $errors[] = "Passwords do not match.";
+  endif;
+  
   //If there are no validation errors attempt to save the user to the database.
   if (empty($errors)) :
       //Search for the email in the database 
@@ -41,50 +45,35 @@ if (!empty($_POST)) :
           $password = $_POST['password'];
       else :
         add_user($_POST['name'], $_POST['email'], $_POST['password']);
+        set_message("success", "You successfully registered your account.");
         header("Location: index.php");
+		die;
       endif; //End of if statement to check if email address is in use
   else :
     //There is an error on the page. Maintain sticky variables.
     $email = $_POST['email'];
     $name = $_POST['name'];
-    $password = $_POST['password'];
   endif; //End of the if statement to check if there are validation errors on the form.
 endif; //End of the if statement dealing with submitting the form
 
 ?>
 
-  <body id="<?php echo strtolower($page_name);?>">
-
-    <?php include 'partials/header.php'; ?>
-
-    <h1><?php echo $page_name;?></h1>
-
-    <?php include 'partials/messages.php'; ?>
-
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-
-      <p>
-        <label>
-          Name:<br/>
-          <input type="text" name="name" value="<?php echo $name ?>"/>
-        </label>
-      </p>
-
-      <p>
-        <label>
-          Email:<br/>
-          <input type="text" name="email" value="<?php echo $email ?>"/>
-        </label>
-      </p>
-
-      <p>
-        <label>
-          Password:<br/>
-          <input type="password" name="password" value="<?php echo $password ?>"/>
-        </label>
-      </p>
-
-      <input type="submit" value="Submit"/>
+<body id="<?php echo strtolower($page_name);?>">
+	<?php include 'partials/header.php'; ?>
+	<div class="row">
+		<div class="large-9 columns" role="content">
+			<h3><?php echo $page_name;?></h3>
+			<?php include 'partials/messages.php'; ?>
+			<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+				<label>Name</label>
+				<input type="text" name="name" value="<?php echo $name ?>">
+				<label>Email</label>
+				<input type="text" name="email" value="<?php echo $email ?>">
+				<label>Password</label>
+				<input type="password" name="password">
+				<label>Confirm Password</label>
+				<input type="password" name="confirm">
+				<input type="submit" value="Register" class="button">
 
     </form>
 

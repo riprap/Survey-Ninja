@@ -31,7 +31,9 @@ if (!empty($_POST)) {
       if ($user_match) //log our homie in!
       {
         $_SESSION['id'] = $user_match;
+		set_message("success", "Welcome back :)");
         header('Location: index.php');
+		die;
       }
       else{
         $errors[] = "Invalid username/password combination";

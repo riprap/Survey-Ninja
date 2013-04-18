@@ -11,6 +11,7 @@
       <div class="nav-bar right">
        <ul class="button-group">
        	 <li><a href="login.php" class= "button">Login</a></li>
+       	 <li><a href="register.php" class= "button">Register</a></li>
          <li><a href="list_surveys.php" class="button">Take a survey!</a></li>
         </ul>
       </div>
