@@ -12,7 +12,7 @@ $logged_in_profile = get_user($_SESSION['id']);
       <div class="nav-bar right">
        <ul class="button-group">
          
-   	     <li><a href="profile.php" class="button"><?php echo $logged_in_profile['name']; ?></a></li>
+   	     <li><a href="profile.php" class="button"><?php echo substr($logged_in_profile['name'], 0, 20); ?></a></li>
     	 <li><a href="my_surveys.php" class="button">My Surveys</a></li>
  	     <li><a href="create_survey.php" class="button">Create New Survey</a></li>
   	     <li><a href="logout.php" class="button">Logout</a></li>

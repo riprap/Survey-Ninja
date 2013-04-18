@@ -110,46 +110,51 @@ if (!empty($_POST)) :
 endif;//end the if statement if the form has been submitted
 
 ?>
-  <body id="<?php echo strtolower($page_name);?>">
+	<body id="<?php echo strtolower($page_name);?>">
+		<?php include 'partials/header.php'; ?>
+		<!-- Main Page Content and Sidebar -->
+	    <div class="row">
+			<!-- Main Blog Content -->
+			<div class="large-9 columns" role="content">
+		
+				<h2>Adding Questions for Survey:</h2>
+				<h3>"<?php echo $survey['name']; ?>"</h3>
 
-  <?php include 'partials/header.php'; ?>
+				<?php include 'partials/messages.php'; ?>
+				
+				<p>This is a <?php echo $survey_type; ?> survey.</p>
+				
+				<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
-  <h1>Adding Questions for Survey: <?php echo $survey['name']; ?> </h1>
-
-  <?php include 'partials/messages.php'; ?>
-
-  <p>This is a <?php echo $survey_type; ?> survey.</p>
-
-  <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-
-    <?php 
-    //Loop through each of the questions until the question count is reached
-    for ($i=1; $i <= $question_count; $i++):
-        //Use the create_question to create a textbox for the current question
-        echo create_question($i, ${"question_". $i}, $field_errors );
-        //If the survey type is multiple choice then loop through A-D
-        if ($survey_type == 'Multiple Choice') :
-          foreach(range('A','D') as $d) :
-            
-            if (isset(${"question_". $i .'_answer_'.$d})) :
-              echo create_answer($i, $d, ${"question_". $i .'_answer_'.$d}, $field_errors);
-            else :
-              echo create_answer($i, $d, "", $field_errors);
-            endif; //End if statement to check if current answer is set
-            
-          endforeach;
-        endif;
-        echo "<br>";
-    endfor;
-    
-    echo create_hidden_survey_id_field($survey['id']); 
-
-    ?>
-    <br>
-    <input type="submit" value="Submit"/>
-
-  </form>  
-
+				    <?php 
+				    //Loop through each of the questions until the question count is reached
+				    for ($i=1; $i <= $question_count; $i++):
+				        //Use the create_question to create a textbox for the current question
+				        echo create_question($i, ${"question_". $i}, $field_errors );
+				        //If the survey type is multiple choice then loop through A-D
+				        if ($survey_type == 'Multiple Choice') :
+				          foreach(range('A','D') as $d) :
+				            
+				            if (isset(${"question_". $i .'_answer_'.$d})) :
+				              echo create_answer($i, $d, ${"question_". $i .'_answer_'.$d}, $field_errors);
+				            else :
+				              echo create_answer($i, $d, "", $field_errors);
+				            endif; //End if statement to check if current answer is set
+				            
+				          endforeach;
+				        endif;
+				        echo "<br>";
+				    endfor;
+				    
+				    echo create_hidden_survey_id_field($survey['id']); 
+				
+				    ?>
+	    			<br>
+	    			<input type="submit" value="Submit" class="button">
+  				</form>  
+			</div>
+		</div>
+		
   <?php include 'partials/footer.php'; ?>
   
   </body>

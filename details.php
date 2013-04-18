@@ -34,17 +34,17 @@ $questions = get_questions($survey_number);
 
 
         <h3>
-        Showing Details for Survey:
+        Survey Details
         </h3>
         <h3>
           "<?php echo $survey['name']; ?>"
         </h3>
-          <h4>
-            Total Submissions:
-            <?php 
-              echo get_submission_count($survey['id']);
-            ?>
-          </h4>
+	    <h4>
+	      Total Submissions:
+	      <?php 
+	        echo get_submission_count($survey['id']);
+	      ?>
+	    </h4>
         
         <ol>
           <?php 

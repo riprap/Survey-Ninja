@@ -37,24 +37,31 @@ endif;
   <body id="<?php echo strtolower($page_name);?>">
 
   <?php include 'partials/header.php'; ?>
-  <?php include 'partials/messages.php'; ?>
-  
-  <h1>
-    <?php echo $page_name;?>
-  </h1>
+    	
+  	<div class="row">
+		<div class="large-9 columns" role="content">
+			<h3>
+				<?php echo $page_name;?>
+			</h3>
+			
+			<?php include 'partials/messages.php'; ?>
 
-  <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-    <label for="name">
-      Name:
-    </label>
-    <input name="name" value="<?php echo htmlentities($logged_in_profile['name']); ?>"/>
-    <br>
-    <label for="email">
-      Email:
-    </label>
-    <input name="email" value="<?php echo htmlentities($logged_in_profile['email']); ?>"/>
-    <p><input type="submit" value="Save Profile"/></p>
-  </form>
+			<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+    			
+    			<label>
+      				Name
+    			</label>
+    			<input type="text" name="name" value="<?php echo htmlentities($logged_in_profile['name']); ?>">
+    			
+    			<label>
+      				Email
+    			</label>
+    			<input type="text" name="email" value="<?php echo htmlentities($logged_in_profile['email']); ?>">
+				
+				<input type="submit" value="Save Profile" class="button">
+			</form>
+		</div>
+	</div>
 
   <?php include 'partials/footer.php'; ?>
   

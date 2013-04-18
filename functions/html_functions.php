@@ -19,7 +19,7 @@
 function create_answer($question_value, $answer_value, $answer, $errors)
 {
   $class_html = check_field_errors("question_". $question_value.'_answer_'.$answer_value, $errors);
-  $answer_html = "<br/>Answer ". $answer_value ."<br/>\n"; 
+  $answer_html = "<label>Answer ". $answer_value ."</label>"; 
   $answer_html .= '<input type="text" name="question_'.$question_value.'_answer_'.$answer_value.'" value="'.$answer.'"'.$class_html.'/>';
   return $answer_html;
 }
@@ -101,7 +101,7 @@ function create_month_dropdown($month=NULL){
  **/
 function create_question($number, $question, $errors = null) {
   $class_html = check_field_errors("question_". $number, $errors);
-  $question_html = "Question #". $number ."<br/>\n"; 
+  $question_html = "<label>Question #". $number ."</label>"; 
   $question_html .= '<input type="text" name="question_'.$number.'" value="'.$question.'"'.$class_html.'/>';
   return $question_html;
 }

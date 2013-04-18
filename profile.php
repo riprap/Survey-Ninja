@@ -13,23 +13,22 @@ include 'partials/html_header.php';
 ?>
   <body id="<?php echo strtolower($page_name);?>">
 
-  <?php include 'partials/header.php'; ?>
+  	<?php include 'partials/header.php'; ?>
+  	
+  	<div class="row">
+		<div class="large-9 columns" role="content">
 
-  <h1>
-    <?php echo $page_name;?>
-  </h1>
-
-  <div id="profile">
-    <a href="edit_profile.php">
-      Edit My Profile
-    </a> 
-    <br>
-    <br>    
-    Name: <?php echo $logged_in_profile['name']; ?>
-    <br>
-    Email: <?php echo $logged_in_profile['email']; ?>
-    <br>       
-  </div>
+			<h3>
+				<?php echo $page_name;?>
+			</h3>
+			
+			<ul>
+				<li>Name: <?php echo $logged_in_profile['name'];?></li>
+				<li>Email: <?php echo $logged_in_profile['email'];?></li>
+				<li><a href="edit_profile.php">Edit My Profile</a></li>
+			</ul>
+		</div>
+	</div>
 
   <?php include 'partials/footer.php'; ?>
   

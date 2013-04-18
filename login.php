@@ -59,7 +59,7 @@ include 'partials/html_header.php';
     
     <!-- Main Page Content and Sidebar -->
     <div class="row">
-      <!-- Main Blog Content -->
+      <!-- Main Content -->
       <div class="large-9 columns" role="content">
         <h3>
           <?php echo $page_name;?>

@@ -16,6 +16,7 @@ echo '
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
+		<link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/foundation.css">
         <script src="js/main.js"></script>   
