@@ -3,7 +3,7 @@
     File Name: email.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description:  
+    File Description: Page that allows the user to send a link to their survey to someone via email
 */
 
 $page_name = "Email Survey";
