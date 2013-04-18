@@ -23,7 +23,6 @@ else {
   die;
 }
 
-
 $survey = get_survey($survey_number);
 
 if (empty($survey)) {
@@ -31,10 +30,10 @@ if (empty($survey)) {
   header('Location: index.php');
   die;
 } 
+
 $start_date = strtotime($survey['start_date']);
 $end_date = strtotime($survey['end_date']);
 $now = strtotime(date('Y-m-d'));
-
 
 if ($end_date < $now) {
   set_message("error", "We're sorry, this survey is closed.");
@@ -46,8 +45,6 @@ else if ($start_date > $now) {
   header('Location: index.php');
   die;
 }
-
-
 
 $survey_type = $survey['survey_type'];
 $question_count = $survey['question_count'];

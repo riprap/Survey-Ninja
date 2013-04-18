@@ -12,7 +12,7 @@ $page_name = "Add Questions to Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 
-
+//Get the survey_id from the url or from the form that has been submitted 
 if (!empty($_POST)) {
   $survey_number = $_POST['survey'];
 }
@@ -29,14 +29,6 @@ $survey = get_survey($survey_number);
 $survey_type = $survey['survey_type'];
 $question_count = $survey['question_count'];
 
-
-if (empty($_SESSION['id'])){
-  header('Location: login.php');
-  set_message("error", "You must be logged in to access this page.");
-  die;
-}
-$logged_in_profile = get_user($_SESSION['id']);
-
 if ($logged_in_profile['id'] != $survey['creator_id']) {  
   set_message("error", "You do not have permission to edit this survey.");
   header('Location: index.php');
@@ -52,8 +44,7 @@ if (!empty($questions) ) {
   die;
 }
 
-
-
+//Set each of the question variables to be blank by default. This allows the form to be sticky by default
 for ($i=1; $i <= $question_count; $i++){
   ${"question_". $i} = '';
 }
@@ -65,6 +56,7 @@ if (!empty($_POST)) {
   for ($i=1; $i <= $question_count; $i++){
     if (empty($_POST['question_'.$i])) {
       $errors[] = "Question #". $i . " cannot be blank";
+      //Add the name of the field to the field_errors array
       $field_errors[] = 'question_'.$i;
     }
     if ($survey_type == 'Multiple Choice') :
@@ -73,6 +65,7 @@ if (!empty($_POST)) {
         if (empty($_POST["question_". $i .'_answer_'.$d])) {
 
           $errors[] = "Question #". $i . " Answer ". $d ." cannot be blank";
+          //Add the name of the field to the field_errors array
           $field_errors[] = "question_". $i .'_answer_'. $d;
         }      
       endforeach;
@@ -102,6 +95,7 @@ if (!empty($_POST)) {
         }  
       }
       else {
+        //Since the survey type is agree or disagree we are going to add the default answers for surveys of this type.
         $answer = "Agree";
         add_answer($question_number, $answer);
         $answer = "Disagree";
