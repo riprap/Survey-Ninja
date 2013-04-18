@@ -1,9 +1,9 @@
 <?php 
 /*
-    File Name: create_survey.php
+    File Name: edit_survey.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
-    File Description: The page that allows a user to create a new instance of a survey.
+    File Description: The page that allows a user to edit an instance of a survey.
 */
 
 $page_name = "Edit Survey";
@@ -53,11 +53,11 @@ endif; //End the if statement to deal with form processing
   <div class="row">
     <div class="large-9 columns" role="content">
 
-        <h3>
-          <?php echo $page_name;?>
-        </h3>
-        
-        <?php include 'partials/messages.php'; ?>
+      <h3>
+        <?php echo $page_name;?>
+      </h3>
+      
+      <?php include 'partials/messages.php'; ?>
 
       <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 

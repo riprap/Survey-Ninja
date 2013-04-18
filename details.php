@@ -49,7 +49,7 @@ include 'partials/get_survey.php';
           </a>         
         </h4> 
         <h4>    
-          <a href="http://www.facebook.com/sharer.php?u=<?php echo $site_url . "survey.php?survey=".$survey['id']; ?>">
+          <a href="<?php echo $facebook_share_url . $site_url . "survey.php?survey=".$survey['id']; ?>">
             Share on Facebook
           </a>
         </h4>
