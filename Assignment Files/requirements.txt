@@ -59,38 +59,3 @@ Tables:
     answer_text varchar
     date_created datetime
     date_modified datetime
-
-
-Pages We Will Need to Create
-
-- Create survey create_survey.php
-- Add questions / answers to survey add_question_to_survey.php
-- View survey (load the entire survey) survey.php?survey_id=12
-  Users: 
-    View your profile profile.php
-    Change your profile details edit_profile.php
-    View the surveys you have created my_surveys.php  
-      Surveys:
-        View share link for your survey 
-        Update the start / end date of a survey edit_survey.php
-        View the results of a survey survey_details.php
-
-If we are done early possible additional pages to add:
-  - Share this survey with friends via email form. Facebook share functionality, Twitter? etc 
-  - Graphs - highcharts?
-  - Super admin:
-        view all surveys on the site and statistics
-        view all users on the site
-  - Create email list, 
-
-
-
-
-
-TODO
-
-DONE Turn get survey into a function
-DONE Remove user_id from user_answers table / functions (since anonymous users will take survey.)
-DONE Make Date format function to extract and insert dates to the database
-DONE turn survey_type into a table and get based on id 
-DONE What if we ask the user how many questions the survey has when creating the initial instance of the survey?
