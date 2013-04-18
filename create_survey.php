@@ -177,8 +177,8 @@ if (!empty($_POST)) {
 			                  echo create_day_dropdown(); 
 			                }
 			            ?>
-					</select>
-				<input type="submit" value="Create">
+					</select><br/>
+				<input type="submit" value="Create Survey" class="button">
 			</form>
 		</div>
 	</div>
