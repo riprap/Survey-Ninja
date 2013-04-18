@@ -14,7 +14,7 @@ include 'partials/get_survey.php';
 $survey = get_survey($survey_number);
 
 $to_email = '';
-$body = "Check out my survey! ". $site_url . "?survey.php?survey=".$survey_number;
+$body = "Check out my ". $survey['name'] ." survey! ". $site_url . "survey.php?survey=".$survey_number;
 
 //If the form has been submitted
 if (!empty($_POST)) : 

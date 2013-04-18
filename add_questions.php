@@ -89,7 +89,18 @@ if (!empty($_POST)) :
         add_answer($question_number, $answer);        
       endif;     
     endfor;
-    header('Location: survey.php?survey='.$survey_number);    
+    $start_date = strtotime($survey['start_date']);
+    $end_date = strtotime($survey['end_date']);
+    $now = strtotime(date('Y-m-d'));    
+    set_message("success", "Questions have been added to the survey");
+    if ($end_date > $now && $start_date < $now) :
+      header('Location: survey.php?survey='.$survey_number);   
+      die;
+    else:
+      header('Location: my_surveys.php'); 
+      die;   
+    endif;
+    
   
   else :
     //There is an error on the page. Maintain sticky variables.
