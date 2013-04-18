@@ -37,6 +37,7 @@ $surveys = get_user_surveys($logged_in_profile['id']);
 			        <!--<th>URL</th>
 			        <th>Edit</th>-->
 			        <th>Details</th>
+			        <th>Edit</th>
       			</tr>
     			<?php foreach ($surveys as $survey): 
       				$questions = get_questions($survey['id']);
@@ -86,9 +87,14 @@ $surveys = get_user_surveys($logged_in_profile['id']);
 				        </td> 
 				        <td>      
 							<a href="details.php?survey=<?php echo $survey['id']; ?>">
-				            	<?php echo htmlentities($survey['name']); ?>
+				            	View
 							</a>
-				        </td>                             
+				        </td>
+				        <td>      
+							<a href="edit_survey.php?survey=<?php echo $survey['id']; ?>">
+				            	Edit
+							</a>
+				        </td>                           
       				</tr>
     			<?php endforeach; //End of the foreach to loop through each of the surveys ?>
 			</table>

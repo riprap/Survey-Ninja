@@ -17,7 +17,7 @@ else if (!empty($_GET['survey'])) {
   $survey_number = $_GET['survey'];
 }
 else {
-  header('Location: index.php');
+  header('Location: my_surveys.php');
   die;
 }
 
