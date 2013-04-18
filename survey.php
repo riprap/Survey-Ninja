@@ -50,7 +50,7 @@ $survey_type = $survey['survey_type'];
 $question_count = $survey['question_count'];
 $questions = get_questions($survey_number);
 
-if (!empty($_POST)) {
+if (!empty($_POST)) :
 
   $survey_number = $_POST['survey'];
 
@@ -77,7 +77,7 @@ if (!empty($_POST)) {
     die;
   endif; //End the if statement to check if there were any errors on the form 
 
-}
+endif; //End of if statement that executes if the form has been submitted
 
 ?>
   <body id="<?php echo strtolower($page_name);?>">
@@ -98,25 +98,24 @@ if (!empty($_POST)) {
           </li>
           <?php                   
               $answers = get_answers($question['id']);
+              $selected_value= '';
+              
+              if (isset($_POST['question_'. $question['id']])) :
+                $selected_value = $_POST['question_'. $question['id']];
+              endif; //End the if statement that checks if the post value of the current question has been set
+
+              foreach ($answers as $answer):
+                  $selected = '';
+                  if ($answer['id'] == $selected_value): 
+                    $selected = 'checked="checked"';
+                  endif ?>
 
 
-                $selected_value= '';
-                
-                if (isset($_POST['question_'. $question['id']])) {
-                  $selected_value = $_POST['question_'. $question['id']];
-                }
+                <input type="radio" name="question_<?php echo $question['id'];?>" <?php echo $selected; ?>  value="<?php echo $answer['id']; ?>"><?php echo $answer['text']; ?>
+                <br>                  
+         <?php endforeach; //End the foreach that loops through each answer
 
-                foreach ($answers as $answer):
-                    $selected = '';
-                    if ($answer['id'] == $selected_value): 
-                      $selected = 'checked="checked"';
-                    endif ?>
-
-
-                  <input type="radio" name="question_<?php echo $question['id'];?>" <?php echo $selected; ?>  value="<?php echo $answer['id']; ?>"><?php echo $answer['text']; ?><br>                  
-           <?php endforeach; 
-
-        endforeach; 
+        endforeach; //End the foreach that loops through each question
         ?>
       </ul>
       <?php echo create_hidden_survey_id_field($survey['id']); ?>

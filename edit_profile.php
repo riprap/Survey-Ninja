@@ -6,7 +6,6 @@
     File Description: The edit profile page that allows a user to edit their profile.
 */
 
-
 $page_name = "Edit Profile";
 include "functions/functions.php";
 
@@ -21,25 +20,18 @@ if (!empty($_POST)) :
   elseif ( !preg_match('/@.+\..+/', $_POST['email']) ):
     $errors[] = "Please enter a valid email address.";
   endif;// End if to check if email is blank
+
   if (empty($errors)) :
-      if (check_user_exists($_POST['email']) && $_POST['email'] != $logged_in_profile['email']) :
-        set_message("error", "This email address is already in use.");
-      else:
-          set_message("success", "Profile has been updated.");
-          update_user($logged_in_profile['id'], $_POST['name'], $_POST['email']);      
-      endif; //End of if statement to check if email address is in use    
+    if (check_user_exists($_POST['email']) && $_POST['email'] != $logged_in_profile['email']) :
+      set_message("error", "This email address is already in use.");
+    else:
+      set_message("success", "Profile has been updated.");
+      update_user($logged_in_profile['id'], $_POST['name'], $_POST['email']);      
+    endif; //End of if statement to check if email address is in use    
   endif; //End of if statement to update user
 
 endif;
-
-
-
-
-
 ?>
-
-
-
 
 <?php include 'partials/html_header.php'; ?>
   <body id="<?php echo strtolower($page_name);?>">
@@ -55,12 +47,12 @@ endif;
     <label for="name">
       Name:
     </label>
-    <input name="name" value="<?php echo htmlentities($logged_in_profile['name']) ?>"/>
+    <input name="name" value="<?php echo htmlentities($logged_in_profile['name']); ?>"/>
     <br>
     <label for="email">
       Email:
     </label>
-    <input name="email" value="<?php echo htmlentities($logged_in_profile['email']) ?>"/>
+    <input name="email" value="<?php echo htmlentities($logged_in_profile['email']); ?>"/>
     <p><input type="submit" value="Save Profile"/></p>
   </form>
 
