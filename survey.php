@@ -16,30 +16,29 @@ include 'partials/get_survey.php';
 
 $survey = get_survey($survey_number);
 
-if (empty($survey)) {
+if (empty($survey)) :
   set_message("error", "There is no survey with the specified ID");
   header('Location: index.php');
   die;
-} 
+endif; 
+
+$survey_type = $survey['survey_type'];
+$question_count = $survey['question_count'];
+$questions = get_questions($survey_number);
 
 $start_date = strtotime($survey['start_date']);
 $end_date = strtotime($survey['end_date']);
 $now = strtotime(date('Y-m-d'));
 
-if ($end_date < $now) {
+if ($end_date < $now) :
   set_message("error", "We're sorry, this survey is closed.");
   header('Location: index.php');
-  die;
-} 
-else if ($start_date > $now) {
+  die; 
+elseif ($start_date > $now) :
   set_message("error", "This survey is not open yet. Please come back on: ". format_date($survey['start_date']));
   header('Location: index.php');
   die;
-}
-
-$survey_type = $survey['survey_type'];
-$question_count = $survey['question_count'];
-$questions = get_questions($survey_number);
+endif;
 
 if (!empty($_POST)) :
 
@@ -102,7 +101,6 @@ endif; //End of if statement that executes if the form has been submitted
                   if ($answer['id'] == $selected_value): 
                     $selected = 'checked="checked"';
                   endif; ?>
-
 
                 <input type="radio" name="question_<?php echo $question['id'];?>" <?php echo $selected; ?>  value="<?php echo $answer['id']; ?>"><?php echo $answer['text']; ?>
                 <br>                  
