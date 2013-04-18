@@ -34,9 +34,9 @@ function create_answer($question_value, $answer_value, $answer, $errors)
  **/
 function check_field_errors($fieldname, $error_list) {
   $html = "";
-  if (in_array($fieldname, $error_list)) {
+  if (in_array($fieldname, $error_list)) :
     $html = "class='error'";
-  }
+  endif;
   return $html;
 }
 
@@ -49,14 +49,14 @@ function check_field_errors($fieldname, $error_list) {
  **/
 function create_day_dropdown($day) {  
   $optionsList = '';    
-  for ($i=1; $i < 31; $i++){
+  for ($i=1; $i < 31; $i++):
     $selected = '';
-    if ($i == $day) {
+    if ($i == $day) :
       $selected = 'selected="selected"';
-    }
+    endif;
 
     $optionsList .= "<option value='$i' $selected >$i</option>\n"; 
-  } 
+  endfor;
   return $optionsList;      
 }
 
@@ -80,14 +80,14 @@ function create_hidden_survey_id_field($id) {
  **/
 function create_month_dropdown($month=NULL){
   $optionsList = '';    
-  for( $i = 1; $i <= 12; $i++){
+  for( $i = 1; $i <= 12; $i++):
     $selected = '';
-    if ($i == $month) {
+    if ($i == $month) :
       $selected = 'selected="selected"';
-    }
+    endif;
     $monthName = date("F", mktime(0, 0, 0, $i, 10));
     $optionsList .= "<option value='$i' $selected >$monthName</option>\n"; 
-  } 
+  endfor;
   return $optionsList;     
 }
 
@@ -117,15 +117,15 @@ function create_question($number, $question, $errors = null) {
 function create_survey_type_dropdown($value) {  
   $html = ''; 
   $types = get_survey_types();   
-  foreach ($types as $type){
+  foreach ($types as $type):
     $selected = '';
     $id = $type['id'];
     $name = $type['name'];
-    if ($id == $value) {
+    if ($id == $value) :
       $selected = 'selected="selected"';
-    }
+    endif;
     $html .= "<option value='$id' $selected >$name</option>\n"; 
-  } 
+  endforeach;
   return $html;      
 }
 
@@ -138,16 +138,15 @@ function create_survey_type_dropdown($value) {
  **/
 function create_year_dropdown($year) {
   $optionsList = '';    
-  for( $i = date("Y"); $i <= date("Y") + 5; $i++){
+  for( $i = date("Y"); $i <= date("Y") + 5; $i++):
     $selected = '';
-    if ($i == $year) {
+    if ($i == $year) :
       $selected = 'selected="selected"';
-    }
+    endif;
     $optionsList .= "<option value='$i' $selected >$i</option>\n"; 
-  } 
+  endfor;
   return $optionsList;    
 }
-
 
 /**
  * Format a date to specific function
@@ -160,19 +159,22 @@ function format_date($date_string) {
   return date('F d, Y', strtotime($date_string));
 }
 
-
-
-
+/**
+ * Format the details text to use the proper tense
+ * 
+ * @param answer The text of the answer
+ * @param count The number of people that have selected this answer
+ * @return string The formatted text to display for the anwser
+ * @author Scott Montgomery
+ **/
 function format_details_text($answer, $count) {
-  if ($count > 1) {
+  if ($count > 1) :
     $html = $count . " people have selected ". $answer;
-  }
-  else if ($count == 1) {
+  elseif ($count == 1) :
     $html = " One person has selected ". $answer;
-  }
-  else {
+  else:
     $html = "No one has selected ". $answer;
-  }
+  endif;
   return $html;
 }
 

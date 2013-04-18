@@ -30,10 +30,10 @@ include "locales/en.php";
 $require_login_pages = array("My Profile", "Add Questions to Survey", "Create Survey", "Edit Profile", "Edit Survey", "Home", "My Surveys", "My Profile");
 
 //Check if the current page is one that requires a login
-if (in_array($page_name, $require_login_pages)) {
+if (in_array($page_name, $require_login_pages)) :
   //Make sure the user is logged in by including the get login partial
   include 'partials/get_login.php'; 
-}
+endif;
 
 
 /**
@@ -72,10 +72,10 @@ function get_date_params($date) {
  **/
 function get_messages() {
     $messages_array = array();
-    if (isset($_SESSION['messages'])) {
+    if (isset($_SESSION['messages'])) :
         $messages_array = $_SESSION['messages'];
         unset($_SESSION['messages']);        
-    }
+    endif;
     return $messages_array;
 }
 
