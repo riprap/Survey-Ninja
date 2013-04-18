@@ -14,42 +14,37 @@ $password = '';
 $errors = array();
 
 // if the user submitted the form (with method="post")
-if (!empty($_POST)) { 
-  if (empty($_POST['email'])) {
+if (!empty($_POST)) :
+  if (empty($_POST['email'])) :
     $errors[] = "Please enter your email address.";
-  }
-  if (empty($_POST['password'])) {
+  endif;
+  if (empty($_POST['password'])) :
     $errors[] = "Please enter your password.";
-  }
+  endif;
 
   //If there are no validation errors attempt to validate the user
-  if (empty($errors)) {
+  if (empty($errors)) :
     //Search for the email in the database 
     $exists = check_user_exists ($_POST['email']);
-    if ($exists) {
+    if ($exists) :
       $user_match = check_password_correct($_POST['email'], $_POST['password']);
-      if ($user_match) //log our homie in!
-      {
+      if ($user_match) : //log our homie in!
         $_SESSION['id'] = $user_match;
-		set_message("success", "Welcome back :)");
+        set_message("success", "Welcome back :)");
         header('Location: index.php');
         die;
-      }
-      else{
+      else :
         $errors[] = "Invalid username/password combination";
-      }
-    }
-    else 
-    {
+      endif;
+    else :
       $errors[] = "That user doesn't exist!";
       $email = $_POST['email'];
-    }
-  }
-  else {
+    endif;
+  else :
     //There is an error on the page. Maintain sticky variables.
     $email = $_POST['email'];
-  }
-}
+  endif;
+endif;
 
 include 'partials/html_header.php'; 
 ?>
