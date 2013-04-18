@@ -15,12 +15,12 @@ $start_date = '';
 $end_date = '';
 
 // if the user submitted the form (with method="post")
-if (!empty($_POST)) {
+if (!empty($_POST)) :
 
-  if (empty($_POST['name'])) {
+  if (empty($_POST['name'])) :
     $errors[] = "Please enter the survey name.";
     $field_errors[] = 'name';
-  }
+  endif;
   
   $start_day = $_POST['start_day'];
   $start_month = $_POST['start_month'];
@@ -55,19 +55,18 @@ if (!empty($_POST)) {
   endif;
 
   //If there are no validation errors attempt to create the survey
-  if (empty($errors)) {
+  if (empty($errors)) :
     //No survey with this name exists yet. Create survey
     //Format the start_date 
     $survey_id = add_survey($name, $survey_type, $logged_in_profile['id'], $start_date, $end_date, $question_count);
     set_message("success", "Survey has been created");
     header('Location: add_questions.php?survey='.$survey_id);
 
-  }
   //There is an error on the page. Maintain sticky variables.
-  else {   
+  else :   
     $name = $_POST['name'];
-  }
-}
+  endif;
+endif;
 
 ?>
 
@@ -123,11 +122,11 @@ if (!empty($_POST)) {
         <label>End Date:</label>
         <select name="end_month">
           <?php 
-            if (isset($end_month)) {
-                      echo create_month_dropdown($end_month);
-                    } else {
-                      echo create_month_dropdown(); 
-                    }                
+          if (isset($end_month)) {
+            echo create_month_dropdown($end_month);
+          } else {
+            echo create_month_dropdown(); 
+          }                
                 ?>            
         </select>
 
