@@ -19,7 +19,8 @@ echo '
 		<link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/foundation.css">
-        <script src="js/main.js"></script>   
+		<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css">
+		<script src="js/main.js"></script>   
 
     </head>
 ';
