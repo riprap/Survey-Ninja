@@ -17,5 +17,4 @@
       <h1>Survey Site</h1>
       <hr />
     </div>
-  </div>
 </div>
