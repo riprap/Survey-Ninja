@@ -51,6 +51,19 @@ function format_db_date($day, $month, $year) {
 }
 
 /**
+ * Get the values of the curent date
+ * 
+ * @return An array with the current day, year and month
+ * @author Scott Montgomery
+ **/
+function get_current_date() {
+  $year = date("Y");
+  $month = date("m");
+  $day = date("d");
+  return array($day, $month, $year);
+}
+
+/**
  * Break apart a date into indvidual parts
  * 
  * @param date The date to break apart
@@ -77,6 +90,20 @@ function get_messages() {
         unset($_SESSION['messages']);        
     endif;
     return $messages_array;
+}
+
+/**
+ * Get the values of the tomorrows date
+ * 
+ * @return An array with tomorrows day, year and month
+ * @author Scott Montgomery
+ **/
+function get_tomorrow_date() {
+  $tommorow = mktime(date("H"), date("i"), date("s"), date("m"), date("d")+1, date("Y")); 
+  $year = date("Y", $tommorow);;
+  $month = date("m", $tommorow);
+  $day = date("d", $tommorow);
+  return array($day, $month, $year);
 }
 
 /**

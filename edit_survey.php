@@ -13,7 +13,7 @@ include 'partials/html_header.php';
 //Including this partial will set the value of the $survey_number, $survey, $survey_type and $questions
 include 'partials/get_survey.php'; 
 
-$name = $survey['name'];
+$survey_name = $survey['name'];
 
 if ($logged_in_profile['id'] != $survey['creator_id']) {  
   set_message("error", "You do not have permission to edit this survey.");
@@ -37,7 +37,7 @@ if (!empty($_POST)) :
 
   //If there are no validation errors attempt to create the survey
   if (empty($errors)) :
-    update_survey($survey['id'], $name, $start_date, $end_date);
+    update_survey($survey['id'], $survey_name, $start_date, $end_date);
     set_message("success", "Survey has been updated.");
     header('Location: index.php');
     die;
@@ -62,7 +62,7 @@ endif; //End the if statement to deal with form processing
       <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
         <label>Survey Name:</label>
-        <input type="text" name="name" <?php echo check_field_errors('name', $field_errors); ?> value="<?php echo $name ?>">
+        <input type="text" name="name" <?php echo check_field_errors('name', $field_errors); ?> value="<?php echo $survey_name ?>">
         
         <label>Start Date:</label>
         <select name="start_month">

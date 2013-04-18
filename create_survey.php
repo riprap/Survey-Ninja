@@ -10,19 +10,11 @@ $page_name = "Create Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 
-$name = '';
-$start_date = '';
-$end_date = '';
+$survey_name = '';
 
-$start_year = date("Y");
-$start_month = date("m");
-$start_day = date("d");
-
-$tommorow = mktime(date("H"), date("i"), date("s"), date("m"), date("d")+1, date("Y")); 
-
-$end_year = date("Y", $tommorow);
-$end_month = date("m", $tommorow);
-$end_day = date("d", $tommorow);
+//Get the values for the current date
+list($start_day, $start_month, $start_year) = get_current_date();
+list($end_day, $end_month, $end_year) = get_tomorrow_date();
 
 // if the user submitted the form (with method="post")
 if (!empty($_POST)) :
@@ -37,12 +29,12 @@ if (!empty($_POST)) :
 
   $question_count = $_POST['question_count'];
   $survey_type = $_POST['survey_type'];
-  $name = $_POST['name'];
-  
+  $survey_name = $_POST['name'];
+
   //If there are no validation errors attempt to create the survey
   if (empty($errors)) :
-    //Create survey
-    $survey_id = add_survey($name, $survey_type, $logged_in_profile['id'], $start_date, $end_date, $question_count);
+    //Create survey and get the id 
+    $survey_id = add_survey($survey_name, $survey_type, $logged_in_profile['id'], $start_date, $end_date, $question_count);
     set_message("success", "Survey has been created");
     header('Location: add_questions.php?survey='.$survey_id);
   endif;
@@ -66,7 +58,7 @@ endif;
       <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
         <label>Survey Name:</label>
-        <input type="text" name="name" <?php echo check_field_errors('name', $field_errors); ?> value="<?php echo $name ?>">
+        <input type="text" name="name" <?php echo check_field_errors('name', $field_errors); ?> value="<?php echo $survey_name; ?>">
         
         <label>Start Date:</label>
         <select name="start_month">
