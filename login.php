@@ -51,29 +51,29 @@ include 'partials/html_header.php';
 
   <body id="<?php echo strtolower($page_name);?>">
 
-    <?php include 'partials/header.php'; ?>
-    <?php include 'partials/messages.php'; ?>
-    
-    <!-- Main Page Content and Sidebar -->
-    <div class="row">
-      <!-- Main Content -->
-      <div class="large-9 columns" role="content">
-        <h3>
-          <?php echo $page_name;?>
-        </h3>
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-          <label>E-mail: </label><br/>
-          <input type="text" name="email"><br/>
-          <label>Password: </label><br/>
-          <input type="password" name="password">
-          <input class="button" type="submit" value="Login">
-        </form>
-        <p>New user? <a href="register.php" id="register">Register Now</a> to create and manage surveys!</p>
-          <p>Would you like to <a href="list_surveys.php">Take a Survey</a>?</p>
-      </div>
-    </div>
-    
-    <?php include 'partials/footer.php'; ?>
+	  <?php include 'partials/header.php'; ?>
+	  <?php include 'partials/messages.php'; ?>
+	  
+	  <!-- Main Page Content and Sidebar -->
+	  <div class="row">
+	    <!-- Main Blog Content -->
+	    <div class="large-9 columns" role="content">
+	    	<h3>
+	    		<?php echo $page_name;?>
+	    	</h3>
+	    	<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+	    		<label>E-mail: </label>
+	    		<input type="text" name="email" value="<?php echo $email; ?>">
+	    		<label>Password: </label>
+	    		<input type="password" name="password">
+	    		<input class="button" type="submit" value="Login">
+	    	</form>
+	    	<p>New user? <a href="register.php" id="register">Register Now</a> to create and manage surveys!</p>
+	        <p>Would you like to <a href="list_surveys.php">Take a Survey</a> 
+	    </div>
+	  </div>
+	  
+	  <?php include 'partials/footer.php'; ?>
   
   </body>
 </html>
