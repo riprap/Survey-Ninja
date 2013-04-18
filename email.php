@@ -51,33 +51,34 @@ endif;
 
 ?>
 
-
 <?php include 'partials/html_header.php'; ?>
   <body id="<?php echo strtolower($page_name);?>">
 
   <?php include 'partials/header.php'; ?>
-  <?php include 'partials/messages.php'; ?>
+    <div class="row">
+      <div class="large-9 columns" role="content">
+        <h1><?php echo $page_name;?></h1>
+        <?php include 'partials/messages.php'; ?>
 
-  <h1><?php echo $page_name;?></h1>
-  
-  <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+          <p>
+            To Email:
+            <br/>
+            <input type="text" name="to_email" value="<?php echo $to_email; ?>"/>
+          </p>
 
-    <p>
-      To Email:
-      <br/>
-      <input type="text" name="to_email" value="<?php echo $to_email; ?>"/>
-    </p>
+          <p>
+            Email Body:
+          </p>
+          <textarea name="email_body" cols=40 rows=6 ><?php echo $body; ?></textarea>
 
-    <p>
-      Email Body:
-    </p>
-    <textarea name="email_body" cols=40 rows=6 ><?php echo $body; ?></textarea>
+          <br/>
+          <?php echo create_hidden_survey_id_field($survey['id']); ?>
+          <input type="submit" name="send_email" value="Send Email"/>
 
-    <br/>
-    <?php echo create_hidden_survey_id_field($survey['id']); ?>
-    <input type="submit" name="send_email" value="Send Email"/>
-
-  </form>
+        </form>
+    </div>
+  </div>
 
   <?php include 'partials/footer.php'; ?>
   
