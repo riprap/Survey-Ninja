@@ -34,11 +34,15 @@ if (!empty($_POST)) :
   endif;
   
   $start_day = $_POST['start_day'];
+  $start_day = str_pad($start_day, 2, " ", STR_PAD_LEFT);
   $start_month = $_POST['start_month'];
+  $start_month = str_pad($start_month, 2, " ", STR_PAD_LEFT);
   $start_year = $_POST['start_year'];
 
   $end_day = $_POST['end_day'];
+  $end_day = str_pad($end_day, 2, " ", STR_PAD_LEFT);
   $end_month = $_POST['end_month'];
+  $end_month = str_pad($end_month, 2, " ", STR_PAD_LEFT);
   $end_year = $_POST['end_year'];
 
   $name = $_POST['name'];
