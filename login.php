@@ -33,7 +33,7 @@ if (!empty($_POST)) {
         $_SESSION['id'] = $user_match;
 		set_message("success", "Welcome back :)");
         header('Location: index.php');
-		die;
+        die;
       }
       else{
         $errors[] = "Invalid username/password combination";
