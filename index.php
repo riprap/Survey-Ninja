@@ -37,15 +37,22 @@ include 'partials/html_header.php';
     </div>
 
     <?php $surveys = get_active_surveys(); 
-    $survey = $surveys[array_rand($surveys)];?>
-    <aside class="large-3 columns">
-        <div class="panel">
-          <h5>Featured Survey</h5>
-          <p><?php echo $survey['name'];?></p>
-          <a href="survey.php?id=<?php echo $survey['id']; ?>">Take Survey</a>
-        </div>
-      </aside>
-    <!-- End Sidebar -->
+    
+
+    //Only show the sidebar if there is a survey in if 
+    if (!empty($surveys)) : 
+      $survey = $surveys[array_rand($surveys)]; ?> 
+      <aside class="large-3 columns">
+          <div class="panel">
+            <h5>Featured Survey</h5>
+            <p><?php echo $survey['name'];?></p>
+            <a href="survey.php?survey=<?php echo $survey['id']; ?>">Take Survey</a>
+          </div>
+        </aside>
+      <!-- End Sidebar -->    
+     <?php 
+    endif;?>
+
   </div>
 
   <?php include 'partials/footer.php'; ?>
