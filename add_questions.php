@@ -12,17 +12,8 @@ $page_name = "Add Questions to Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 
-//Get the survey_id from the url or from the form that has been submitted 
-if (!empty($_POST)) {
-  $survey_number = $_POST['survey'];
-}
-else if (!empty($_GET['survey'])) {
-  $survey_number = $_GET['survey'];
-}
-else {
-  header('Location: index.php');
-  die;
-}
+//Including this partial will set the value of the $survey_number variable
+include 'partials/get_survey.php'; 
 
 $survey = get_survey($survey_number);
 $survey_type = $survey['survey_type'];
