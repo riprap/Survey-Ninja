@@ -341,7 +341,7 @@ function update_survey($id, $name, $start_date, $end_date){
   global $db;
   $query = "
     UPDATE surveys 
-    SET name = ?, start_date = ?, end_date = ?
+    SET name = ?, start_date = ?, end_date = ?, date_updated = NOW()
     WHERE id = ?
   ";
   

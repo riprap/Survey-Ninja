@@ -18,9 +18,9 @@ function add_user($name, $email, $password) {
   global $db;
   $query = "
     INSERT INTO users
-    ( name, email, password)
+    ( name, email, password, date_created, date_updated)
     VALUES
-    ( ?, ?, ?)
+    ( ?, ?, ?, NOW(), NOW())
   ";
   
   $password = secure_password($password);
@@ -147,7 +147,7 @@ function update_user($id, $name, $email){
 	global $db;
   $query = "
     UPDATE users 
-    SET name = ?, email = ?
+    SET name = ?, email = ?, date_updated = NOW()
     WHERE id = ?
   ";
 	
