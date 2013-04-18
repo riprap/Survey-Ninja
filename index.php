@@ -36,6 +36,17 @@ include 'partials/html_header.php';
 				<li><a href="profile.php">View your Profile.</a></li>
 			</ul>
 		</div>
+
+		<?php $surveys = get_active_surveys(); 
+		$survey = $surveys[array_rand($surveys)];?>
+		<aside class="large-3 columns">
+	      <div class="panel">
+	        <h5>Featured Survey</h5>
+	        <p><?php echo $survey['name'];?></p>
+	        <a href="survey.php?id=<?php echo $survey['id']; ?>">Take Survey</a>
+	      </div>
+	    </aside>
+    <!-- End Sidebar -->
 	</div>
 
   <?php include 'partials/footer.php'; ?>

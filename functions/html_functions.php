@@ -78,7 +78,7 @@ function create_hidden_survey_id_field($id) {
  * @return html The html of the all the select options
  * @author Scott Montgomery
  **/
-function create_month_dropdown($month){
+function create_month_dropdown($month=NULL){
   $optionsList = '';    
   for( $i = 1; $i <= 12; $i++){
     $selected = '';

@@ -76,7 +76,8 @@ textarea {
   min-height: 50px; }
 
 select {
-  width: 100%; }
+  margin-bottom:1.5em;
+  margin-right:0.5em;}
 
 /* Grid HTML Classes */
 .row {

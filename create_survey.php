@@ -75,128 +75,115 @@ if (!empty($_POST)) {
 }
 
 ?>
-  <body id="<?php echo strtolower($page_name);?>">
 
-  <?php include 'partials/header.php'; ?>
+	<body id="<?php echo strtolower($page_name);?>">
+	
+	<?php include 'partials/header.php'; ?>
+	
+	<div class="row">
+		<div class="large-9 columns" role="content">
 
-    <h1>
-      <?php echo $page_name;?>
-    </h1>
+		    <h3>
+		      <?php echo $page_name;?>
+		    </h3>
+    		
+    		<?php include 'partials/messages.php'; ?>
 
-    <?php include 'partials/messages.php'; ?>
+			<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+				<label>Survey Name:</label>
+				<input type="text" name="name" <?php echo check_field_errors('name', $field_errors); ?> value="<?php echo $name ?>">
+				
+				<label>Start Date:</label>
+				<select name="start_month">
+	            <?php 
+	                if (isset($start_month)) {
+	                  echo create_month_dropdown($start_month);
+	                } else {
+	                  echo create_month_dropdown(); 
+	                }              
+	            ?>    
+				</select>
 
-      <p>
-        <label>
-          Survey Name:<br/>
-          <input type="text" name="name" <?php echo check_field_errors('name', $field_errors); ?> value="<?php echo $name ?>"/>
-        </label>
-      </p>
+				<select name="start_day">
+	            <?php  
+	                if (isset($start_day)) {
+	                  echo create_day_dropdown($start_day); 
+	                } else {
+	                  echo create_day_dropdown(); 
+	                }            
+	            ?> 
+          		</select>  
 
-      <p>
-        <label>
-          Start Date:<br/>
-          <select name="start_month">
-            <?php 
-                if (isset($start_month)) {
-                  echo create_month_dropdown($start_month);
-                } else {
-                  echo create_month_dropdown(); 
-                }              
-            ?>    
-          </select>
+          		<select name="start_year" id="year">
+		            <?php 
+		                if (isset($start_year)) {
+		                  echo create_year_dropdown($start_year);
+		                } else {
+		                  echo create_year_dropdown();
+		                }          
+		            ?>
+				</select>                     
 
-          <select name="start_day">
-            <?php  
-                if (isset($start_day)) {
-                  echo create_day_dropdown($start_day); 
-                } else {
-                  echo create_day_dropdown(); 
-                }            
-            ?> 
-          </select>  
+				<label>End Date:</label>
+				<select name="end_month">
+					<?php 
+						if (isset($end_month)) {
+		                  echo create_month_dropdown($end_month);
+		                } else {
+		                  echo create_month_dropdown(); 
+		                }                
+		            ?>            
+				</select>
 
-          <select name="start_year" id="year">
-            <?php 
-                if (isset($start_year)) {
-                  echo create_year_dropdown($start_year);
-                } else {
-                  echo create_year_dropdown();
-                }          
-            ?>
-          </select>                     
-        </label>      
-      </p>
+				<select name="end_day">
+					<?php  
+						if (isset($end_day)) {
+							echo create_day_dropdown($end_day); 
+						} else {
+							echo create_day_dropdown(); 
+						}
+					?>          
+				</select> 
+				<select name="end_year" id="year">
+            		<?php 
+		                if (isset($end_year)) {
+		                  echo create_year_dropdown($end_year);
+		                } else {
+		                  echo create_year_dropdown();
+		                }
+		            ?>
+				</select>                               
 
-      <p>
-        <label>
-          End Date:<br/>
-          <select name="end_month">
-            <?php 
-                if (isset($end_month)) {
-                  echo create_month_dropdown($end_month);
-                } else {
-                  echo create_month_dropdown(); 
-                }                
-            ?>            
-          </select>
+        		<label>Survey type:</label>
+            	<select name="survey_type">
+		            <?php
+		                if (isset($survey_type)) {
+		                  echo create_survey_type_dropdown($survey_type);  
+		                }
+		                else {
+		                  echo create_survey_type_dropdown();
+		                }
+		                
+		            ?> 
+            	</select>          
 
-          <select name="end_day">
-            <?php  
-                if (isset($end_day)) {
-                  echo create_day_dropdown($end_day); 
-                } else {
-                  echo create_day_dropdown(); 
-                }
-            ?>          
-          </select> 
-          <select name="end_year" id="year">
-            <?php 
-                if (isset($end_year)) {
-                  echo create_year_dropdown($end_year);
-                } else {
-                  echo create_year_dropdown();
-                }
-                
-            ?>
-          </select>                               
-        </label> 
-      </p>
+				<label>Number of Questions:</label>
+					<select name="question_count">
+			            <?php  
+			                if (isset($question_count)) {
+			                  echo create_day_dropdown($question_count); 
+			                } else {
+			                  echo create_day_dropdown(); 
+			                }
+			            ?>
+					</select>
+				<input type="submit" value="Create">
+			</form>
+		</div>
+	</div>
 
-      <p>
-        <label>
-          Survey type:<br/>
-            <select name="survey_type">
-            <?php
-                if (isset($survey_type)) {
-                  echo create_survey_type_dropdown($survey_type);  
-                }
-                else {
-                  echo create_survey_type_dropdown();
-                }
-                
-            ?> 
-            </select>          
-        </label>
-      </p>
-      <p>
-        Number of Questions:<br/>
-         <select name="question_count">
-            <?php  
-                if (isset($question_count)) {
-                  echo create_day_dropdown($question_count); 
-                } else {
-                  echo create_day_dropdown(); 
-                }
-            ?> 
-         </select>        
-      </p>
-
-      <input type="submit" value="Create"/>
-    </form>
-
-  <?php include 'partials/footer.php'; ?>
+	<?php include 'partials/footer.php'; ?>
   
   </body>
 </html>
