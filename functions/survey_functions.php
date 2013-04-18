@@ -11,6 +11,7 @@
 *
 * @param question_id The id of the corresponding question
 * @param answer The answer to the question
+*
 **/
 function add_answer($question_id, $text) {
   global $db;  
@@ -27,8 +28,10 @@ function add_answer($question_id, $text) {
 
 /**
 * Add a submission to the database.
+*
 * @param survey_id The survey we are adding a submission for.
 * @param ip The ip address that the submission is being created from.
+*
 **/
 function add_submission($survey_id, $ip = NULL) {
   global $db; 
@@ -48,10 +51,12 @@ function add_submission($survey_id, $ip = NULL) {
 
 /**
 * Save a question related to a survey 
+*
 * @param survey_id The id of the related survey 
 * @param question The question 
 * @param type The type of question
 * @return id The id of the question that has been created
+*
 **/
 function add_question($survey_id, $question, $type) {
   global $db;
@@ -74,9 +79,11 @@ function add_question($survey_id, $question, $type) {
 
 /**
 * Save a users answer to a particular question
+*
 * @param question_id The id of the corresponding question
 * @param answer = The text for the answer
 * @param user_id The id of the user
+*
 **/
 function add_submission_answer($survey_id, $question_id, $answer, $submission_id) {
   global $db;
@@ -104,6 +111,7 @@ function add_submission_answer($survey_id, $question_id, $answer, $submission_id
 * @param end_date The date to end the survey
 * @param question_count The number of questions in the survey
 * @return The id of the survey has been created
+*
 **/
 function add_survey($name, $type, $creator, $start_date = NULL, $end_date = NULL, $question_count) {
   global $db;
@@ -127,8 +135,10 @@ function add_survey($name, $type, $creator, $start_date = NULL, $end_date = NULL
 
 /**
 * Check if a survey is open or closed 
+*
 * @param survey_id The id of the survey to find the details for
 * @return Whether the survey is open (true) or closed (false)
+*
 **/
 function check_survey_status($survey_id) {
   //Select start_date, end_date from surveys where id = survey_id 
@@ -139,6 +149,7 @@ function check_survey_status($survey_id) {
 * 
 * @param question_id The id of the question we are getting the answers for
 * @return answers An array of al the answers associated with the current questions
+*
 **/
 function get_answers($question_id) {
   global $db;
@@ -202,10 +213,10 @@ function get_questions($survey_id) {
 }
 
 /**
-* Get 
+* Get the number of submissions for a specific survey
 * 
-* @param survey_id The id of the survey to get the questions for 
-* @return questions An array of all the questions associated with the specified survey
+* @param survey_id The id of the survey to get the submissions for
+* @return int The number of submissions
 *
 **/
 function get_submission_count($survey_id) {
@@ -315,4 +326,25 @@ function get_active_surveys() {
     $surveys[] = $row;
   }
   return $surveys;
+}
+
+/**
+ * Update the details for a survey
+ *
+ * @param id The id of the survey to update
+ * @param name Updated version of the name
+ * @param start_date Updated version of start_date
+ * @param end_date Updated version of end_date
+ * @author Scott Montgomery
+ **/
+function update_survey($id, $name, $start_date, $end_date){
+  global $db;
+  $query = "
+    UPDATE surveys 
+    SET name = ?, start_date = ?, end_date = ?
+    WHERE id = ?
+  ";
+  
+  $stmt = $db->prepare($query);
+  $stmt->execute(array($name, $start_date, $end_date, $id));
 }
