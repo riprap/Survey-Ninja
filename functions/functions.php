@@ -27,7 +27,7 @@ include "html_functions.php";
 include "locales/en.php";
 
 //Array of pages that require the user to be logged in
-$require_login_pages = array("My Profile", "Add Questions to Survey", "Create Survey", "Edit Profile", "Edit Survey", "Home", "My Surveys", "My Profile");
+$require_login_pages = array("My Profile", "Add Questions to Survey", "Create Survey", "Edit Profile", "Edit Survey", "My Surveys", "My Profile");
 
 //Check if the current page is one that requires a login
 if (in_array($page_name, $require_login_pages)) :

@@ -54,23 +54,6 @@ $surveys = get_active_surveys();
 
   </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <?php include 'partials/footer.php'; ?>
   
   </body>
