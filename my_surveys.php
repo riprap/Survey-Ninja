@@ -16,7 +16,7 @@ $surveys = get_user_surveys($logged_in_profile['id']);
 <body id="<?php echo strtolower($page_name);?>">
 
 	<?php include 'partials/header.php'; ?>
-
+	<?php include 'partials/messages.php'; ?>
 	<div class="row">
 		<div class="large-9 columns" role="content">
 			<h3>

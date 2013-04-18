@@ -12,6 +12,6 @@ elseif (!empty($_GET['survey'])) :
   $survey_number = $_GET['survey'];
 else :
   set_message("error", "Invalid survey id.");
-  header('Location: index.php');
+  header('Location: my_surveys.php');
   die;
 endif;
