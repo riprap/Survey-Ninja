@@ -12,88 +12,92 @@ include 'partials/html_header.php';
 
 $surveys = get_user_surveys($logged_in_profile['id']);
 ?>
-  <body id="<?php echo strtolower($page_name);?>">
 
-  <?php include 'partials/header.php'; ?>
-  <h1>
-    <?php echo $page_name;?>
-  </h1>
-  <?php if (!empty($surveys)):?>
+<body id="<?php echo strtolower($page_name);?>">
 
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Survey Type</th>
-        <th>Number of Questions</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <!--<th>Email</th>-->
-        <th>Submissions</th>
-        <!--<th>URL</th>
-        <th>Edit</th>-->
-        <th>Details</th>
-      </tr>
-    <?php foreach ($surveys as $survey): 
-      $questions = get_questions($survey['id']);
-    ?>
-      <tr>
-        <td>      
-          <a href="survey.php?survey=<?php echo $survey['id']; ?>">
-            <?php echo htmlentities($survey['name']); ?>
-          </a>
-        </td>
-        <td>
-          <?php echo $survey['survey_type'];?>
-        </td>
-        <td>
-          <?php 
-          if (!empty($questions)) :
-            echo count($questions);
-          else: ?>                
-            <a href="add_questions.php?survey=<?php echo $survey['id']; ?>">
-              <?php echo count($questions); ?>
-            </a>          
-          <?php 
-          endif; //End the if statement to provide the url to add questions if the survey has no questions         
-          ?>
-        </td>
-         <td>
-          <?php 
-            if (!empty($survey['start_date'])){
-              echo format_date($survey['start_date']);
-            }
-          ?>
-        </td>
-        <td>
-          <?php 
-            if (!empty($survey['end_date'])){
-              echo format_date($survey['end_date']);
-            }
-          ?>
-        </td> 
-        <!--<td>
-          Link to email page
-        </td>-->
-        <td>
-          <?php 
-            echo get_submission_count($survey['id']);
-          ?>
-        </td> 
-        <td>      
-          <a href="details.php?survey=<?php echo $survey['id']; ?>">
-            <?php echo htmlentities($survey['name']); ?>
-          </a>
-        </td>                             
-      </tr>
-    <?php endforeach; //End of the foreach to loop through each of the surveys ?>
+	<?php include 'partials/header.php'; ?>
 
-    </table>
+	<div class="row">
+		<div class="large-9 columns" role="content">
+			<h3>
+				<?php echo $page_name;?>
+			</h3>
+  
+  			<?php if (!empty($surveys)):?>
 
-  <?php
-  else : ?>
-    <p>You have not made any surveys yet</p>
-  <?php endif; //End of the if statement to check if the user has created any surveys?>
-
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Survey Type</th>
+					<th>Number of Questions</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+        			<!--<th>Email</th>-->
+        			<th>Submissions</th>
+			        <!--<th>URL</th>
+			        <th>Edit</th>-->
+			        <th>Details</th>
+      			</tr>
+    			<?php foreach ($surveys as $survey): 
+      				$questions = get_questions($survey['id']);
+    			?>
+      				<tr>
+	        			<td>      
+	          				<a href="survey.php?survey=<?php echo $survey['id']; ?>">
+	            				<?php echo htmlentities($survey['name']); ?>
+	          				</a>
+	        			</td>
+		        		<td>
+		          			<?php echo $survey['survey_type'];?>
+		        		</td>
+		        		<td>
+		          			<?php 
+		          			if (!empty($questions)) :
+		            			echo count($questions);
+		          			else: ?>                
+		            			<a href="add_questions.php?survey=<?php echo $survey['id']; ?>">
+		              			<?php echo count($questions); ?>
+		            			</a>          
+		          			<?php 
+		          			endif; //End the if statement to provide the url to add questions if the survey has no questions         
+		          			?>
+		        		</td>
+		         		<td>
+		          			<?php 
+		            		if (!empty($survey['start_date'])){
+		              			echo format_date($survey['start_date']);
+		            		}
+		          			?>
+		        		</td>
+		        		<td>
+		          			<?php 
+		            		if (!empty($survey['end_date'])){
+		              			echo format_date($survey['end_date']);
+		            		}
+		          			?>
+		        		</td> 
+				        <!--<td>
+				          Link to email page
+				        </td>-->
+				        <td>
+							<?php 
+				            echo get_submission_count($survey['id']);
+				          	?>
+				        </td> 
+				        <td>      
+							<a href="details.php?survey=<?php echo $survey['id']; ?>">
+				            	<?php echo htmlentities($survey['name']); ?>
+							</a>
+				        </td>                             
+      				</tr>
+    			<?php endforeach; //End of the foreach to loop through each of the surveys ?>
+			</table>
+		<?php
+		else : ?>
+			<p>You have not made any surveys yet.</p>
+		<?php endif; //End of the if statement to check if the user has created any surveys?>
+		</div>
+	</div>
   <?php include 'partials/footer.php'; ?>
   
   </body>
