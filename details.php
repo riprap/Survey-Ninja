@@ -31,21 +31,42 @@ $questions = get_questions($survey_number);
     <?php include 'partials/header.php'; ?>
     <div class="row">
       <div class="large-9 columns" role="content">
-
-
         <h3>
         Survey Details
         </h3>
         <h3>
           "<?php echo $survey['name']; ?>"
         </h3>
-	    <h4>
-	      Total Submissions:
-	      <?php 
-	        echo get_submission_count($survey['id']);
-	      ?>
-	    </h4>
-        
+        <h4>
+          Survey Type:
+          <?php echo $survey_type; ?>
+        </h4>
+        <h4>
+          Start Date:
+          <?php echo format_date($survey['start_date']); ?>
+        </h4>
+        <h4>
+          End Date:
+          <?php echo format_date($survey['end_date']); ?>
+        </h4> 
+        <h4>
+          Total Submissions:
+          <?php 
+            echo get_submission_count($survey['id']);
+          ?>
+        </h4>
+
+        <h4> 
+          <a href="email.php?survey=<?php echo $survey['id']; ?>">
+            Email This Survey
+          </a>         
+        </h4> 
+        <h4>    
+          <a href="http://www.facebook.com/sharer.php?u=<?php echo $site_url . "survey.php?survey=".$survey['id']; ?>">
+            Share on Facebook
+          </a>
+        </h4>
+
         <ol>
           <?php 
           foreach ($questions as $question): 
@@ -64,8 +85,7 @@ $questions = get_questions($survey_number);
        </ol>
     </div>
   </div>
-<?php  include 'partials/footer.php'; 
-  ?>
+<?php  include 'partials/footer.php'; ?>
   
   </body>
 </html>
