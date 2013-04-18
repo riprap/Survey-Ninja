@@ -14,6 +14,16 @@ $name = '';
 $start_date = '';
 $end_date = '';
 
+$start_year = date("Y");
+$start_month = date("m");
+$start_day = date("d");
+
+$tommorow = mktime(date("H"), date("i"), date("s"), date("m"), date("d")+1, date("Y")); 
+
+$end_year = date("Y", $tommorow);
+$end_month = date("m", $tommorow);
+$end_day = date("d", $tommorow);
+
 // if the user submitted the form (with method="post")
 if (!empty($_POST)) :
 
@@ -52,8 +62,6 @@ if (!empty($_POST)) :
   if (!$end_date) :
     $errors[] = 'Invalid End Date';
   endif;  
-
-
 
   //Check if the end date is before the start date
   if ($start_date > $end_date) :
