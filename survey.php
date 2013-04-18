@@ -81,48 +81,47 @@ if (!empty($_POST)) :
 endif; //End of if statement that executes if the form has been submitted
 
 ?>
-  <body id="<?php echo strtolower($page_name);?>">
 
-  <?php include 'partials/header.php'; ?>
+<body id="<?php echo strtolower($page_name);?>">
+<?php include 'partials/header.php'; ?>
+	<div class="row">
+		<div class="large-9 columns" role="content">
+			<h3>Survey: "<?php echo $survey['name']; ?>"</h3>
+			<?php include 'partials/messages.php'; ?>
+			<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+				<ol>
+					<?php 
+					//Loop through each of the questions in the questions array
+					foreach ($questions as $question): 
+					?>
+						<li>
+							<?php echo htmlentities($question['text']) ?>
+						</li>
+						<?php                   
+						$answers = get_answers($question['id']);
+						$selected_value= '';
+						
+						if (isset($_POST['question_'. $question['id']])) :
+							$selected_value = $_POST['question_'. $question['id']];
+              			endif; //End the if statement that checks if the post value of the current question has been set
 
-  <h1>Welcome to The: <?php echo $survey['name']; ?> Survey</h1>
-
-  <?php include 'partials/messages.php'; ?>
-
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-      <ul>
-        <?php 
-        //Loop through each of the questions in the questions array
-        foreach ($questions as $question): 
-        ?>
-          <li id="question">
-              <h2><?php echo htmlentities($question['text']) ?></h2>
-          </li>
-          <?php                   
-              $answers = get_answers($question['id']);
-              $selected_value= '';
-              
-              if (isset($_POST['question_'. $question['id']])) :
-                $selected_value = $_POST['question_'. $question['id']];
-              endif; //End the if statement that checks if the post value of the current question has been set
-
-              foreach ($answers as $answer):
-                  $selected = '';
-                  if ($answer['id'] == $selected_value): 
-                    $selected = 'checked="checked"';
-                  endif; ?>
-
-
-                <input type="radio" name="question_<?php echo $question['id'];?>" <?php echo $selected; ?>  value="<?php echo $answer['id']; ?>"><?php echo $answer['text']; ?>
-                <br>                  
-         <?php endforeach; //End the foreach that loops through each answer
-
-        endforeach; //End the foreach that loops through each question
-        ?>
-      </ul>
-      <?php echo create_hidden_survey_id_field($survey['id']); ?>
-      <input type="submit" value="Submit Survey"/>
-    </form>
+						foreach ($answers as $answer):
+							$selected = '';
+							if ($answer['id'] == $selected_value): 
+								$selected = 'checked="checked"';
+							endif; ?>
+							<label>
+								<input type="radio" name="question_<?php echo $question['id'];?>" <?php echo $selected; ?>  value="<?php echo $answer['id']; ?>"><?php echo $answer['text'];?>
+							</label>
+						<?php 
+						endforeach; //End the foreach that loops through each` answer
+        			endforeach; //End the foreach that loops through each question?>
+				</ol>
+			<?php echo create_hidden_survey_id_field($survey['id']); ?>
+ 			<input type="submit" value="Submit Survey" class="button">
+			</form>
+		</div>
+	</div>
 
   <?php include 'partials/footer.php'; ?>
   
