@@ -7,11 +7,19 @@
 */ 
 $logged_in_profile = get_user($_SESSION['id']);
 ?>
-
-<ul id="links">
-    <li>Logged in as: <?php echo $logged_in_profile['name']; ?></li>
-    <li><a href="profile.php" id="profile">My Profile</a></li>
-    <li><a href="my_surveys.php" id="mysurveys">My Surveys</a></li>
-    <li><a href="create_survey.php" id="createsurvey">Create New Survey</a></li>
-    <li><a href="logout.php" id="logout">Logout</a></li>
-</ul>
+<div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+       <ul class="button-group">
+         
+   	     <li><a href="profile.php" class="button"><?php echo $logged_in_profile['name']; ?></a></li>
+    	 <li><a href="my_surveys.php" class="button">My Surveys</a></li>
+ 	     <li><a href="create_survey.php" class="button">Create New Survey</a></li>
+  	     <li><a href="logout.php" class="button">Logout</a></li>
+        </ul>
+      </div>
+      <h1>Survey Site</h1>
+      <hr />
+    </div>
+  </div>
+</div>

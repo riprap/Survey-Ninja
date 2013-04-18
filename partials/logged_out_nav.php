@@ -4,10 +4,18 @@
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
     File Description: The navbar that a user will see if they are not logged in;
-*/ 
+*/
 ?>
-
-<ul id="links">
-    <li><a href="login.php" id="login">Login</a></li>
-    <li><a href="list_surveys.php" id="surveys">Take a survey!</a></li>
-</ul>
+<div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+       <ul class="button-group">
+       	 <li><a href="login.php" class= "button">Login</a></li>
+         <li><a href="list_surveys.php" class="button">Take a survey!</a></li>
+        </ul>
+      </div>
+      <h1>Survey Site</h1>
+      <hr />
+    </div>
+  </div>
+</div>

@@ -6,9 +6,13 @@
     File Description: This file contains the main footer that is used on all desktop pages of the site.
 */  
 ?>
-
-     <div id="footer">
-        <footer class="wrapper">
-            <h3><?php echo $footer_text; ?></h3>
-        </footer>
+<footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p><?php echo $footer_text; ?></p>
+        </div>
+      </div>
     </div>
+  </footer>

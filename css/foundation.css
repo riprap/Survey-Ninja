@@ -1005,6 +1005,7 @@ h2 {
   font-size: 1.6875em; }
 
 h3 {
+  color: #2795b6;
   font-size: 1.375em; }
 
 h4 {
@@ -3816,3 +3817,7 @@ table {
     max-width: 500px; }
   .f-dropdown.large {
     max-width: 800px; }
+    
+ul li {
+	margin-left:1em;
+}

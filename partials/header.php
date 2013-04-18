@@ -5,11 +5,7 @@
     Web Site Name: Survey Site
     File Description: This file contains the header with site title and logo that is used on all desktop pages of the site.
 */  
-?>
-        <div id="header">
-            <header class="wrapper clearfix">
-                <?php echo $site_title; ?>
-                <?php
+
                 //Check log in status and include the appropriate navbar 
                 if (is_logged_in() == true){
                 	include 'logged_in_nav.php'; 
@@ -19,5 +15,3 @@
 				}
                 ?>
                 
-            </header>
-        </div>
