@@ -6,7 +6,7 @@
     File Description:  
 */
 
-$page_name = "Send Email";
+$page_name = "Email Survey";
 include "functions/functions.php";
 
 //Including this partial will set the value of the $survey_number variable
