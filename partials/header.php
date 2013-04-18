@@ -7,10 +7,9 @@
 */  
 
 //Check log in status and include the appropriate navbar 
-if (is_logged_in() == true){
+if (is_logged_in()) :
 	include 'logged_in_nav.php'; 
-}
-else{
+else :
 	include 'logged_out_nav.php';
-}
-?>
+endif;
+
