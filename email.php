@@ -56,24 +56,24 @@ endif;
   <?php include 'partials/header.php'; ?>
     <div class="row">
       <div class="large-9 columns" role="content">
-        <h1><?php echo $page_name;?></h1>
+        <h3><?php echo $page_name;?></h3>
         <?php include 'partials/messages.php'; ?>
 
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-          <p>
-            To Email:
-            <br/>
-            <input type="text" name="to_email" value="<?php echo $to_email; ?>"/>
+          <label for "to_email">
+            Email address:
+          </label>
+            <input type="text" name="to_email" value="<?php echo $to_email; ?>">
           </p>
 
-          <p>
-            Email Body:
-          </p>
+          <label for "email_body">
+            Email message:
+          </label>
           <textarea name="email_body" cols=40 rows=6 ><?php echo $body; ?></textarea>
 
           <br/>
           <?php echo create_hidden_survey_id_field($survey['id']); ?>
-          <input type="submit" name="send_email" value="Send Email"/>
+          <input type="submit" name="send_email" value="Send Email" class="button">
 
         </form>
     </div>

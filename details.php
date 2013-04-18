@@ -19,41 +19,40 @@ include 'partials/get_survey.php';
     <div class="row">
       <div class="large-9 columns" role="content">
         <h3>
-        Survey Details
+          <?php echo $survey['name']; ?>
         </h3>
-        <h3>
-          "<?php echo $survey['name']; ?>"
-        </h3>
-        <h4>
-          Survey Type:
-          <?php echo $survey_type; ?>
-        </h4>
-        <h4>
-          Start Date:
-          <?php echo format_date($survey['start_date']); ?>
-        </h4>
-        <h4>
-          End Date:
-          <?php echo format_date($survey['end_date']); ?>
-        </h4> 
-        <h4>
-          Total Submissions:
-          <?php 
-            echo get_submission_count($survey['id']);
-          ?>
-        </h4>
-
-        <h4> 
-          <a href="email.php?survey=<?php echo $survey['id']; ?>">
-            Email This Survey
-          </a>         
-        </h4> 
-        <h4>    
-          <a href="<?php echo $facebook_share_url . $site_url . "survey.php?survey=".$survey['id']; ?>">
-            Share on Facebook
-          </a>
-        </h4>
-
+        <table>
+        	<tr>
+        		<th>Survey Type</th>
+        		<th>Start Date</th>
+        		<th>End Date</th>
+        		<th>Total Submissions</th>
+        	</tr>
+        	<tr>
+        		<td>
+        			<?php echo $survey_type; ?>
+        		</td>
+        		<td>
+        			<?php echo format_date($survey['start_date']);?>
+        		</td>
+        		<td>
+        			<?php echo format_date($survey['end_date']); ?>
+        		</td>
+        		<td>
+        			<?php echo get_submission_count($survey['id']);?>
+        		</td>
+        	</tr>
+        </table>
+        <a href="<?php echo $facebook_share_url . $site_url . "survey.php?survey=".$survey['id']; ?>">
+            <img src="images/facebook.png" alt="Share on Facebook" id="fb_share">
+        </a>
+        <a href="email.php?survey=<?php echo $survey['id']; ?>">
+            Email This Survey 
+        </a>
+		<hr/>
+		<h4>
+			Results
+		</h4>
         <ol>
           <?php 
           foreach ($questions as $question): 

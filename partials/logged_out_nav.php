@@ -15,7 +15,7 @@
          <li><a href="list_surveys.php" class="button">Take a survey!</a></li>
         </ul>
       </div>
-      <h1><a href="index.php"><?php echo $site_name;?></a></h1>
+      <h1><a href="index.php" class="site_name"><?php echo $site_name;?></a></h1>
       <hr />
     </div>
 </div>

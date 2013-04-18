@@ -52,7 +52,6 @@ include 'partials/html_header.php';
   <body id="<?php echo strtolower($page_name);?>">
 
 	  <?php include 'partials/header.php'; ?>
-	  <?php include 'partials/messages.php'; ?>
 	  
 	  <!-- Main Page Content and Sidebar -->
 	  <div class="row">
@@ -61,6 +60,7 @@ include 'partials/html_header.php';
 	    	<h3>
 	    		<?php echo $page_name;?>
 	    	</h3>
+	    	<?php include 'partials/messages.php'; ?>
 	    	<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 	    		<label>E-mail: </label>
 	    		<input type="text" name="email" value="<?php echo $email; ?>">

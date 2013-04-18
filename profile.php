@@ -21,7 +21,7 @@ include 'partials/html_header.php';
 			<h3>
 				<?php echo $page_name;?>
 			</h3>
-			
+			<?php include 'partials/messages.php'; ?>
 			<ul>
 				<li>Name: <?php echo $logged_in_profile['name'];?></li>
 				<li>Email: <?php echo $logged_in_profile['email'];?></li>

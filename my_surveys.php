@@ -29,11 +29,6 @@ $surveys = get_user_surveys($logged_in_profile['id']);
         <table>
           <tr>
             <th>Name</th>
-            <th>Survey Type</th>
-            <th>Number of Questions</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Submissions</th>
             <th>Details</th>
             <th>Edit</th>
             <th>Facebook</th>
@@ -48,38 +43,6 @@ $surveys = get_user_surveys($logged_in_profile['id']);
                         <?php echo htmlentities($survey['name']); ?>
                       </a>
                   </td>
-                  <td>
-                      <?php echo $survey['survey_type'];?>
-                  </td>
-                  <td>
-                      <?php 
-                      if (!empty($questions)) :
-                        echo count($questions);
-                      else: ?>                
-                        <a href="add_questions.php?survey=<?php echo $survey['id']; ?>">
-                          <?php echo count($questions); ?>
-                        </a>          
-                      <?php 
-                      endif; //End the if statement to provide the url to add questions if the survey has no questions         
-                      ?>
-                  </td>
-                  <td>
-                      <?php 
-                      if (!empty($survey['start_date'])){
-                          echo format_date($survey['start_date']);
-                      }
-                      ?>
-                  </td>
-                  <td>
-                      <?php 
-                      if (!empty($survey['end_date'])){
-                          echo format_date($survey['end_date']);
-                      }
-                      ?>
-                  </td> 
-                  <td>
-                    <?php echo get_submission_count($survey['id']);?>
-                  </td> 
                   <td>      
                     <a href="details.php?survey=<?php echo $survey['id']; ?>">
                       View
@@ -92,7 +55,7 @@ $surveys = get_user_surveys($logged_in_profile['id']);
                   </td>
                   <td>      
                     <a href="<?php echo $facebook_share_url . $site_url . "survey.php?survey=".$survey['id']; ?>">
-                      Share
+                      <img src="images/facebook.png" alt="Share on Facebook" height="50" width="75">
                     </a>
                   </td>
                   <td>
