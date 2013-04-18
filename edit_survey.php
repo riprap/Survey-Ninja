@@ -70,9 +70,10 @@ if (!empty($_POST)) {
 
   //If there are no validation errors attempt to create the survey
   if (empty($errors)) {
-    //update_survey($survey['id'], $name, $start_date, $end_date)
-    //set_message("success", "Survey has been updated.");
-    //header('Location: add_questions.php?survey='.$survey_id);
+    update_survey($survey['id'], $name, $start_date, $end_date);
+    set_message("success", "Survey has been updated.");
+    header('Location: index.php');
+    die;
   }
 }
 
