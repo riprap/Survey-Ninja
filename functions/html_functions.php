@@ -47,7 +47,7 @@ function check_field_errors($fieldname, $error_list) {
  * @return html The html of all the day options for the select
  * @author Scott Montgomery
  **/
-function create_day_dropdown($day) {  
+function create_day_dropdown($day = null) {  
   $optionsList = '';    
   for ($i=1; $i < 31; $i++):
     $selected = '';
@@ -114,7 +114,7 @@ function create_question($number, $question, $errors = null) {
  * @return html The html of the all the select options for question types
  * @author Scott Montgomery
  **/
-function create_survey_type_dropdown($value) {  
+function create_survey_type_dropdown($value = null) {  
   $html = ''; 
   $types = get_survey_types();   
   foreach ($types as $type):
@@ -136,7 +136,7 @@ function create_survey_type_dropdown($value) {
  * @return optionsList The html of the all the select options for years
  * @author Scott Montgomery
  **/
-function create_year_dropdown($year) {
+function create_year_dropdown($year = null) {
   $optionsList = '';    
   for( $i = date("Y"); $i <= date("Y") + 5; $i++):
     $selected = '';
