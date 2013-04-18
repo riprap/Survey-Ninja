@@ -18,7 +18,7 @@ $logged_in_profile = get_user($_SESSION['id']);
   	     <li><a href="logout.php" class="button">Logout</a></li>
         </ul>
       </div>
-      <h1><?php echo $site_name;?></h1>
+      <h1><a href="index.php"><?php echo $site_name;?></a></h1>
       <hr />
     </div>
   </div>
