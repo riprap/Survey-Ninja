@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<!--
+<?php
+/*
     File Name: edit_profile.php
     Authors Name: Scott Montgomery and Nolan Knill
     Web Site Name: Survey Site
     File Description: The edit profile page that allows a user to edit their profile.
--->
+*/
 
-<?php 
+
 $page_name = "Edit Profile";
 include "functions/functions.php";
 
