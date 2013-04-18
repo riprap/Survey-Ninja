@@ -75,7 +75,7 @@ endif; //End of if statement that executes if the form has been submitted
 
   <?php include 'partials/header.php'; ?>
 
-  <h1>Welcome to The: <?php echo $survey['name']; ?> Survey</h1>
+  <h1>Welcome to The: <?php echo htmlentities($survey['name']); ?> Survey</h1>
 
   <?php include 'partials/messages.php'; ?>
 
