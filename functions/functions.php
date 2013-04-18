@@ -12,6 +12,7 @@ session_start();
 $errors = array();
 $field_errors = array();
 
+//Initialize the default timezone
 date_default_timezone_set('America/New_York');
 
 //Include the database connection file
@@ -24,6 +25,16 @@ include "user_functions.php";
 include "html_functions.php";
 //Include the locales file which contains all of the appropriate text variables
 include "locales/en.php";
+
+//Array of pages that require the user to be logged in
+$require_login_pages = array("My Profile", "Add Questions to Survey", "Create Survey", "Edit Profile", "Edit Survey", "Home", "My Surveys", "My Profile");
+
+//Check if the current page is one that requires a login
+if (in_array($page_name, $require_login_pages)) {
+  //Make sure the user is logged in by including the get login partial
+  include 'partials/get_login.php'; 
+}
+
 
 /**
  * Create a date so that it can be inserted into the database
@@ -79,11 +90,3 @@ function set_message($message_type, $message) {
   $_SESSION['messages'][$message_type][] = $message;
 }
 
-//Array of pages that require the user to be logged in
-$require_login_pages = array("My Profile", "Add Questions to Survey", "Create Survey", "Edit Profile", "Edit Survey", "Home", "My Surveys", "My Profile");
-
-//Check if the current page is one that requires a login
-if (in_array($page_name, $require_login_pages)) {
-  //Make sure the user is logged in
-  include 'partials/get_login.php'; 
-}
