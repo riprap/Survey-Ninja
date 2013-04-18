@@ -11,17 +11,8 @@ $page_name = "Take Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 
-if (!empty($_POST)) {
-  $survey_number = $_POST['survey'];
-}
-else if (!empty($_GET['survey'])) {
-  $survey_number = $_GET['survey'];
-}
-else {
-  set_message("error", "Invalid survey id.");
-  header('Location: index.php');
-  die;
-}
+//Including this partial will set the value of the $survey_number variable
+include 'partials/get_survey.php'; 
 
 $survey = get_survey($survey_number);
 

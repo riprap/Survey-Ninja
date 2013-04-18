@@ -39,20 +39,20 @@ if (!empty($_POST)) {
   //Call Function to see if there is a survey with this name already
   // Check if it is a valid start_date
   $start_date = format_db_date($start_day, $start_month, $start_year);
-  if (!$start_date) {
+  if (!$start_date) :
     $errors[] = 'Invalid Start Date';
-  }      
+  endif;      
 
   // Check if it is a valid end_date
   $end_date = format_db_date($end_day, $end_month, $end_year);
-  if (!$end_date) {
+  if (!$end_date) :
     $errors[] = 'Invalid End Date';
-  }   
+  endif;  
 
   //Check if the end date is before the start date
-  if ($start_date > $end_date) {
+  if ($start_date > $end_date) :
     $errors[] = 'Start Date cannot be after End Date';
-  }
+  endif;
 
   //If there are no validation errors attempt to create the survey
   if (empty($errors)) {
