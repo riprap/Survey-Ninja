@@ -6,10 +6,10 @@
     File Description: This partial checks if the session id is set and performs the necessary actions
 */
 
- if (empty($_SESSION['id'])){
+if (empty($_SESSION['id'])) :
   set_message("error", "You must be logged in to access this page.");
   header('Location: login.php');
   die;
-}
-
-$logged_in_profile = get_user($_SESSION['id']);   
+endif;
+ 
+$logged_in_profile = get_user($_SESSION['id']);
