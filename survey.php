@@ -52,8 +52,8 @@ $questions = get_questions($survey_number);
 
 if (!empty($_POST)) :
 
-  $survey_number = $_POST['survey'];
-
+  //$survey_number = $_POST['survey'];
+  //Loop through each of the questions in the survey
   foreach ($questions as $question):
 
     if (empty($_POST['question_'. $question['id']])):
@@ -64,6 +64,7 @@ if (!empty($_POST)) :
 
   //If there are no validation errors save the answers
   if (empty($errors)) :
+    //Create a submission and assign the returned id to a variable
     $submission_id = add_submission($survey_number, $_SERVER['REMOTE_ADDR']);
     //Loop through each of the questions and save the corresponding answers
     foreach ($questions as $question): 
@@ -91,6 +92,7 @@ endif; //End of if statement that executes if the form has been submitted
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
       <ul>
         <?php 
+        //Loop through each of the questions in the questions array
         foreach ($questions as $question): 
         ?>
           <li id="question">
@@ -108,7 +110,7 @@ endif; //End of if statement that executes if the form has been submitted
                   $selected = '';
                   if ($answer['id'] == $selected_value): 
                     $selected = 'checked="checked"';
-                  endif ?>
+                  endif; ?>
 
 
                 <input type="radio" name="question_<?php echo $question['id'];?>" <?php echo $selected; ?>  value="<?php echo $answer['id']; ?>"><?php echo $answer['text']; ?>
