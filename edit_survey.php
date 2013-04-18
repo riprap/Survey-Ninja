@@ -10,16 +10,8 @@ $page_name = "Edit Survey";
 include "functions/functions.php";
 include 'partials/html_header.php'; 
 
-if (!empty($_POST)) {
-  $survey_number = $_POST['survey'];
-}
-else if (!empty($_GET['survey'])) {
-  $survey_number = $_GET['survey'];
-}
-else {
-  header('Location: my_surveys.php');
-  die;
-}
+//Including this partial will set the value of the $survey_number variable
+include 'partials/get_survey.php'; 
 
 $survey = get_survey($survey_number);
 $name = $survey['name'];
@@ -34,12 +26,12 @@ list($start_day, $start_month, $start_year) = get_date_params($survey['start_dat
 list($end_day, $end_month, $end_year) = get_date_params($survey['end_date']);
 
 // if the user submitted the form (with method="post")
-if (!empty($_POST)) {
+if (!empty($_POST)) :
 
-  if (empty($_POST['name'])) {
+  if (empty($_POST['name'])) :
     $errors[] = "Please enter the survey name.";
     $field_errors[] = 'name';
-  }
+  endif;
   
   $start_day = $_POST['start_day'];
   $start_month = $_POST['start_month'];
@@ -53,29 +45,29 @@ if (!empty($_POST)) {
 
   // Check if it is a valid start_date
   $start_date = format_db_date($start_day, $start_month, $start_year);
-  if (!$start_date) {
+  if (!$start_date) :
     $errors[] = 'Invalid Start Date';
-  }      
+  endif;      
 
   // Check if it is a valid end_date
   $end_date = format_db_date($end_day, $end_month, $end_year);
-  if (!$end_date) {
+  if (!$end_date) :
     $errors[] = 'Invalid End Date';
-  }   
+  endif;   
 
   //Check if the end date is before the start date
-  if ($start_date > $end_date) {
+  if ($start_date > $end_date) :
     $errors[] = 'Start Date cannot be after End Date';
-  }
+  endif;
 
   //If there are no validation errors attempt to create the survey
-  if (empty($errors)) {
+  if (empty($errors)) :
     update_survey($survey['id'], $name, $start_date, $end_date);
     set_message("success", "Survey has been updated.");
     header('Location: index.php');
     die;
-  }
-}
+  endif;
+endif; //End the if statement to deal with form processing
 
 ?>
 
