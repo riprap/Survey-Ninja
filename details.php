@@ -11,6 +11,7 @@ include "functions/functions.php";
 
 //Including this partial will set the value of the $survey_number, $survey, $survey_type and $questions
 include 'partials/get_survey.php';
+$survey_status = survey_status($survey['start_date'], $survey['end_date']);
 
 if ($logged_in_profile['id'] != $survey['creator_id']) :
   set_message("error", "You do not have permission to view details of this survey.");
@@ -51,12 +52,21 @@ endif;
         		</td>
         	</tr>
         </table>
+
+        <?php if ($survey_status) : ?>
         <a href="<?php echo $facebook_share_url . $site_url . "survey.php?survey=".$survey['id']; ?>">
             <img src="images/facebook.png" alt="Share on Facebook" id="fb_share">
         </a>
         <a href="email.php?survey=<?php echo $survey['id']; ?>">
             Email This Survey To a Friend
         </a>
+        <?php else : ?>
+        <p>Survey is Closed</p>
+      <?php endif; ?>
+
+
+
+
 		<hr/>
 		<h4>
 			Results

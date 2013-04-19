@@ -36,18 +36,28 @@ $surveys = get_user_surveys($logged_in_profile['id']);
           </tr>
             <?php foreach ($surveys as $survey): 
                 $questions = get_questions($survey['id']);
+
+
             ?>
                 <tr>
                   <td>
-                    <?php if (!empty($questions)) {?>
-                      <a href="survey.php?survey=<?php echo $survey['id']; ?>">
-                        <?php echo htmlentities($survey['name']); ?>
-                      </a>
-                    <?php }    
-                    else { ?>
+                    <?php 
+                    //check if the survey is open?
+                    $survey_status = survey_status($survey['start_date'], $survey['end_date']);
+
+                    if (empty($questions)) {?>
                       <a href="add_questions.php?survey=<?php echo $survey['id']; ?>">
                         <?php echo htmlentities($survey['name']); ?>
                       </a>
+                    <?php }  
+                    elseif (!$survey_status){ 
+                      echo htmlentities($survey['name']);
+                    }  
+                    else { ?>
+                      <a href="survey.php?survey=<?php echo $survey['id']; ?>">
+                        <?php echo htmlentities($survey['name']); ?>
+                      </a>
+
                    <?php } ?> 
 
                   </td>
@@ -61,15 +71,23 @@ $surveys = get_user_surveys($logged_in_profile['id']);
                       Edit
                     </a>
                   </td>
-                  <td>      
-                    <a href="<?php echo $facebook_share_url . $site_url . "survey.php?survey=".$survey['id']; ?>">
-                      <img src="images/facebook.png" alt="Share on Facebook" height="50" width="75">
-                    </a>
+                  <td> 
+                    <?php if (!$survey_status){ 
+                      echo "Survey Closed";
+                    } else { ?>  
+                      <a href="<?php echo $facebook_share_url . $site_url . "survey.php?survey=".$survey['id']; ?>">
+                        <img src="images/facebook.png" alt="Share on Facebook" height="50" width="75">
+                      </a>
+                    <?php } ?>
                   </td>
                   <td>
-                    <a href="email.php?survey=<?php echo $survey['id']; ?>">
-                      Send to a Friend
-                    </a>
+                    <?php if (!$survey_status){ 
+                      echo "Survey Closed";
+                    } else { ?>  
+                      <a href="email.php?survey=<?php echo $survey['id']; ?>">
+                        Send to a Friend
+                      </a>
+                    <?php } ?>                    
                   </td>
 
                 </tr>

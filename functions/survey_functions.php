@@ -136,12 +136,21 @@ function add_survey($name, $type, $creator, $start_date = NULL, $end_date = NULL
 /**
 * Check if a survey is open or closed 
 *
-* @param survey_id The id of the survey to find the details for
+* @param start_date The start date of the survey
+* @param end_date The end date of the survey
 * @return Whether the survey is open (true) or closed (false)
 *
 **/
-function check_survey_status($survey_id) {
-  //Select start_date, end_date from surveys where id = survey_id 
+function survey_status($start_date, $end_date) {
+  $start_date = strtotime($start_date);
+  $end_date = strtotime($end_date);
+  $now = strtotime(date('Y-m-d h:i:s'));  
+
+  if ($end_date < $now || $start_date > $now) :
+    return false;
+  else :
+    return true;
+  endif;
 }
 
 /**
