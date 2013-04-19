@@ -70,7 +70,7 @@ endif;
           <?php echo create_day_dropdown($start_day); ?> 
         </select>  
 
-        <select name="start_year" id="year">
+        <select name="start_year" id="start_year">
           <?php echo create_year_dropdown($start_year); ?>
         </select>                     
 
@@ -83,7 +83,7 @@ endif;
         <select name="end_day">
           <?php echo create_day_dropdown($end_day); ?>          
         </select> 
-        <select name="end_year" id="year">
+        <select name="end_year" id="end_year">
           <?php echo create_year_dropdown($end_year); ?>
         </select>                                
 
