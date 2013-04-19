@@ -21,4 +21,4 @@ $logged_in_profile = get_user($_SESSION['id']);
       <h1><a href="index.php" class="site_name"><?php echo $site_name;?></a></h1>
       <hr />
     </div>
-  </div>
+</div>
