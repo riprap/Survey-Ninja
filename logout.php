@@ -9,5 +9,5 @@ include "functions/functions.php";
 session_destroy();
 session_start();
 set_message("success", "You have successfully logged out.");
-header("Location: login.php");
+header("Location: index.php");
 die;
