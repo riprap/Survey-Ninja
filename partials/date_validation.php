@@ -32,7 +32,10 @@ if (!$end_date) :
   $errors[] = 'Invalid End Date';
 endif;  
 
+
 //Check if the end date is before the start date
 if ($start_date > $end_date) :
   $errors[] = 'Start Date cannot be after End Date';
+elseif ($start_date == $end_date) :
+  $errors[] = 'Start Date and End Date must be different';
 endif;
