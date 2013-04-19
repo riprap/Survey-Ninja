@@ -24,6 +24,7 @@ $surveys = get_active_surveys();
       if (empty($surveys)) {?>
         <h3>There are currently no active surveys.</h4>
       <?php } else { ?>
+        <h5>To take a survey, click a survey's name.</h5>
   			<table>
   				<tr>
   					<th>Name</th>

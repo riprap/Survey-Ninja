@@ -10,7 +10,14 @@ $page_name = "Survey Details";
 include "functions/functions.php";
 
 //Including this partial will set the value of the $survey_number, $survey, $survey_type and $questions
-include 'partials/get_survey.php'; 
+include 'partials/get_survey.php';
+
+if ($logged_in_profile['id'] != $survey['creator_id']) :
+  set_message("error", "You do not have permission to view details of this survey.");
+  header('Location: index.php');
+  die;
+endif;
+
 ?>
 
 <?php include 'partials/html_header.php'; ?>
