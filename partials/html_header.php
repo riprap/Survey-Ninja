@@ -6,6 +6,7 @@
     File Description: This file contains the html header that is used on all desktop pages of the site.
 */  
 echo '
+<!DOCTYPE html>
 <html class="no-js">
     <head>
         <meta charset="utf-8">
@@ -20,7 +21,6 @@ echo '
         <link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/foundation.css">
 		<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css">
-		<script src="js/main.js"></script>   
 
     </head>
 ';
