@@ -22,7 +22,7 @@ endif;
 
 $start_date = strtotime($survey['start_date']);
 $end_date = strtotime($survey['end_date']);
-$now = strtotime(date('Y-m-d'));
+$now = strtotime(date('Y-m-d h:i:s'));
 
 if ($end_date < $now) :
   set_message("error", "We're sorry, this survey is closed.");
