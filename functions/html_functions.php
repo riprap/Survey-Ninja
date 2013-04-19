@@ -49,7 +49,7 @@ function check_field_errors($fieldname, $error_list) {
  **/
 function create_day_dropdown($day = null) {  
   $optionsList = '';    
-  for ($i=1; $i < 31; $i++):
+  for ($i=1; $i <= 31; $i++):
     $selected = '';
     if ($i == $day) :
       $selected = 'selected="selected"';
