@@ -42,6 +42,7 @@ if (!empty($_POST)) :
 
     if (empty($_POST['question_'. $question['id']])):
       $errors[] = "Please answer question: ". $question['text'];
+      $field_errors[] = $question['id'];
     endif; //End the if statement to check if the answer to the question is blank 
 
   endforeach; // End the foreach to loop through each of the questions 
@@ -80,7 +81,7 @@ endif; //End of if statement that executes if the form has been submitted
             //Loop through each of the questions in the questions array
             foreach ($questions as $question): 
             ?>
-              <li>
+              <li <?php echo check_field_errors($question['id'] ,$field_errors);?> >
                 <?php echo htmlentities($question['text']) ?>
               </li>
               <?php                   
@@ -89,7 +90,7 @@ endif; //End of if statement that executes if the form has been submitted
               
               if (isset($_POST['question_'. $question['id']])) :
                 $selected_value = $_POST['question_'. $question['id']];
-                      endif; //End the if statement that checks if the post value of the current question has been set
+              endif; //End the if statement that checks if the post value of the current question has been set
 
               foreach ($answers as $answer):
                 $selected = '';
