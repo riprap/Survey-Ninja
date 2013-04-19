@@ -68,7 +68,7 @@ include 'partials/get_survey.php';
             <?php
               $answers = get_answers($question['id']);
               foreach ($answers as $answer): ?>
-                <li id="answer">
+                <li>
                   <?php echo format_details_text($answer['text'], get_answer_count($answer['id']));?>
                 </li>
         <?php endforeach; //end answers foreach ?>
