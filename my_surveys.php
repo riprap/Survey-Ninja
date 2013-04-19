@@ -38,10 +38,18 @@ $surveys = get_user_surveys($logged_in_profile['id']);
                 $questions = get_questions($survey['id']);
             ?>
                 <tr>
-                  <td>      
+                  <td>
+                    <?php if (!empty($questions)) {?>
                       <a href="survey.php?survey=<?php echo $survey['id']; ?>">
                         <?php echo htmlentities($survey['name']); ?>
                       </a>
+                    <?php }    
+                    else { ?>
+                      <a href="add_questions.php?survey=<?php echo $survey['id']; ?>">
+                        <?php echo htmlentities($survey['name']); ?>
+                      </a>
+                   <?php } ?> 
+
                   </td>
                   <td>      
                     <a href="details.php?survey=<?php echo $survey['id']; ?>">
