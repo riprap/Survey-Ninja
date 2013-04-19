@@ -46,7 +46,7 @@ endif; //End the if statement to deal with form processing
 ?>
 
 <?php include 'partials/html_header.php'; ?>
-  <body id="<?php echo strtolower($page_name);?>">
+  <body>
   
   <?php include 'partials/header.php'; ?>
   

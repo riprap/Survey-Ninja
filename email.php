@@ -51,7 +51,7 @@ endif;
 ?>
 
 <?php include 'partials/html_header.php'; ?>
-  <body id="<?php echo strtolower($page_name);?>">
+  <body>
 
   <?php include 'partials/header.php'; ?>
     <div class="row">

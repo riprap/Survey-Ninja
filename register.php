@@ -58,7 +58,7 @@ endif; //End of the if statement dealing with submitting the form
 
 ?>
 
-<body id="<?php echo strtolower($page_name);?>">
+<body>
 	<?php include 'partials/header.php'; ?>
 	<div class="row">
 		<div class="large-9 columns" role="content">
