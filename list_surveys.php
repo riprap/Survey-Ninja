@@ -20,42 +20,46 @@ $surveys = get_active_surveys();
   		
 			<h3><?php echo $page_name;?></h3>
   			<?php include 'partials/messages.php'; ?>
-			
-			<table>
-				<tr>
-					<th>Name</th>
-					<th>Survey Type</th>
-					<th>Number of Questions</th>
-				</tr>
-				<?php 
-				foreach ($surveys as $survey): 
-    				$questions = get_questions($survey['id']);
-  				?>
-    				<tr>
-      					<td>      
-        					<a href="survey.php?survey=<?php echo $survey['id']; ?>">
-          						<?php echo htmlentities($survey['name']); ?>
-	   						</a>
-						</td>
-						<td>
-							<?php echo $survey['survey_type'];?>
-						</td>
-						<td>
-						<?php 
-						if (!empty($questions)) :
-							echo count($questions);
-						else: ?>                
-							<a href="add_questions.php?survey=<?php echo $survey['id']; ?>">
-								<?php echo count($questions); ?>
-							</a>          
-						<?php 
-        				endif; //End the if statement to provide the url to add questions if the survey has no questions         
-        				?>
-      					</td>                         
-					</tr>
-				<?php endforeach; //End of the foreach to loop through each of the surveys ?>
+			<?php 
+      if (empty($surveys)) {?>
+        <h3>There are currently no active surveys.</h4>
+      <?php } else { ?>
+  			<table>
+  				<tr>
+  					<th>Name</th>
+  					<th>Survey Type</th>
+  					<th>Number of Questions</th>
+  				</tr>
+  				<?php 
+  				foreach ($surveys as $survey): 
+      				$questions = get_questions($survey['id']);
+    				?>
+      				<tr>
+        					<td>      
+          					<a href="survey.php?survey=<?php echo $survey['id']; ?>">
+            						<?php echo htmlentities($survey['name']); ?>
+  	   						</a>
+  						</td>
+  						<td>
+  							<?php echo $survey['survey_type'];?>
+  						</td>
+  						<td>
+  						<?php 
+  						if (!empty($questions)) :
+  							echo count($questions);
+  						else: ?>                
+  							<a href="add_questions.php?survey=<?php echo $survey['id']; ?>">
+  								<?php echo count($questions); ?>
+  							</a>          
+  						<?php 
+          				endif; //End the if statement to provide the url to add questions if the survey has no questions         
+          				?>
+        					</td>                         
+  					</tr>
+  				<?php endforeach; //End of the foreach to loop through each of the surveys ?>
 
-			</table>
+  			</table>
+      <?php } //End of if statement if there are surveys?>
 		</div>
 	</div>
 	
