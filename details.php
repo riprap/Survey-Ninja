@@ -64,34 +64,37 @@ endif;
         <p>Survey is Closed</p>
       <?php endif; ?>
 
-
-
-
 		<hr/>
-		<h4>
-			Results
-		</h4>
-        <a href="email_results.php?survey=<?php echo $survey['id']; ?>">
-            Email Me These Results
-        </a>
-        <br> 
-        <br>     
-        <ol>
-          <?php 
-          foreach ($questions as $question): 
-          ?>
-            <li><strong><?php echo htmlentities($question['text']) ?></strong></li>
-            <ul>
-            <?php
-              $answers = get_answers($question['id']);
-              foreach ($answers as $answer): ?>
-                <li>
-                  <?php echo format_details_text($answer['text'], get_answer_count($answer['id']));?>
-                </li>
-        <?php endforeach; //end answers foreach ?>
-            </ul>
-        <?php endforeach; //end questions foreach?>
-       </ol>
+    <?php 
+    // If the survey has questions, show them
+    if (!empty($questions)) : ?>
+
+  		<h4>
+  			Results
+  		</h4>
+          <a href="email_results.php?survey=<?php echo $survey['id']; ?>">
+              Email Me These Results
+          </a>
+          <br> 
+          <br>     
+          <ol>
+            <?php 
+            foreach ($questions as $question): 
+            ?>
+              <li><strong><?php echo htmlentities($question['text']) ?></strong></li>
+              <ul>
+              <?php
+                $answers = get_answers($question['id']);
+                foreach ($answers as $answer): ?>
+                  <li>
+                    <?php echo format_details_text($answer['text'], get_answer_count($answer['id']));?>
+                  </li>
+          <?php endforeach; //end answers foreach ?>
+              </ul>
+          <?php endforeach; //end questions foreach?>
+         </ol>
+
+      <?php endif; // End of if statements to check if questions are blank ?>
     </div>
     <?php include 'partials/sidebar.php' ?>
   </div>
