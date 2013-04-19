@@ -52,7 +52,7 @@ $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 //There are no errors, attempt to send the email.
 if (empty($errors)) :
   if (mail($to_email, stripslashes($subject),stripslashes($body), $headers)) :
-    set_message("success", "An e-mail with these results have been sent to ". $to_email );  
+    set_message("success", "An e-mail with these results has been sent to ". $to_email );  
   else :
     set_message("error", "Unable to send email.");
   endif;
