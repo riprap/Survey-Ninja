@@ -26,7 +26,7 @@ include 'partials/html_header.php';
           <li><a href="create_survey.php">Create a Survey</a></li>
           <li><a href="my_surveys.php">View your Surveys</a></li>
           <li><a href="list_surveys.php">Take a Survey</a></li>
-          <li><a href="profile.php">View your Profile.</a></li>
+          <li><a href="profile.php">View your Profile</a></li>
         <?php
         else : ?>
           <li>
