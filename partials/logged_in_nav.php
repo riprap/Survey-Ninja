@@ -22,4 +22,3 @@ $logged_in_profile = get_user($_SESSION['id']);
       <hr />
     </div>
   </div>
-</div>
