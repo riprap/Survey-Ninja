@@ -39,7 +39,7 @@ if (!empty($_POST)) :
 
   //loop through each of the questions and check if blank
   for ($i=1; $i <= $question_count; $i++):
-    if (empty($_POST['question_'.$i])) :
+    if (($_POST['question_'.$i]) == "") :
       $errors[] = "Question #". $i . " cannot be blank";
       //Add the name of the field to the field_errors array
       $field_errors[] = 'question_'.$i;
@@ -48,7 +48,7 @@ if (!empty($_POST)) :
     if ($survey_type == 'Multiple Choice') :
       foreach(range('A','D') as $d) :
         ${"question_". $i .'_answer_'.$d} =  $_POST["question_". $i .'_answer_'.$d];
-        if (empty($_POST["question_". $i .'_answer_'.$d])) :
+        if (($_POST["question_". $i .'_answer_'.$d]) == "") :
 
           $errors[] = "Question #". $i . " Answer ". $d ." cannot be blank";
           //Add the name of the field to the field_errors array
