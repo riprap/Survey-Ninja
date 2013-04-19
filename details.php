@@ -21,6 +21,7 @@ include 'partials/get_survey.php';
         <h3>
           <?php echo $survey['name']; ?>
         </h3>
+        <?php include 'partials/messages.php'; ?>
         <table>
         	<tr>
         		<th>Survey Type</th>
@@ -47,12 +48,17 @@ include 'partials/get_survey.php';
             <img src="images/facebook.png" alt="Share on Facebook" id="fb_share">
         </a>
         <a href="email.php?survey=<?php echo $survey['id']; ?>">
-            Email This Survey 
+            Email This Survey To a Friend
         </a>
 		<hr/>
 		<h4>
 			Results
 		</h4>
+        <a href="email_results.php?survey=<?php echo $survey['id']; ?>">
+            Email Me These Results
+        </a>
+        <br> 
+        <br>     
         <ol>
           <?php 
           foreach ($questions as $question): 
