@@ -41,6 +41,7 @@ if (!empty($_POST)) :
   if (empty($errors)) :
     if (mail($to_email, stripslashes($subject),stripslashes($body), $headers)) :
       set_message("success", "Email has been sent.");
+	  header('Location: my_surveys.php');
     else :
       set_message("error", "Unable to send email.");
     endif;
