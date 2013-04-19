@@ -91,7 +91,6 @@ endif; //End of if statement that executes if the form has been submitted
               if (isset($_POST['question_'. $question['id']])) :
                 $selected_value = $_POST['question_'. $question['id']];
               endif; //End the if statement that checks if the post value of the current question has been set
-
               foreach ($answers as $answer):
                 $selected = '';
                 if ($answer['id'] == $selected_value): 
