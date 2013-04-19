@@ -29,7 +29,16 @@ include 'partials/html_header.php';
           <li><a href="profile.php">View your Profile.</a></li>
         <?php
         else : ?>
-          <li><a href="list_surveys.php">Take a Survey</a></li>
+          <li>
+          	<a href="list_surveys.php">Take a Survey</a>
+          </li>
+          <li>
+          	<a href="login.php">Login</a> to Create and Manage Surveys
+          </li>
+          <li>
+          	<a href="register.php">Register</a> if you are new
+          	and want to to Create and Manage Surveys
+          </li>
         <?php
         endif;?>
 

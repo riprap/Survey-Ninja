@@ -20,7 +20,7 @@ $surveys = get_active_surveys();
   		
 			<h3><?php echo $page_name;?></h3>
   			<?php include 'partials/messages.php'; ?>
-			
+			<h5>To take a survey, click a survey's name.</h5>
 			<table>
 				<tr>
 					<th>Name</th>
