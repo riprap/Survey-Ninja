@@ -68,7 +68,7 @@ $surveys = get_user_surveys($logged_in_profile['id']);
                   </td>
                   <td>
                     <a href="email.php?survey=<?php echo $survey['id']; ?>">
-                      Email
+                      Send to a Friend
                     </a>
                   </td>
 
