@@ -18,7 +18,7 @@ list($end_day, $end_month, $end_year) = get_tomorrow_date();
 // if the user submitted the form (with method="post")
 if (!empty($_POST)) :
 
-  if (empty($_POST['name'])) :
+  if (($_POST['name']) == "") :
     $errors[] = "Please enter the survey name.";
     $field_errors[] = 'name';
   endif;
