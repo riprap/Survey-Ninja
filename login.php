@@ -22,6 +22,8 @@ if (!empty($_POST)) :
     $errors[] = "Please enter your password.";
   endif;
 
+  $email = $_POST['email'];
+
   //If there are no validation errors attempt to validate the user
   if (empty($errors)) :
     //Search for the email in the database 
@@ -38,11 +40,7 @@ if (!empty($_POST)) :
       endif;
     else :
       $errors[] = "That user doesn't exist!";
-      $email = $_POST['email'];
     endif;
-  else :
-    //There is an error on the page. Maintain sticky variables.
-    $email = $_POST['email'];
   endif;
 endif;
 
