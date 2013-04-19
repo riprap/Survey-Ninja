@@ -69,8 +69,8 @@ include 'partials/html_header.php';
 	    		<input class="button" type="submit" value="Login">
 	    	</form>
 	    	<p>New user? <a href="register.php" id="register">Register Now</a> to create and manage surveys!</p>
-	        <p>Would you like to <a href="list_surveys.php">Take a Survey</a> 
 	    </div>
+	    <?php include 'partials/sidebar.php' ?>
 	  </div>
 	  
 	  <?php include 'partials/footer.php'; ?>

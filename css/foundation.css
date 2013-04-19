@@ -3834,3 +3834,13 @@ a.site_name{
 img#fb_share{
 	margin-right:10px;
 }
+
+.panel a{
+	line-height:1.5em;
+}
+
+/*align the copyright to the right, to the right*/
+footer.row .row div{
+	width:100%;
+	text-align: right;
+}

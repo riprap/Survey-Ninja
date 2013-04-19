@@ -74,8 +74,10 @@ endif; //End of the if statement dealing with submitting the form
 				<label>Confirm Password</label>
 				<input type="password" name="confirm">
 				<input type="submit" value="Register" class="button">
-
-    </form>
+    		</form>
+   		</div>
+   		<?php include 'partials/sidebar.php' ?>
+	</div>
 
 
     <?php include 'partials/footer.php'; ?>

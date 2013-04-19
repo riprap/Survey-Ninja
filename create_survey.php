@@ -112,6 +112,7 @@ endif;
         <input type="submit" value="Create Survey" class="button">
       </form>
     </div>
+    <?php include 'partials/sidebar.php' ?>
   </div>
 
   <?php include 'partials/footer.php'; ?>

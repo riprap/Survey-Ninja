@@ -19,6 +19,7 @@ include "functions/functions.php";
 
   <h1><?php echo $page_name;?></h1>
   
+  <?php include 'partials/sidebar.php' ?>
   <?php include 'partials/footer.php'; ?>
   
   </body>

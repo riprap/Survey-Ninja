@@ -98,6 +98,7 @@ endif; //End the if statement to deal with form processing
         <input type="submit" value="Update" class="button">
       </form>
     </div>
+    <?php include 'partials/sidebar.php' ?>
   </div>
 
   <?php include 'partials/footer.php'; ?>

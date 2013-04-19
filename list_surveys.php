@@ -57,6 +57,7 @@ $surveys = get_active_surveys();
 
 			</table>
 		</div>
+		<?php include 'partials/sidebar.php' ?>
 	</div>
 	
 	<?php include 'partials/footer.php'; ?>

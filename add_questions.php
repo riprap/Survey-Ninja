@@ -151,6 +151,7 @@ endif;//end the if statement if the form has been submitted
 	    			<input type="submit" value="Submit" class="button">
   				</form>  
 			</div>
+			<?php include 'partials/sidebar.php' ?>
 		</div>
 		
   <?php include 'partials/footer.php'; ?>

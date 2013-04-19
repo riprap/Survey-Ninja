@@ -28,6 +28,7 @@ include 'partials/html_header.php';
 				<li><a href="edit_profile.php">Edit My Profile</a></li>
 			</ul>
 		</div>
+		<?php include 'partials/sidebar.php' ?>
 	</div>
 
   <?php include 'partials/footer.php'; ?>

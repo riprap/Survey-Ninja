@@ -61,6 +61,7 @@ endif;
 				<input type="submit" value="Save Profile" class="button">
 			</form>
 		</div>
+		<?php include 'partials/sidebar.php' ?>
 	</div>
 
   <?php include 'partials/footer.php'; ?>

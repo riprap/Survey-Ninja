@@ -70,6 +70,7 @@ include 'partials/get_survey.php';
         <?php endforeach; //end questions foreach?>
        </ol>
     </div>
+    <?php include 'partials/sidebar.php' ?>
   </div>
 <?php  include 'partials/footer.php'; ?>
   

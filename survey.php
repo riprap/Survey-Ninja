@@ -104,6 +104,7 @@ endif; //End of if statement that executes if the form has been submitted
       <input type="submit" value="Submit Survey" class="button">
       </form>
     </div>
+    <?php include 'partials/sidebar.php' ?>
   </div>
 
   <?php include 'partials/footer.php'; ?>

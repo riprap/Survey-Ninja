@@ -77,6 +77,7 @@ endif;
 
         </form>
     </div>
+    <?php include 'partials/sidebar.php' ?>
   </div>
 
   <?php include 'partials/footer.php'; ?>

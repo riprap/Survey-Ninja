@@ -72,6 +72,7 @@ $surveys = get_user_surveys($logged_in_profile['id']);
         <p>You have not made any surveys yet.</p>
       <?php endif; //End of the if statement to check if the user has created any surveys?>
     </div>
+    <?php include 'partials/sidebar.php' ?>
   </div>
   <?php include 'partials/footer.php'; ?>
   
