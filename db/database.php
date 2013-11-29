@@ -7,10 +7,10 @@
 */
 
 $host = "localhost";
-$database = "survey";
+$database = "surveyninja";
 $dsn = 'mysql:host=' . $host . ';dbname=' . $database . ';charset=UTF-8';
-$username = "root";
-$password = "";
+$username = "nolan";
+$password = "bigchipstak1";
 
 try{
   $db = new PDO($dsn, $username, $password);
@@ -19,6 +19,6 @@ try{
   $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 }
 catch (Exception $e){
-  exit($e);
+  exit($e->getMessage());
 }
 ?>
